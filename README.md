@@ -1,4 +1,4 @@
-# ConwaysGameOfLife
+# Conway's Game Of Life
 
 This Conway's Game of Life game has been developed in C# for this [kata](https://github.com/MYOB-Technology/General_Developer/blob/main/katas/kata-conways-game-of-life/kata-conways-game-of-life.md). 
 
