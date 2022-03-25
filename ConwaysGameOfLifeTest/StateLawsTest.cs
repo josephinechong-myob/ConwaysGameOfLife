@@ -15,7 +15,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            var updatedCellState = stateLaw.UpdateCellState(numberOfLiveNeighbours);
+            var updatedCellState = stateLaw.UpdateState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
