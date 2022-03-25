@@ -21,7 +21,7 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedCellState, updatedCellState);
         }
         
-        /*[Fact]
+        [Fact]
         public void Cell_State_Should_Change_To_Dead_If_Alive_Cell_Has_Greater_Than_Three_Live_Neighbours()
         {
             //arrange
@@ -31,13 +31,13 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            var updatedCellState = stateLaw.UpdateCellState(numberOfLiveNeighbours);
+            var updatedCellState = stateLaw.UpdateState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
         }
         
-        [Fact] //change to theory
+        /*[Fact] //change to theory
         public void Cell_State_Should_Stay_Alive_If_Alive_Cell_Has_Two_Or_Three_Live_Neighbours()
         {
             //arrange
