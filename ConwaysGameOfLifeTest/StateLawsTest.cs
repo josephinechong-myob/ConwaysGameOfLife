@@ -37,13 +37,17 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedCellState, updatedCellState);
         }
         
-        [Fact] //change to theory
-        public void Cell_State_Should_Stay_Alive_If_Alive_Cell_Has_Two_Or_Three_Live_Neighbours()
+        
+        
+        [Theory]
+        
+        [InlineData(2)]
+        [InlineData(3)]
+        public void Cell_State_Should_Stay_Alive_If_Alive_Cell_Has_Two_Or_Three_Live_Neighbours(int numberOfLiveNeighbours)
         {
             //arrange
             var originalCellState = State.Alive;
             var stateLaw = new StateLaws();
-            var numberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
