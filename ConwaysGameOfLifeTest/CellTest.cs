@@ -35,7 +35,5 @@ namespace ConwaysGameOfLifeTest
             //assert
             Assert.False(stateIsAlive);
         }
-        
-        //unhappy path
     }
 }
