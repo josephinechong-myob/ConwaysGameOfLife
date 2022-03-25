@@ -1,4 +1,5 @@
 using System;
+using ConwaysGameOfLife;
 using Xunit;
 
 namespace ConwaysGameOfLifeTest

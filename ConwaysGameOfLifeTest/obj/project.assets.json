@@ -1648,6 +1648,16 @@
         "build": {
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
+      },
+      "ConwaysGameOfLife/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/ConwaysGameOfLife.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConwaysGameOfLife.dll": {}
+        }
       }
     }
   },
@@ -5611,10 +5621,16 @@
         "xunit.runner.visualstudio.2.4.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "ConwaysGameOfLife/1.0.0": {
+      "type": "project",
+      "path": "../ConwaysGameOfLife/ConwaysGameOfLife.csproj",
+      "msbuildProject": "../ConwaysGameOfLife/ConwaysGameOfLife.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "ConwaysGameOfLife >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.7.1",
       "coverlet.collector >= 1.3.0",
       "xunit >= 2.4.1",
@@ -5645,7 +5661,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj": {
+              "projectPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
