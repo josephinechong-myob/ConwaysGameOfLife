@@ -5,20 +5,38 @@ namespace ConwaysGameOfLifeTest
 {
     public class CoordinateTest
     {
-        [Fact] 
-        public void Cell_Coordinate_Should_Have_Valid_X_And_Y_Values()
+        [Theory]
+        [InlineData("1, 1", 1, 1)]
+        [InlineData("3, 3", 3, 3)]
+        [InlineData("9, 9", 9, 9)]
+        public void Try_Parse_Should_Return_True_If_Input_For_Coordinate_Is_Valid(string input, int yPosition, int xPosition)
         {
             //arrange
-            var y_position = 3;
-            var x_position = 3;
-            var coordinate = new Coordinate(x_position, y_position);
-            var expectedCoordinate = "3, 3";
+            Coordinate coordinate = new Coordinate(xPosition, yPosition);
 
             //act
-            var actualCoordinate = Coordinate.TryParse(expectedCoordinate, out coordinate);
+            var actualCoordinate = Coordinate.TryParse(input, out coordinate);
 
             //assert
             Assert.True(actualCoordinate);
+        }
+        
+        [Theory]
+        [InlineData("")]
+        [InlineData("a")]
+        [InlineData("@")]
+        [InlineData("1, a")]
+        [InlineData("a, b")]
+        public void Try_Parse_Should_Return_False_If_Input_For_Coordinate_Is_Invalid(string input)
+        {
+            //arrange
+            Coordinate coordinate = null;
+
+            //act
+            var actualCoordinate = Coordinate.TryParse(input, out coordinate);
+
+            //assert
+            Assert.False(actualCoordinate);
         }
     }
 }
