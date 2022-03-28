@@ -3,8 +3,8 @@ namespace ConwaysGameOfLife
     public class Cell
     {
         private readonly State _state;
-        //position
-        //live 
+        public Coordinate Coordinate;
+        
         public Cell(State state)
         {
             _state = state;
