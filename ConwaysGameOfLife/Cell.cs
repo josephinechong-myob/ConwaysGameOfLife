@@ -2,13 +2,16 @@ namespace ConwaysGameOfLife
 {
     public class Cell
     {
-        private State State { get; set; }
+        private readonly State _state;
         //position
         //live 
-        
-        public bool IsAlive(State state) //don't want to pass in the state
+        public Cell(State state)
+        {
+            _state = state;
+        }
+        public bool IsAlive()
         { 
-            return state == State.Alive;
+            return _state == State.Alive;
         }
     }
 }

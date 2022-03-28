@@ -17,17 +17,17 @@ namespace ConwaysGameOfLife
 
         private bool IsDeadByUnderpopulation(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours < Contants.LiveNeighbourLimitForDeathByUnderpopulationLaw;
+            return state == State.Alive && liveNeighbours < Constants.LiveNeighbourLimitForDeathByUnderpopulationLaw;
         }
 
         private bool IsDeadByOvercrowding(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours > Contants.LiveNeighboursLimitForDeathByOvercrowdingLaw;
+            return state == State.Alive && liveNeighbours > Constants.LiveNeighboursLimitForDeathByOvercrowdingLaw;
         }
 
         private bool IsAlive(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours == Contants.TwoLiveNeighboursForRemainingAlive || liveNeighbours == Contants.ThreeLiveNeighboursForRemainingAlive;
+            return state == State.Alive && liveNeighbours == Constants.TwoLiveNeighboursForRemainingAlive || liveNeighbours == Constants.ThreeLiveNeighboursForRemainingAlive;
         }
     }
 }

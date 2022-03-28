@@ -11,11 +11,11 @@ namespace ConwaysGameOfLifeTest
         public void State_For_An_Alive_Cell_Should_Be_Alive()
         {
             //arrange
-            var cell = new Cell();
             var cellState = State.Alive;
+            var cell = new Cell(cellState);
 
             //act
-            var stateIsAlive = cell.IsAlive(cellState);
+            var stateIsAlive = cell.IsAlive();
 
             //assert
             Assert.True(stateIsAlive);
@@ -26,11 +26,11 @@ namespace ConwaysGameOfLifeTest
         public void State_For_A_Dead_Cell_Should_Be_Dead()
         {
             //arrange
-            var cell = new Cell();
             var cellState = State.Dead;
+            var cell = new Cell(cellState);
 
             //act
-            var stateIsAlive = cell.IsAlive(cellState);
+            var stateIsAlive = cell.IsAlive();
 
             //assert
             Assert.False(stateIsAlive);

@@ -1,6 +1,6 @@
 namespace ConwaysGameOfLife
 {
-    public static class Contants
+    public static class Constants
     {
         public const int LiveNeighbourLimitForDeathByUnderpopulationLaw = 2;
         public const int LiveNeighboursLimitForDeathByOvercrowdingLaw = 3;
