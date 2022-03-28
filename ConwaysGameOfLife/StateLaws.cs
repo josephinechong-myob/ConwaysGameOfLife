@@ -4,30 +4,30 @@ namespace ConwaysGameOfLife
     {
         public State UpdateState(State state, int liveNeighbours)
         {
-            if (RemainedAlive(state, liveNeighbours))
+            if (IsAlive(state, liveNeighbours))
             {
                 state = State.Alive;
             }
-            else if (DeathByUnderpopulation(state, liveNeighbours) || DeathByOvercrowding(state, liveNeighbours))
+            else if (IsDeadByUnderpopulation(state, liveNeighbours) || IsDeadByOvercrowding(state, liveNeighbours))
             {
                state = State.Dead;
             }
             return state;
         }
 
-        private bool DeathByUnderpopulation(State state, int liveNeighbours)
+        private bool IsDeadByUnderpopulation(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours < Contants.NumberOfLiveNeighboursForDeathByUnderpopulationLaw;
+            return state == State.Alive && liveNeighbours < Contants.LiveNeighbourLimitForDeathByUnderpopulationLaw;
         }
 
-        private bool DeathByOvercrowding(State state, int liveNeighbours)
+        private bool IsDeadByOvercrowding(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours > Contants.NumberOfLiveNeighboursForDeathByOvercrowdingLaw;
+            return state == State.Alive && liveNeighbours > Contants.LiveNeighboursLimitForDeathByOvercrowdingLaw;
         }
 
-        private bool RemainedAlive(State state, int liveNeighbours)
+        private bool IsAlive(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours == 2 || liveNeighbours == 3;
+            return state == State.Alive && liveNeighbours == Contants.TwoLiveNeighboursForRemainingAlive || liveNeighbours == Contants.ThreeLiveNeighboursForRemainingAlive;
         }
     }
 }
