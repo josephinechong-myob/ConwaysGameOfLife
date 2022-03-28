@@ -5,6 +5,7 @@ namespace ConwaysGameOfLife
         private readonly State _state;
         public Coordinate Coordinate;
         
+        
         public Cell(State state)
         {
             _state = state;

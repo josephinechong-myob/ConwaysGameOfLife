@@ -6,7 +6,6 @@ namespace ConwaysGameOfLifeTest
 {
     public class CellTest
     {
-        //happy path
         [Fact] 
         public void State_For_An_Alive_Cell_Should_Be_Alive()
         {
@@ -21,7 +20,6 @@ namespace ConwaysGameOfLifeTest
             Assert.True(stateIsAlive);
         }
         
-        //happy path
         [Fact] 
         public void State_For_A_Dead_Cell_Should_Be_Dead()
         {
