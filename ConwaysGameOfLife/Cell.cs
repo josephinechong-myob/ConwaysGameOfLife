@@ -3,8 +3,8 @@ namespace ConwaysGameOfLife
     public class Cell
     {
         private readonly State _state;
-        //public Coordinate Coordinate;
-        //private Position _position;
+        public Coordinate Coordinate;
+        private Position _position;
 
         public Cell(State state)
         {
@@ -19,13 +19,18 @@ namespace ConwaysGameOfLife
         {
             if (IsCorner(coordinate, universeDimension))
             {
-                return Position.Corner;
+                _position = Position.Corner;
             }
             if (IsSide(coordinate, universeDimension))
             {
-                return Position.Side;
+                _position = Position.Side;
             }
-            return Position.Middle;
+            if (!IsCorner(coordinate, universeDimension) && !IsSide(coordinate, universeDimension))
+            {
+                _position = Position.Middle;
+            }
+            
+            return _position;
         }
         
         private bool IsCorner(Coordinate coordinate, int universeDimension)
