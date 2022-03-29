@@ -18,7 +18,7 @@ namespace ConwaysGameOfLife
             try
             {
                 var stringCoordinate = input.Split(',');
-                var row = Int32.Parse(stringCoordinate[0]) - 1;
+                var row = Int32.Parse(stringCoordinate[0]) - 1; 
                 var column = Int32.Parse(stringCoordinate[1]) - 1;
                 coordinate = new Coordinate(row, column);
                 return true;

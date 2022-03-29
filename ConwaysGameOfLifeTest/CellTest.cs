@@ -1,4 +1,3 @@
-using System;
 using ConwaysGameOfLife;
 using Xunit;
 
@@ -34,56 +33,66 @@ namespace ConwaysGameOfLifeTest
             Assert.False(stateIsAlive);
         }
         
-        [Fact] 
-        public void Corner_Cell_Should_Return_Position_Type_Of_Corner()
+        [Theory]
+        [InlineData(0,0)]
+        [InlineData(2,2)]
+        [InlineData(0,2)]
+        [InlineData(2,0)]
+        public void Corner_Cell_Should_Return_Position_Type_Of_Corner(int row, int column)
         {
             //arrange
-            var coordinates = new Coordinate(1, 1);
-            var universeRows = 3;
-            var universeColumns = 3;
+            var coordinate = new Coordinate(row, column);
+            var universeDimension = 3;
             var state = State.Alive;
             var cell = new Cell(state);
             var expectedPosition = Position.Corner;
 
             //act
-            var actualPosition = cell.GetPositionType(coordinates, universeRows, universeColumns);
+            var actualPosition = cell.GetPositionType(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
         }
         
-        [Fact] 
-        public void Middle_Cell_Should_Return_Position_Of_Middle()
+        [Theory]
+        [InlineData(1, 1, 3)]
+        [InlineData(2, 2, 5)] 
+        [InlineData(2, 4, 9)]
+        [InlineData(5, 5, 7)]
+        public void Middle_Cell_Should_Return_Position_Of_Middle(int row, int column, int universeDimension)
         {
             //arrange
-            var coordinates = new Coordinate(2, 2);
-            var universeRows = 3;
-            var universeColumns = 3;
+            var coordinate = new Coordinate(row, column);
             var state = State.Alive;
             var cell = new Cell(state);
             var expectedPosition = Position.Middle;
 
             //act
-            var actualPosition = Cell.GetType(coordinates, universeRows, universeColumns);
+            var actualPosition = cell.GetPositionType(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
         }
         
-        /*[Fact] 
-        public void Side_Cell_Should_Return_Position_Of_Side()
+        [Theory]
+        [InlineData(0,1)]
+        [InlineData(2,1)] 
+        [InlineData(1,0)]
+        [InlineData(1,2)]
+        public void Side_Cell_Should_Return_Position_Of_Side(int row, int column)
         {
             //arrange
-            var coordinates = new Coordinate(2, 2);
+            var coordinate = new Coordinate(row, column);
+            var universeDimension = 3;
             var state = State.Alive;
             var cell = new Cell(state);
-            var expectedPosition = Position.Middle;
+            var expectedPosition = Position.Side;
 
             //act
-            var actualPosition = Cell.GetType(coordinates);
+            var actualPosition = cell.GetPositionType(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
-        }*/
+        }
     }
 }
