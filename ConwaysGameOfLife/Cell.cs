@@ -21,11 +21,11 @@ namespace ConwaysGameOfLife
             {
                 _position = Position.Corner;
             }
-            if (IsSide(coordinate, universeDimension))
+            else if (IsSide(coordinate, universeDimension))
             {
                 _position = Position.Side;
             }
-            if (!IsCorner(coordinate, universeDimension) && !IsSide(coordinate, universeDimension))
+            else
             {
                 _position = Position.Middle;
             }
