@@ -48,7 +48,7 @@ namespace ConwaysGameOfLifeTest
             var expectedPosition = Position.Corner;
 
             //act
-            var actualPosition = cell.GetPositionType(coordinate, universeDimension);
+            var actualPosition = cell.GetPosition(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
@@ -68,7 +68,7 @@ namespace ConwaysGameOfLifeTest
             var expectedPosition = Position.Middle;
 
             //act
-            var actualPosition = cell.GetPositionType(coordinate, universeDimension);
+            var actualPosition = cell.GetPosition(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
@@ -89,10 +89,26 @@ namespace ConwaysGameOfLifeTest
             var expectedPosition = Position.Side;
 
             //act
-            var actualPosition = cell.GetPositionType(coordinate, universeDimension);
+            var actualPosition = cell.GetPosition(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
         }
+        
+        [Fact] 
+        public void Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()
+        {
+            //arrange
+            var cellState = State.Alive;
+            var cell = new Cell(cellState);
+            var expectedNumberOfLiveNeighbours = 2;
+
+            //act
+            var actualNumberOfLiveNeighbours = cell.GetLiveNeighbours();
+
+            //assert
+            Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
+        }
+        
     }
 }

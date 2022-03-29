@@ -15,7 +15,7 @@ namespace ConwaysGameOfLife
             return _state == State.Alive;
         }
 
-        public Position GetPositionType(Coordinate coordinate, int universeDimension)
+        public Position GetPosition(Coordinate coordinate, int universeDimension)
         {
             if (IsCorner(coordinate, universeDimension))
             {
