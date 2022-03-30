@@ -34,18 +34,17 @@ namespace ConwaysGameOfLifeTest
         }
         
         [Theory]
-        [InlineData(0,0)]
-        [InlineData(2,2)]
-        [InlineData(0,2)]
-        [InlineData(2,0)]
-        public void Corner_Cell_Should_Return_Position_Type_Of_Corner(int row, int column)
+        [InlineData(0, 0, Position.TopLeftCorner)]
+        [InlineData(2, 2, Position.BottomRightCorner)]
+        [InlineData(0, 2, Position.TopRightCorner)]
+        [InlineData(2, 0, Position.BottomLeftCorner)]
+        public void Corner_Cell_Should_Return_Position_Type_Of_Corner(int row, int column, Position expectedPosition)
         {
             //arrange
             var coordinate = new Coordinate(row, column);
             var universeDimension = 3;
             var state = State.Alive;
             var cell = new Cell(state);
-            var expectedPosition = Position.Corner;
 
             //act
             var actualPosition = cell.GetPosition(coordinate, universeDimension);
@@ -75,18 +74,17 @@ namespace ConwaysGameOfLifeTest
         }
         
         [Theory]
-        [InlineData(0,1)]
-        [InlineData(2,1)] 
-        [InlineData(1,0)]
-        [InlineData(1,2)]
-        public void Side_Cell_Should_Return_Position_Of_Side(int row, int column)
+        [InlineData(0, 1, Position.TopSide)]
+        [InlineData(2, 1, Position.BottomSide)] 
+        [InlineData(1, 0, Position.LeftSide)]
+        [InlineData(1, 2, Position.RightSide)]
+        public void Side_Cell_Should_Return_Position_Of_Side(int row, int column, Position expectedPosition)
         {
             //arrange
             var coordinate = new Coordinate(row, column);
             var universeDimension = 3;
             var state = State.Alive;
             var cell = new Cell(state);
-            var expectedPosition = Position.Side;
 
             //act
             var actualPosition = cell.GetPosition(coordinate, universeDimension);
@@ -95,20 +93,23 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedPosition, actualPosition);
         }
         
-        [Fact] 
+        /*[Fact] 
         public void Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()
         {
             //arrange
             var cellState = State.Alive;
             var cell = new Cell(cellState);
             var expectedNumberOfLiveNeighbours = 2;
+            var cellPosition = Position.Middle;
+            var coordinate = new Coordinate(1, 1);
+            var universeDimension = 3;
 
             //act
             var actualNumberOfLiveNeighbours = cell.GetLiveNeighbours();
 
             //assert
             Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
-        }
+        }*/
         
     }
 }

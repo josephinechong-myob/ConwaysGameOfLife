@@ -27,7 +27,9 @@ namespace ConwaysGameOfLife
 
         private bool IsAlive(State state, int liveNeighbours)
         {
-            return state == State.Alive && liveNeighbours == Constants.TwoLiveNeighboursForRemainingAlive || liveNeighbours == Constants.ThreeLiveNeighboursForRemainingAlive;
+            return state == State.Alive && liveNeighbours == Constants.TwoLiveNeighboursForRemainingAlive || 
+                   state == State.Alive && liveNeighbours == Constants.ThreeLiveNeighboursForRemainingAlive ||
+                   state == State.Dead && liveNeighbours == Constants.ThreeLiveNeighboursForRemainingAlive;
         }
     }
 }

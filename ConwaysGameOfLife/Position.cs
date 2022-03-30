@@ -2,8 +2,14 @@ namespace ConwaysGameOfLife
 {
     public enum Position
     {
-        Corner,
+        TopLeftCorner,
+        TopRightCorner,
+        BottomLeftCorner,
+        BottomRightCorner,
         Middle,
-        Side
+        TopSide,
+        BottomSide,
+        LeftSide,
+        RightSide
     }
 }

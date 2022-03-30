@@ -5,6 +5,7 @@ namespace ConwaysGameOfLife
         private readonly State _state;
         public Coordinate Coordinate;
         private Position _position;
+        public int NumberOfLiveNeighbours;
 
         public Cell(State state)
         {
@@ -17,26 +18,93 @@ namespace ConwaysGameOfLife
 
         public Position GetPosition(Coordinate coordinate, int universeDimension)
         {
-            if (IsCorner(coordinate, universeDimension))
+            if (IsTopLeftCorner(coordinate, universeDimension))
             {
-                _position = Position.Corner;
+                _position = Position.TopLeftCorner;
             }
-            else if (IsSide(coordinate, universeDimension))
+            else if (IsTopRightCorner(coordinate, universeDimension))
             {
-                _position = Position.Side;
+                _position = Position.TopRightCorner;
+            }
+            else if (IsBottomLeftCorner(coordinate, universeDimension))
+            {
+                _position = Position.BottomLeftCorner;
+            }
+            else if (IsBottomRightCorner(coordinate, universeDimension))
+            {
+                _position = Position.BottomRightCorner;
+            }
+            else if (IsTopSide(coordinate, universeDimension))
+            {
+                _position = Position.TopSide;
+            }
+            else if (IsBottomSide(coordinate, universeDimension))
+            {
+                _position = Position.BottomSide;
+            }
+            else if (IsLeftSide(coordinate, universeDimension))
+            {
+                _position = Position.LeftSide;
+            }
+            else if (IsRightSide(coordinate, universeDimension))
+            {
+                _position = Position.RightSide;
             }
             else
             {
                 _position = Position.Middle;
             }
+            //_position = GetCorner(coordinate, universeDimension);
+            //_position = GetSide(coordinate, universeDimension);
             
             return _position;
         }
-        
-        private bool IsCorner(Coordinate coordinate, int universeDimension)
+
+        /*public int GetLiveNeighbour()
         {
-            return IsTopLeftCorner(coordinate, universeDimension) || IsTopRightCorner(coordinate, universeDimension) ||
-                   IsBottomLeftCorner(coordinate, universeDimension) || IsBottomRightCorner(coordinate, universeDimension);
+            LiveDiagonalNeighbours();
+        }
+
+        private int LiveDiagonalNeighbours(Position position)
+        {
+            var liveNeighbours = 0;
+            
+            if (position == Position.Corner)
+            {
+                
+            }
+            else if (position == Position.Middle)
+            {
+                
+            }
+            else if (position == Position.Side)
+            {
+                
+            }
+
+            return liveNeighbours;
+        }*/
+        
+        private Position GetCorner(Coordinate coordinate, int universeDimension)
+        {
+             if (IsTopLeftCorner(coordinate, universeDimension))
+             {
+                 _position = Position.TopLeftCorner;
+             }
+             else if (IsTopRightCorner(coordinate, universeDimension))
+             {
+                 _position = Position.TopRightCorner;
+             }
+             else if (IsBottomLeftCorner(coordinate, universeDimension))
+             {
+                 _position = Position.BottomLeftCorner;
+             }
+             else if (IsBottomRightCorner(coordinate, universeDimension))
+             {
+                 _position = Position.BottomRightCorner;
+             }
+
+             return _position;
         }
 
         private bool IsTopLeftCorner(Coordinate coordinate, int universeDimension)
@@ -67,10 +135,26 @@ namespace ConwaysGameOfLife
             return coordinate.Row == bottomRightCorner.Row && coordinate.Column == bottomRightCorner.Column;
         }
         
-        private bool IsSide(Coordinate coordinate, int universeDimension)
+        private Position GetSide(Coordinate coordinate, int universeDimension)
         {
-            return IsTopSide(coordinate, universeDimension) || IsBottomSide(coordinate, universeDimension) ||
-                   IsLeftSide(coordinate, universeDimension) || IsRightSide(coordinate, universeDimension);
+            if (IsTopSide(coordinate, universeDimension))
+            {
+                _position = Position.TopSide;
+            }
+            else if (IsBottomSide(coordinate, universeDimension))
+            {
+                _position = Position.BottomSide;
+            }
+            else if (IsLeftSide(coordinate, universeDimension))
+            {
+                _position = Position.LeftSide;
+            }
+            else if (IsRightSide(coordinate, universeDimension))
+            {
+                _position = Position.RightSide;
+            }
+
+            return _position;
         }
 
         private bool IsTopSide(Coordinate coordinate, int universeDimension)
