@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ConwaysGameOfLife;
 using Xunit;
 
@@ -5,12 +6,14 @@ namespace ConwaysGameOfLifeTest
 {
     public class CellTest
     {
+        /*
         [Fact] 
         public void State_For_An_Alive_Cell_Should_Be_Alive()
         {
             //arrange
+            var coordinate = new Coordinate(0, 0);
             var cellState = State.Alive;
-            var cell = new Cell(cellState);
+            var cell = new Cell();
 
             //act
             var stateIsAlive = cell.IsAlive();
@@ -23,8 +26,9 @@ namespace ConwaysGameOfLifeTest
         public void State_For_A_Dead_Cell_Should_Be_Dead()
         {
             //arrange
+            var coordinate = new Coordinate(0, 0);
             var cellState = State.Dead;
-            var cell = new Cell(cellState);
+            var cell = new Cell();
 
             //act
             var stateIsAlive = cell.IsAlive();
@@ -32,6 +36,7 @@ namespace ConwaysGameOfLifeTest
             //assert
             Assert.False(stateIsAlive);
         }
+        */
         
         [Theory]
         [InlineData(0, 0, Position.TopLeftCorner)]
@@ -44,7 +49,7 @@ namespace ConwaysGameOfLifeTest
             var coordinate = new Coordinate(row, column);
             var universeDimension = 3;
             var state = State.Alive;
-            var cell = new Cell(state);
+            var cell = new Cell();
 
             //act
             var actualPosition = cell.GetPosition(coordinate, universeDimension);
@@ -63,7 +68,7 @@ namespace ConwaysGameOfLifeTest
             //arrange
             var coordinate = new Coordinate(row, column);
             var state = State.Alive;
-            var cell = new Cell(state);
+            var cell = new Cell();
             var expectedPosition = Position.Middle;
 
             //act
@@ -84,7 +89,7 @@ namespace ConwaysGameOfLifeTest
             var coordinate = new Coordinate(row, column);
             var universeDimension = 3;
             var state = State.Alive;
-            var cell = new Cell(state);
+            var cell = new Cell();
 
             //act
             var actualPosition = cell.GetPosition(coordinate, universeDimension);
@@ -94,18 +99,23 @@ namespace ConwaysGameOfLifeTest
         }
         
         /*[Fact] 
-        public void Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()
+        public void Top_Left_Cell_Position_Who_Has_Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()
         {
             //arrange
             var cellState = State.Alive;
-            var cell = new Cell(cellState);
-            var expectedNumberOfLiveNeighbours = 2;
-            var cellPosition = Position.Middle;
             var coordinate = new Coordinate(1, 1);
+            var cellPosition = Position.TopLeftCorner;
             var universeDimension = 3;
-
+            var cell = new Cell(cellState, coordinate);
+            List<Coordinate> neighbourCoordinates =
+            {
+                
+                
+            }
+            var expectedNumberOfLiveNeighbours = 2;
+            
             //act
-            var actualNumberOfLiveNeighbours = cell.GetLiveNeighbours();
+            var actualNumberOfLiveNeighbours = cell.GetLiveNeighbours(coordinate, universeDimension, cellState);
 
             //assert
             Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);

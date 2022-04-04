@@ -1,24 +1,106 @@
+using System.Collections.Generic;
+
 namespace ConwaysGameOfLife
 {
     public class Cell
     {
         private readonly State _state;
         public Coordinate Coordinate;
-        private Position _position;
+        private Position? _position;
         public int NumberOfLiveNeighbours;
+      
 
-        public Cell(State state)
+        public Cell()
         {
-            _state = state;
         }
+        
         public bool IsAlive()
         { 
             return _state == State.Alive;
         }
-
+        
         public Position GetPosition(Coordinate coordinate, int universeDimension)
         {
-            if (IsTopLeftCorner(coordinate, universeDimension))
+            CheckIfCorner(coordinate, universeDimension);
+            CheckIfSide(coordinate, universeDimension);
+            _position ??= Position.Middle;
+
+            return (Position) _position;
+        }
+
+        /*public int GetLiveNeighbours(Coordinate coordinate, int universeDimension, State state)
+        {
+            return GetNeighboursOfTopLeftCornerCellPosition(coordinate, universeDimension, state);
+        }*/
+
+        /*
+        private List<Cell> GetNeighboursOfTopLeftCornerCellPosition(int universeDimension)
+        {
+            var neighbourCoordinates = new List<Coordinate>()
+            {
+                new Coordinate(LastRowOrColumn(universeDimension), LastRowOrColumn(universeDimension)), //topLeftNeighbour
+                new Coordinate(LastRowOrColumn(universeDimension), NextColumn(Coordinate)), //topRightNeighbour
+                new Coordinate(NextRow(Coordinate), LastRowOrColumn(universeDimension)), //bottomLeftNeighbour
+                new Coordinate(NextRow(Coordinate), NextColumn(Coordinate)),// same as middle type cell bottom right ~ bottomRightNeighbour 
+                new Coordinate(LastRowOrColumn(universeDimension), Constants.FirstRowOrColumn), //topNeighbour
+                new Coordinate(NextRow(Coordinate), Constants.FirstRowOrColumn), // same as middle type cell ~ bottomNeighbour
+                new Coordinate(Constants.FirstRowOrColumn, LastRowOrColumn(universeDimension)), //leftNeighbour
+                new Coordinate(Constants.FirstRowOrColumn, NextColumn(Coordinate)) //same as middle type cell ~ rightNeighbour
+            };
+
+            var neighbourCells = new List<Cell>();
+
+            foreach (var neighbourCoordinate in neighbourCoordinates)
+            {
+                var neighbourCell = ;
+                neighbourCells.Add(neighbourCell);
+            }
+        }
+        */
+        
+        /*public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
+        {
+            var liveNeighbours = 0;
+            
+            foreach (var neighbourCoordinate in neighbourCoordinates)
+            {
+                var neighbourCell = new Cell(state, neighbourCoordinate);
+                if (neighbourCell.IsAlive())
+                {
+                    liveNeighbours += 1;
+                }
+            }
+            return liveNeighbours;
+        }*/
+        
+        private int LastRowOrColumn(int universeDimension)
+        {
+            return universeDimension - Constants.ZeroIndexAdjustmentValue;
+        }
+        
+        private int NextRow(Coordinate coordinate)
+        {
+            return coordinate.Row + Constants.NeighbourPositionAdjustmentValue;
+        }
+        
+        private int NextColumn(Coordinate coordinate)
+        {
+            return coordinate.Column + Constants.NeighbourPositionAdjustmentValue;
+        }
+        
+        private int PreviousRow(Coordinate coordinate)
+        {
+            return coordinate.Row - Constants.NeighbourPositionAdjustmentValue;
+        }
+        
+        private int PreviousColumn(Coordinate coordinate)
+        {
+            return coordinate.Column - Constants.NeighbourPositionAdjustmentValue;
+        }
+        
+        private void CheckIfCorner(Coordinate coordinate, int universeDimension)
+        {
+            if (IsTopLeftCorner(coordinate))
             {
                 _position = Position.TopLeftCorner;
             }
@@ -34,7 +116,11 @@ namespace ConwaysGameOfLife
             {
                 _position = Position.BottomRightCorner;
             }
-            else if (IsTopSide(coordinate, universeDimension))
+        }
+        
+        private void CheckIfSide(Coordinate coordinate, int universeDimension) //try adding these to a list of functions
+        {
+            if (IsTopSide(coordinate, universeDimension)) //loop through all the functions, if true _position = Position.{function name}
             {
                 _position = Position.TopSide;
             }
@@ -50,139 +136,66 @@ namespace ConwaysGameOfLife
             {
                 _position = Position.RightSide;
             }
-            else
-            {
-                _position = Position.Middle;
-            }
-            //_position = GetCorner(coordinate, universeDimension);
-            //_position = GetSide(coordinate, universeDimension);
-            
-            return _position;
         }
-
-        /*public int GetLiveNeighbour()
-        {
-            LiveDiagonalNeighbours();
-        }
-
-        private int LiveDiagonalNeighbours(Position position)
-        {
-            var liveNeighbours = 0;
-            
-            if (position == Position.Corner)
-            {
-                
-            }
-            else if (position == Position.Middle)
-            {
-                
-            }
-            else if (position == Position.Side)
-            {
-                
-            }
-
-            return liveNeighbours;
-        }*/
         
-        private Position GetCorner(Coordinate coordinate, int universeDimension)
-        {
-             if (IsTopLeftCorner(coordinate, universeDimension))
-             {
-                 _position = Position.TopLeftCorner;
-             }
-             else if (IsTopRightCorner(coordinate, universeDimension))
-             {
-                 _position = Position.TopRightCorner;
-             }
-             else if (IsBottomLeftCorner(coordinate, universeDimension))
-             {
-                 _position = Position.BottomLeftCorner;
-             }
-             else if (IsBottomRightCorner(coordinate, universeDimension))
-             {
-                 _position = Position.BottomRightCorner;
-             }
-
-             return _position;
-        }
-
-        private bool IsTopLeftCorner(Coordinate coordinate, int universeDimension)
+        private bool IsTopLeftCorner(Coordinate coordinate)
         {
             var topLeftCorner = new Coordinate(Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
-
-            return coordinate.Row == topLeftCorner.Row && coordinate.Column == topLeftCorner.Column;
+            return HasSameCoordinates(topLeftCorner, coordinate);
         }
         
         private bool IsTopRightCorner(Coordinate coordinate, int universeDimension)
         {
             var topRightCorner = new Coordinate(Constants.FirstRowOrColumn, universeDimension - Constants.ZeroIndexAdjustmentValue);
-
-            return coordinate.Row == topRightCorner.Row && coordinate.Column == topRightCorner.Column;
+            return HasSameCoordinates(topRightCorner, coordinate);
         }
         
         private bool IsBottomLeftCorner(Coordinate coordinate, int universeDimension)
         {
             var bottomLeftCorner = new Coordinate(universeDimension - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
-
-            return coordinate.Row == bottomLeftCorner.Row && coordinate.Column == bottomLeftCorner.Column;
+            return HasSameCoordinates(bottomLeftCorner, coordinate);
         }
         
         private bool IsBottomRightCorner(Coordinate coordinate, int universeDimension)
         {
             var bottomRightCorner = new Coordinate(universeDimension - Constants.ZeroIndexAdjustmentValue, universeDimension - Constants.ZeroIndexAdjustmentValue);
-
-            return coordinate.Row == bottomRightCorner.Row && coordinate.Column == bottomRightCorner.Column;
+            return HasSameCoordinates(bottomRightCorner, coordinate);
         }
         
-        private Position GetSide(Coordinate coordinate, int universeDimension)
-        {
-            if (IsTopSide(coordinate, universeDimension))
-            {
-                _position = Position.TopSide;
-            }
-            else if (IsBottomSide(coordinate, universeDimension))
-            {
-                _position = Position.BottomSide;
-            }
-            else if (IsLeftSide(coordinate, universeDimension))
-            {
-                _position = Position.LeftSide;
-            }
-            else if (IsRightSide(coordinate, universeDimension))
-            {
-                _position = Position.RightSide;
-            }
-
-            return _position;
-        }
-
         private bool IsTopSide(Coordinate coordinate, int universeDimension)
         {
-            return coordinate.Row == Constants.FirstRowOrColumn && 
-                   !IsTopLeftCorner(coordinate, universeDimension) &&
-                   !IsTopRightCorner(coordinate, universeDimension);
+            return IsSide(Constants.FirstRowOrColumn, coordinate.Row, coordinate, universeDimension);
         }
 
         private bool IsBottomSide(Coordinate coordinate, int universeDimension)
         {
-            return coordinate.Row == universeDimension - Constants.ZeroIndexAdjustmentValue &&
-                   !IsBottomLeftCorner(coordinate, universeDimension) &&
-                   !IsBottomRightCorner(coordinate, universeDimension);
+            return IsSide(universeDimension - Constants.ZeroIndexAdjustmentValue, coordinate.Row, coordinate, universeDimension);
         }
 
         private bool IsLeftSide(Coordinate coordinate, int universeDimension)
         {
-            return coordinate.Column == Constants.FirstRowOrColumn && 
-                   !IsTopLeftCorner(coordinate, universeDimension) &&
-                   !IsBottomLeftCorner(coordinate, universeDimension);
+            return IsSide(Constants.FirstRowOrColumn, coordinate.Column, coordinate, universeDimension);
         }
 
         private bool IsRightSide(Coordinate coordinate, int universeDimension)
         {
-            return coordinate.Column == universeDimension - Constants.ZeroIndexAdjustmentValue &&
-                   !IsTopRightCorner(coordinate, universeDimension) &&
-                   !IsBottomRightCorner(coordinate, universeDimension);
+            return IsSide(universeDimension - Constants.ZeroIndexAdjustmentValue, coordinate.Column, coordinate, universeDimension);
+        }
+        
+        //checks
+        private bool HasSameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
+        {
+            return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
+        }
+
+        private bool IsSide(int referenceSide, int actualSide, Coordinate coordinate, int universeDimension)
+        {
+            return actualSide == referenceSide && !IsCorner(coordinate, universeDimension);
+        }
+
+        private bool IsCorner(Coordinate coordinate, int universeDimension)
+        {
+            return IsTopLeftCorner(coordinate) || IsTopRightCorner(coordinate, universeDimension) || IsBottomLeftCorner(coordinate, universeDimension) || IsBottomRightCorner(coordinate, universeDimension);
         }
     }
 }

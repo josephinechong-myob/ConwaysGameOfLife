@@ -9,5 +9,7 @@ namespace ConwaysGameOfLife
         
         public const int FirstRowOrColumn = 0;
         public const int ZeroIndexAdjustmentValue = 1;
+
+        public const int NeighbourPositionAdjustmentValue = 1;
     }
 }
