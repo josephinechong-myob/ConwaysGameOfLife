@@ -3,24 +3,27 @@ using Xunit;
 
 namespace ConwaysGameOfLifeTest
 {
-    public class Universe
+    public class UniverseTest
     {
-        [Fact]
-        public void Universe_Width_And_Height_Should_Reflect_Initial_Seed_Specifications_For_Universe_Dimensions()
+        [Theory]
+        [InlineData(3)]
+        [InlineData(5)]
+        [InlineData(10)]
+        [InlineData(100)]
+        public void Universe_Width_And_Height_Should_Reflect_Initial_Seed_Specifications_For_Universe_Dimensions(int seedUniverseDimensions)
         {
             //arrange
-            var seedUniverseDimensions = 3;
-            var universe = new Universe();
+            var universe = new Universe(seedUniverseDimensions);
 
             //act
-            var excepctedUniverseColumnLength = 3;
-            var expectedUniverseRowLength = 3;
-            var actualUniverseColumnLength = universe.Column.count;
-            var actualUniverseRowLength = universe.Row.count;
+            universe.CreateUniverse();
+            var actualUniverseRowLength = universe.Cells.GetLength(0);
+            var actualUniverseColumnLength = universe.Cells.GetLength(1);
+           
 
             //assert
-            Assert.Equal(expectedUniverseRowLength, actualUniverseRowLength);
-            Assert.Equal(excepctedUniverseColumnLength, actualUniverseColumnLength);
+            Assert.Equal(seedUniverseDimensions, actualUniverseRowLength);
+            Assert.Equal(seedUniverseDimensions, actualUniverseColumnLength);
         }
     }
 }

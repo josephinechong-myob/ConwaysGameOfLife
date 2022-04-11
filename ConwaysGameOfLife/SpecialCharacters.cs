@@ -21,7 +21,7 @@ namespace ConwaysGameOfLife
 
         public void CreateGrid()
         {
-            for (int y = SizeY - 1; y >= 0; y--)
+            for (int y = SizeY - 1; y >= 0; y--)//for y = 4; y >= 0; minus a y
             {
                 for (int x = 0; x < SizeX; x++)
                 {
