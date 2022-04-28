@@ -12,8 +12,6 @@ namespace ConwaysGameOfLife
             seedDimensions = GetSeedDimensions();
         }
         
-        
-
         public int GetSeedDimensions()
         {
             var validNumber = false;
