@@ -1,17 +1,22 @@
-using System.Collections.Generic;
+using System;
 
 namespace ConwaysGameOfLife
 {
     public class Cell
     {
         private readonly State _state;
+        public ConsoleColor Colour { get; set; }
         public Coordinate Coordinate;
         private Position? _position;
         public int NumberOfLiveNeighbours;
+        public int SeedDimension;
+        public string Symbol { get; set; }
       
 
         public Cell()
         {
+            Colour = _state == State.Alive ? ConsoleColor.Cyan : ConsoleColor.Magenta;
+            Symbol = Constants.SquareCell;
         }
         
         public bool IsAlive()

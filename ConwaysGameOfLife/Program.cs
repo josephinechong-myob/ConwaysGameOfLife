@@ -8,9 +8,9 @@ namespace ConwaysGameOfLife
         {
             /*SpecialCharacters specialCharacters = new SpecialCharacters();
             specialCharacters.CreateGrid();*/
-            Universe uni = new Universe(10);
-            uni.CreateUniverse();
-            uni.PrintUniverse();
+           // Universe uni = new Universe(10);
+         //   uni.CreateUniverse();
+          //  uni.DisplayUniverse();
 
         }
     }

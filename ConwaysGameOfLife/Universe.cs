@@ -4,13 +4,30 @@ namespace ConwaysGameOfLife
 {
     public class Universe
     {
-        public string [,] Cells { get;}
+        private IConsole seedConsole;
+        public int seedDimensions;
+        public string Content { get; set; }
+        public string [,] Cells { get; set; } //Cell array == Universe grid
 
-        public Universe(int seedDimensions)
+        public Universe(IConsole seedSettings) //ask for grid size (seed dimensions), then ask for dead or alive cells to be set
         {
-            var dimensions = seedDimensions;
-            Cells = new string[dimensions, dimensions];
+            seedConsole = seedSettings;
+            Cells = new String[seedDimensions, seedDimensions];
         }
+        
+        /*public void CreateUniverse()
+        {
+            var width = Cells.GetUpperBound(0) + 1;
+            var height = Cells.GetUpperBound(1) + 1;
+            
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Cells[x, y] = " \u25fc "; //cube shape
+                }
+            }
+        }*/
         
         public void CreateUniverse()
         {
@@ -21,12 +38,12 @@ namespace ConwaysGameOfLife
             {
                 for (int y = 0; y < height; y++)
                 {
-                    Cells[x, y] = " \u25fc ";
+                    Cells[x, y] = " . "; 
                 }
             }
         }
 
-        public void PrintUniverse()
+        public void DisplayUniverse()
         {
             var width = Cells.GetLength(0);
             var height = Cells.GetLength(1);
@@ -35,11 +52,17 @@ namespace ConwaysGameOfLife
             {
                 for (int j = 0; j < height; j++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write(Cells[i, j]);
+                    //Console.ForegroundColor = new Cell().Colour ; //
+                    //Cells[i, j] = new Cell().Symbol; 
+                    Console.Write(Cells[i, j]); //cell status - modify the Foregroundcolour
                 }
                 Console.Write('\n');
             }
+        }
+
+        private void UpdateUniverse()
+        {
+            
         }
     }
 }
