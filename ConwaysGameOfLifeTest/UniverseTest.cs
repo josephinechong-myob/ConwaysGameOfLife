@@ -75,6 +75,18 @@ namespace ConwaysGameOfLifeTest
         public static IEnumerable<object[]> ExpectedPrintedUniverseData => new List<object[]>
         {
             new object[] {
+                1, 1, " \u25fc ", ConsoleColor.Cyan, 1, new State[,]
+                {
+                    {State.Alive}
+                }
+            },
+            new object[] {
+                1, 1, " \u25fc ", ConsoleColor.Magenta, 1, new State[,]
+                {
+                    {State.Dead}
+                }
+            },
+            new object[] {
                 3, 9, " \u25fc ", ConsoleColor.Cyan, 4, new State[,]
                 {
                     {State.Alive, State.Dead, State.Dead}, 
