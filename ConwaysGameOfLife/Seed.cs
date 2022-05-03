@@ -2,14 +2,15 @@ namespace ConwaysGameOfLife
 {
     public class Seed
     {
-        public int seedDimensions;
-        public string[,] seedUniverseSettings;
+        public int SeedDimensions;
+        public string[,] SeedUniverseSettings;
         public IConsole SeedConsole;
         
         public Seed(IConsole console)
         {
             SeedConsole = console;
-            seedDimensions = GetSeedDimensions();
+            SeedDimensions = GetSeedDimensions();
+            //SeedUniverseSettings = new string[,] ;
         }
         
         public int GetSeedDimensions()
@@ -20,10 +21,9 @@ namespace ConwaysGameOfLife
             {
                 SeedConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
                 var seed = SeedConsole.ReadLine();
-                validNumber = int.TryParse(seed, out seedDimensions);
+                validNumber = int.TryParse(seed, out SeedDimensions);
             }
-
-            return seedDimensions;
+            return SeedDimensions;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ConwaysGameOfLife;
 using Moq;
 using Xunit;
@@ -6,7 +7,7 @@ namespace ConwaysGameOfLifeTest
 {
     public class SeedTest
     {
-        private Mock<IConsole> _mockConsole;
+        private readonly Mock<IConsole> _mockConsole;
         
         public SeedTest()
         {
@@ -27,7 +28,7 @@ namespace ConwaysGameOfLifeTest
             var seed = new Seed(_mockConsole.Object);
 
             //act
-            var actualDimension = seed.seedDimensions;
+            var actualDimension = seed.SeedDimensions;
 
             //assert
             Assert.Equal(expectedDimension, actualDimension);
@@ -35,12 +36,12 @@ namespace ConwaysGameOfLifeTest
         
         [Theory] 
         [InlineData("i", "3")]
-        [InlineData("a", "6")]
-        [InlineData("b", "9")]
-        [InlineData("c", "15")]
-        [InlineData("d", "30")]
+        [InlineData(" ", "6")]
+        [InlineData("}", "9")]
+        [InlineData("fifteen", "15")]
+        [InlineData("3T", "30")]
         
-        public void Seed_Dimensions_Should_Be_A_Valid_Number_b(string inputValue, string secondInputValue)
+        public void User_Should_Be_Prompted_To_ReEnter_Value_If_Entry_For_Seed_Grid_Dimensions_Are_Invalid(string inputValue, string secondInputValue)
         {
             //arrange
             _mockConsole.SetupSequence(r => r.ReadLine())
@@ -57,5 +58,33 @@ namespace ConwaysGameOfLifeTest
                ), Times.Exactly(2)
            );
        }
+        
+        /*[Theory, MemberData(nameof(seedUniverseData))]
+        public void User_Should_Be_Able_To_Set_Initial_Seed_Settings(string seedDimensionInput, string[,] seedUniverseSetting)
+        {
+            //arrange
+            _mockConsole.SetupSequence(r => r.ReadLine())
+                .Returns(seedDimensionInput)
+                .Returns(seedUniverseSetting);
+            var seed = new Seed(_mockConsole.Object);
+            
+            //act
+            var actualSeedSettings = seed.SeedUniverseSettings;
+            
+            //assert
+            Assert.Equal(seedUniverseSetting, actualSeedSettings);
+            /*_mockConsole.Verify(
+                w => w.WriteLine(
+                    It.Is<string>(s => s == initalPrintedUniverse)
+                ), Times.Exactly(2)
+            );#1#
+        }
+        
+        public static IEnumerable<object[]> seedUniverseData => new List<object[]>
+        {
+            new object[] {"3", new[,] {{" . ", " . ", " . "}, {" . ", " . ", " . "}, {" . ", " . ", " . "}}}
+           // new object[] {4, new[,] {{" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}}},
+            //new object[] {5, new[,] {{" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}}}
+        };*/
     }
 }

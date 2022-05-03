@@ -38,7 +38,7 @@ namespace ConwaysGameOfLifeTest
         }
         */
         
-        [Theory]
+        /*[Theory]
         [InlineData(0, 0, Position.TopLeftCorner)]
         [InlineData(2, 2, Position.BottomRightCorner)]
         [InlineData(0, 2, Position.TopRightCorner)]
@@ -96,7 +96,7 @@ namespace ConwaysGameOfLifeTest
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
-        }
+        }*/
         
         /*[Fact] 
         public void Top_Left_Cell_Position_Who_Has_Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()

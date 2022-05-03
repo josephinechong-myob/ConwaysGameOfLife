@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ConwaysGameOfLife;
 using Moq;
@@ -55,26 +56,60 @@ namespace ConwaysGameOfLifeTest
             new object[] {5, new[,] {{" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}}}
         };*/
 
-        /*[Theory, MemberData(nameof(expectedPrintedUniverseData))]
-        public void New_Universe_Should_Print_Initial_Universe_Dimensions(int seedUniverseDimensions, string [,] expectedPrintedUniverse)
+        [Theory, MemberData(nameof(ExpectedPrintedUniverseData))]
+        public void New_Universe_Should_Print_Initial_Universe_Dimensions(int seedUniverseDimensions, int expectedTimesPrinted, string expectedPrintedUniverse, ConsoleColor colour, int colourTimes, State[,] cellsState)
         {
             //arrange
-            var universe = new Universe(seedUniverseDimensions);
+            var mockConsole = new Mock<IConsole>();
+            var universe = new Universe(mockConsole.Object, seedUniverseDimensions);
+            //var cellsState = new State[seedUniverseDimensions, seedUniverseDimensions];
 
             //act
-            universe.CreateUniverse();
+            universe.CreateUniverse(cellsState);
             universe.DisplayUniverse();
-            var actualPrintedUniverse = universe.Cells;
             
             //assert
-            Assert.Equal(expectedPrintedUniverse, actualPrintedUniverse);
+            mockConsole.Verify(c=>c.Write(expectedPrintedUniverse), Times.Exactly(expectedTimesPrinted));
+            mockConsole.Verify(c => c.ForegroundColor(colour), Times.Exactly(colourTimes));
         }
-        public static IEnumerable<object[]> expectedPrintedUniverseData => new List<object[]>
+        public static IEnumerable<object[]> ExpectedPrintedUniverseData => new List<object[]>
         {
-            new object[] {3, new[,] {{" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}}},
+            new object[] {
+                3, 9, " \u25fc ", ConsoleColor.Cyan, 4, new State[,]
+                {
+                    {State.Alive, State.Dead, State.Dead}, 
+                    {State.Alive, State.Alive, State.Dead},
+                    {State.Dead, State.Dead, State.Alive}
+                }
+            },
+            new object[] {
+                4, 16, " \u25fc ", ConsoleColor.Cyan, 9, new State[,]
+                {
+                    {State.Alive, State.Dead, State.Dead, State.Alive}, 
+                    {State.Alive, State.Alive, State.Dead, State.Alive},
+                    {State.Dead, State.Dead, State.Alive, State.Alive},
+                    {State.Dead, State.Dead, State.Alive, State.Alive}
+                }
+            },
+            new object[] {
+                5, 25, " \u25fc ", ConsoleColor.Cyan, 16, new State[,]
+                {
+                    {State.Alive, State.Dead, State.Dead, State.Alive, State.Alive}, 
+                    {State.Alive, State.Alive, State.Dead, State.Alive, State.Alive},
+                    {State.Dead, State.Dead, State.Alive, State.Alive, State.Alive},
+                    {State.Dead, State.Dead, State.Alive, State.Alive, State.Alive},
+                    {State.Dead, State.Dead, State.Alive, State.Alive, State.Alive},
+                }
+            }
+            
+        
+        /*new object[] {4, 16, " \u25fc "}*/
+          
+            //new object[] {3, " \u25fc  \u25fc  \u25fc \n \u25fc  \u25fc  \u25fc \n \u25fc  \u25fc  \u25fc "}
+            /*new object[] {3, new[,] {{" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}}},
             new object[] {4, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}},
-            new object[] {5, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}}
-        };*/
+            new object[] {5, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}}*/
+        };
         
         /*[Fact]
         public void Universe_Should_Be_Updated_To_Reflect_Changes_To_Cell_State()

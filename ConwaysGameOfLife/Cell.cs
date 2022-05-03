@@ -4,24 +4,39 @@ namespace ConwaysGameOfLife
 {
     public class Cell
     {
-        private readonly State _state;
-        public ConsoleColor Colour { get; set; }
+        public State State;
         public Coordinate Coordinate;
         private Position? _position;
-        public int NumberOfLiveNeighbours;
-        public int SeedDimension;
         public string Symbol { get; set; }
-      
-
-        public Cell()
+        public ConsoleColor Colour { get; set; }
+        public int NumberOfLiveNeighbours;
+        
+        //public int SeedDimension;
+        
+        //public string DeadCellGridSymbol = " . ";
+        //public string AliveCellGridSymbol = " 1 ";
+        public static Cell GridSymbol { get; set; }
+        
+        public Cell(Coordinate coordinate, State state)
         {
-            Colour = _state == State.Alive ? ConsoleColor.Cyan : ConsoleColor.Magenta;
+            Coordinate = coordinate;
+            State = state;
+            Colour = State == State.Alive ? Constants.Alive : Constants.Dead;
             Symbol = Constants.SquareCell;
+            //GridSymbol = State == State.Alive ? AliveCell : DeadCell;
+            //GridSymbol = GetGridSymbol();
         }
+
+        /*public Cell GetGridSymbol()
+        {
+            return GridSymbol = State == State.Alive ? AliveCellGridSymbol : DeadCellGridSymbol;
+        }*/
+        
+        //print cell function 
         
         public bool IsAlive()
         { 
-            return _state == State.Alive;
+            return State == State.Alive;
         }
         
         public Position GetPosition(Coordinate coordinate, int universeDimension)

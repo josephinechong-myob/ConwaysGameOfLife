@@ -11,7 +11,6 @@ namespace ConwaysGameOfLife
            // Universe uni = new Universe(10);
          //   uni.CreateUniverse();
           //  uni.DisplayUniverse();
-
         }
     }
 }
