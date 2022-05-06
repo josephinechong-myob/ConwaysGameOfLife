@@ -8,5 +8,6 @@ namespace ConwaysGameOfLife
         public void Write(string write);
         public void WriteLine(string writeLine);
         public string ReadLine();
+        public ConsoleKeyInfo ReadKey();
     }
 }

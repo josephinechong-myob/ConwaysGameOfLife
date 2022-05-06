@@ -75,7 +75,8 @@ namespace ConwaysGameOfLife
             ConsoleKeyInfo keyinfo;
             do
             {
-                keyinfo = Console.ReadKey();
+                //keyinfo = Console.ReadKey();
+                keyinfo = SeedConsole.ReadKey();
 
                 if (keyinfo.Key == ConsoleKey.DownArrow)
                 {
