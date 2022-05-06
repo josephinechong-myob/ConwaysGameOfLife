@@ -69,7 +69,7 @@ namespace ConwaysGameOfLifeTest
             var seed = new Seed(_mockConsole.Object);
             
             //act
-            var actualSeedSettings = seed.SeedInitialState;
+            var actualSeedSettings = seed.SeedCellState;
             
             //assert
             Assert.Equal(seedCellsState, actualSeedSettings);

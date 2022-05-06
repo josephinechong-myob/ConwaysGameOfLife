@@ -1,21 +1,18 @@
 using System;
-using System.Threading;
 
 namespace ConwaysGameOfLife
 {
     public class Seed
     {
         public int SeedDimensions;
-        public State[,] SeedInitialState;
+        public State[,] SeedCellState;
         public IConsole SeedConsole;
-       // public static Option[,] Options;
-        
+
         public Seed(IConsole console)
         {
             SeedConsole = console;
             SeedDimensions = GetSeedDimensions();
-            SeedInitialState = GetSeedInitialState();
-           // Options = options;
+            SeedCellState = GetSeedCellState();
             //SeedInitialState = new State[SeedDimensions,SeedDimensions]
         }
         
@@ -32,10 +29,11 @@ namespace ConwaysGameOfLife
             return SeedDimensions;
         }
         
-        static void WriteMenu(Cell[,] universe, Cell selectedCell, int seedDimension)
+        public void PrintSeedUniverseForUserSelection(Cell[,] universe, Cell selectedCell)
         {
             Console.Clear();
             int cellCount = 0;
+            SeedConsole.WriteLine("Select the cells you would like alive.");
             foreach (Cell cell in universe)
             {
                 if (cell == selectedCell)
@@ -44,7 +42,6 @@ namespace ConwaysGameOfLife
                 }
                 else
                 {
-                    //Console.ForegroundColor = ConsoleColor.White;
                     if (cell.State == State.Alive)
                     {
                         Console.ForegroundColor = Constants.Alive;
@@ -53,32 +50,27 @@ namespace ConwaysGameOfLife
                     {
                         Console.ForegroundColor = Constants.Dead;
                     }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
                 }
-                //Console.Write(cell.State);
                 Console.Write(" \u25fc ");
+                
                 cellCount++;
-                if (cellCount % seedDimension == 0)
+                
+                if (cellCount % SeedDimensions == 0)
                 {
                     Console.Write(" \n ");
                 }
             }
         }
 
-        public State[,] GetSeedInitialState()
+        public State[,] GetSeedCellState()
         {
-            SeedInitialState = new State[SeedDimensions, SeedDimensions];
-            SeedConsole.WriteLine("Select the cells you would like alive.");
+            SeedCellState = new State[SeedDimensions, SeedDimensions];
             var universe = new Universe(SeedConsole, SeedDimensions);
             var grid = universe.UniverseGrid;
             universe.CreateInitialUniverse();
-            universe.DisplayUniverse();
             int column = 0;
             int row = 0;
-            WriteMenu(grid, grid[column, row], SeedDimensions);
+            PrintSeedUniverseForUserSelection(grid, grid[column, row]);
             
             ConsoleKeyInfo keyinfo;
             do
@@ -90,7 +82,7 @@ namespace ConwaysGameOfLife
                     if (column + 1 < grid.Length)
                     {
                         column++;
-                        WriteMenu(grid, grid[column, row], SeedDimensions);
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
                 }
 
@@ -99,7 +91,7 @@ namespace ConwaysGameOfLife
                     if (column - 1 >= 0)
                     {
                         column--;
-                        WriteMenu(grid, grid[column, row], SeedDimensions);
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
                 }
 
@@ -108,7 +100,7 @@ namespace ConwaysGameOfLife
                     if (row + 1 < grid.Length)
                     {
                         row++;
-                        WriteMenu(grid, grid[column, row], SeedDimensions);
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
                 }
 
@@ -117,33 +109,27 @@ namespace ConwaysGameOfLife
                     if (row - 1 >= 0)
                     {
                         row--;
-                        WriteMenu(grid, grid[column, row], SeedDimensions);
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
                 }
 
                 if (keyinfo.Key == ConsoleKey.Enter)
                 {
-                    grid[column, row].State = State.Alive;
-                    grid[column, row].Colour = ConsoleColor.Cyan;
-                    SeedInitialState[column, row] = State.Alive;
-                    column = 0;
+                    if (grid[column, row].State == State.Alive)
+                    {
+                        grid[column, row].State = State.Dead;
+                        SeedCellState[column, row] = State.Dead;
+                    }
+                    else
+                    {
+                        grid[column, row].State = State.Alive;
+                        SeedCellState[column, row] = State.Alive;
+                    }
                 }
             } while (keyinfo.Key != ConsoleKey.X);
 
             Console.ReadKey();
-            return SeedInitialState;
+            return SeedCellState;
         }
-        
-        /*static void UpdateSelectedCellStateForSeed(string message)
-        {
-            // Console.Clear();
-            // Console.Write(message);
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Thread.Sleep(3000);
-            WriteMenu(Options, Options[0,0]);
-        }
-            
-      */
-        
     }
 }
