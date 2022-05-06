@@ -5,7 +5,7 @@ namespace ConwaysGameOfLife
     public class Cell
     {
         public State State;
-        public Coordinate Coordinate;
+        public Coordinate Coordinate { get; set; }
         private Position? _position;
         public string Symbol { get; set; }
         public ConsoleColor Colour { get; set; }

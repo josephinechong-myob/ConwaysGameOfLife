@@ -33,28 +33,7 @@ namespace ConwaysGameOfLifeTest
             //assert
             Assert.Equal(seedUniverseDimensions, actualUniverseRowLength);
             Assert.Equal(seedUniverseDimensions, actualUniverseColumnLength);
-        }
-        
-        [Theory, MemberData(nameof(expectedPrintedUniverseData))]
-        public void New_Universe_Should_Print_Initial_Universe_Dimensions(int seedUniverseDimensions, string [,] expectedPrintedUniverse)
-        {
-            //arrange
-            var universe = new Universe(seedUniverseDimensions);
-
-            //act
-            universe.CreateUniverse();
-            universe.DisplayUniverse();
-            var actualPrintedUniverse = universe.Cells;
-            
-            //assert
-            Assert.Equal(expectedPrintedUniverse, actualPrintedUniverse);
-        }
-        public static IEnumerable<object[]> expectedPrintedUniverseData => new List<object[]>
-        {
-            new object[] {3, new[,] {{" . ", " . ", " . "}, {" . ", " . ", " . "}, {" . ", " . ", " . "}}},
-            new object[] {4, new[,] {{" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}}},
-            new object[] {5, new[,] {{" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}}}
-        };*/
+        }*/
 
         [Theory, MemberData(nameof(ExpectedPrintedUniverseData))]
         public void New_Universe_Should_Print_Initial_Universe_Dimensions(int seedUniverseDimensions, int expectedTimesPrinted, string expectedPrintedUniverse, ConsoleColor colour, int colourTimes, State[,] cellsState)
@@ -62,15 +41,18 @@ namespace ConwaysGameOfLifeTest
             //arrange
             var mockConsole = new Mock<IConsole>();
             var universe = new Universe(mockConsole.Object, seedUniverseDimensions);
-            //var cellsState = new State[seedUniverseDimensions, seedUniverseDimensions];
 
             //act
             universe.CreateUniverse(cellsState);
             universe.DisplayUniverse();
+            var cell = universe.UniverseGrid[0,0];
             
             //assert
             mockConsole.Verify(c=>c.Write(expectedPrintedUniverse), Times.Exactly(expectedTimesPrinted));
             mockConsole.Verify(c => c.ForegroundColor(colour), Times.Exactly(colourTimes));
+            //refactor using symbols to indicate colours
+            
+           // mockConsole.Verify(c=>c.ForegroundColor(colour) && cell);
         }
         public static IEnumerable<object[]> ExpectedPrintedUniverseData => new List<object[]>
         {
@@ -87,9 +69,9 @@ namespace ConwaysGameOfLifeTest
                 }
             },
             new object[] {
-                3, 9, " \u25fc ", ConsoleColor.Cyan, 4, new State[,]
+                3, 9, " \u25fc ", ConsoleColor.Cyan, 3, new State[,]
                 {
-                    {State.Alive, State.Dead, State.Dead}, 
+                    {State.Dead, State.Dead, State.Dead}, 
                     {State.Alive, State.Alive, State.Dead},
                     {State.Dead, State.Dead, State.Alive}
                 }
@@ -114,35 +96,11 @@ namespace ConwaysGameOfLifeTest
                 }
             }
             
-        
-        /*new object[] {4, 16, " \u25fc "}*/
-          
-            //new object[] {3, " \u25fc  \u25fc  \u25fc \n \u25fc  \u25fc  \u25fc \n \u25fc  \u25fc  \u25fc "}
             /*new object[] {3, new[,] {{" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}}},
             new object[] {4, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}},
             new object[] {5, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}}*/
-        };
-        
-        /*[Fact]
-        public void Universe_Should_Be_Updated_To_Reflect_Changes_To_Cell_State()
-        {
-            //arrange
-            var seed = 3;
-            var universe = new Universe(seed);
-            var expectedUpdatedUniverse = new[,]
-            {
-                {" 1 ", " . ", " 1 "}, 
-                {" . ", " . ", " . "},
-                {" . ", " . ", " . "}
-            };
-
-            //act
-            universe.CreateUniverse();
-            universe.DisplayUniverse();
-            var actualPrintedUniverse = universe.Cells;
             
-            //assert
-            Assert.Equal(expectedUpdatedUniverse, actualPrintedUniverse);
-        }*/
+            //order of what console colour is printed
+        };
     }
 }

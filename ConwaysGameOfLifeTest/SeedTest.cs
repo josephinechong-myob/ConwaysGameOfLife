@@ -59,32 +59,38 @@ namespace ConwaysGameOfLifeTest
            );
        }
         
-        /*[Theory, MemberData(nameof(seedUniverseData))]
-        public void User_Should_Be_Able_To_Set_Initial_Seed_Settings(string seedDimensionInput, string[,] seedUniverseSetting)
+        [Theory, MemberData(nameof(seedUniverseData))]
+        public void User_Should_Be_Able_To_Set_Initial_Seed_Settings(string seedDimensionInput, string userStateInput, State[,] seedCellsState)
         {
             //arrange
             _mockConsole.SetupSequence(r => r.ReadLine())
                 .Returns(seedDimensionInput)
-                .Returns(seedUniverseSetting);
+                .Returns(userStateInput);
             var seed = new Seed(_mockConsole.Object);
             
             //act
-            var actualSeedSettings = seed.SeedUniverseSettings;
+            var actualSeedSettings = seed.SeedInitialState;
             
             //assert
-            Assert.Equal(seedUniverseSetting, actualSeedSettings);
+            Assert.Equal(seedCellsState, actualSeedSettings);
             /*_mockConsole.Verify(
                 w => w.WriteLine(
                     It.Is<string>(s => s == initalPrintedUniverse)
                 ), Times.Exactly(2)
-            );#1#
+            );*/
         }
         
         public static IEnumerable<object[]> seedUniverseData => new List<object[]>
         {
-            new object[] {"3", new[,] {{" . ", " . ", " . "}, {" . ", " . ", " . "}, {" . ", " . ", " . "}}}
+            new object[] {3, "Alive", new State[,]
+            {
+                {State.Alive, State.Dead, State.Dead}, 
+                {State.Alive, State.Alive, State.Dead},
+                {State.Dead, State.Dead, State.Alive}
+            }}
+            //new object[] {"3", new[,] {{" . ", " . ", " . "}, {" . ", " . ", " . "}, {" . ", " . ", " . "}}}
            // new object[] {4, new[,] {{" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . "}}},
             //new object[] {5, new[,] {{" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}, {" . ", " . ", " . ", " . ", " . "}}}
-        };*/
+        };
     }
 }

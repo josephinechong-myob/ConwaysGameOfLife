@@ -16,6 +16,20 @@ namespace ConwaysGameOfLife
             UniverseGrid = new Cell[SeedDimensions, SeedDimensions];
         }
         
+        //var cellsState = new State[seedUniverseDimensions, seedUniverseDimensions];
+        public void CreateInitialUniverse()
+        {
+            var width = UniverseGrid.GetUpperBound(0) + 1;
+            var height = UniverseGrid.GetUpperBound(1) + 1;
+            
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    UniverseGrid[x, y] = new Cell(new Coordinate(x, y), State.Dead);
+                }
+            }
+        }
         public void CreateUniverse(State[,] userSeedState)
         {
             var width = UniverseGrid.GetUpperBound(0) + 1;
