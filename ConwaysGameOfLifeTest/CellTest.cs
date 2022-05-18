@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ConwaysGameOfLife;
 using Moq;
@@ -7,37 +8,21 @@ namespace ConwaysGameOfLifeTest
 {
     public class CellTest
     {
-        /*
-        [Fact] 
-        public void State_For_An_Alive_Cell_Should_Be_Alive()
+        [Theory] 
+        [InlineData(State.Alive, Constants.Alive)]
+        [InlineData(State.Dead, Constants.Dead)]
+        public void Console_Colour_For_An_Cell_Should_Match_Its_Assigned_State(State cellState, ConsoleColor expectedColour)
         {
             //arrange
             var coordinate = new Coordinate(0, 0);
-            var cellState = State.Alive;
-            var cell = new Cell();
+            var cell = new Cell(coordinate, cellState);
 
             //act
-            var stateIsAlive = cell.IsAlive();
+            var actualColour = cell.Colour;
 
             //assert
-            Assert.True(stateIsAlive);
+            Assert.Equal(expectedColour, actualColour);
         }
-        
-        [Fact] 
-        public void State_For_A_Dead_Cell_Should_Be_Dead()
-        {
-            //arrange
-            var coordinate = new Coordinate(0, 0);
-            var cellState = State.Dead;
-            var cell = new Cell();
-
-            //act
-            var stateIsAlive = cell.IsAlive();
-
-            //assert
-            Assert.False(stateIsAlive);
-        }
-        */
         
         [Theory]
         [InlineData(0, 0, Orientation.TopLeftCorner)]
