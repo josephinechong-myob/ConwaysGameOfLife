@@ -4,13 +4,12 @@ namespace ConwaysGameOfLife
 {
     public class Cell
     {
-        public State State;
         public Coordinate Coordinate { get; set; }
         private Orientation? _orientation;
-        public string Symbol { get; set; }
+        public string Symbol { get; }
         public ConsoleColor Colour { get; set; }
         public int NumberOfLiveNeighbours;
-     
+        public State State;
         
         public Cell(Coordinate coordinate, State state)
         {
@@ -18,21 +17,12 @@ namespace ConwaysGameOfLife
             State = state;
             Colour = state == State.Alive ? Constants.Alive : Constants.Dead;
             Symbol = Constants.SquareCell;
-            //GridSymbol = State == State.Alive ? AliveCell : DeadCell;
-            //GridSymbol = GetGridSymbol();
         }
 
-        /*public Cell GetGridSymbol()
-        {
-            return GridSymbol = State == State.Alive ? AliveCellGridSymbol : DeadCellGridSymbol;
-        }*/
-        
-        //print cell function 
-        
-        public bool IsAlive()
+        /*public bool IsAlive()
         { 
             return State == State.Alive;
-        }
+        }*/
         
         public Orientation GetOrientation(Coordinate coordinate, int universeDimension)
         {

@@ -77,8 +77,7 @@ namespace ConwaysGameOfLifeTest
             var seedCreator = new SeedCreator(_mockConsole.Object);
             
             //act
-            seedCreator.SetSeedDimensions();
-            seedCreator.SetSeedCellState();
+            seedCreator.MakeSeed();
             var seed = seedCreator.GetSeed();
 
             //assert

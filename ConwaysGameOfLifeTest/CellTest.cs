@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ConwaysGameOfLife;
+using Moq;
 using Xunit;
 
 namespace ConwaysGameOfLifeTest
@@ -38,21 +39,21 @@ namespace ConwaysGameOfLifeTest
         }
         */
         
-        /*[Theory]
-        [InlineData(0, 0, Position.TopLeftCorner)]
-        [InlineData(2, 2, Position.BottomRightCorner)]
-        [InlineData(0, 2, Position.TopRightCorner)]
-        [InlineData(2, 0, Position.BottomLeftCorner)]
-        public void Corner_Cell_Should_Return_Position_Type_Of_Corner(int row, int column, Position expectedPosition)
+        [Theory]
+        [InlineData(0, 0, Orientation.TopLeftCorner)]
+        [InlineData(2, 2, Orientation.BottomRightCorner)]
+        [InlineData(0, 2, Orientation.TopRightCorner)]
+        [InlineData(2, 0, Orientation.BottomLeftCorner)]
+        public void Corner_Cell_Should_Return_Orientation_Of_Corner(int row, int column, Orientation expectedPosition)
         {
             //arrange
             var coordinate = new Coordinate(row, column);
             var universeDimension = 3;
             var state = State.Alive;
-            var cell = new Cell();
+            var cell = new Cell(coordinate, state);
 
             //act
-            var actualPosition = cell.GetPosition(coordinate, universeDimension);
+            var actualPosition = cell.GetOrientation(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
@@ -63,40 +64,40 @@ namespace ConwaysGameOfLifeTest
         [InlineData(2, 2, 5)] 
         [InlineData(2, 4, 9)]
         [InlineData(5, 5, 7)]
-        public void Middle_Cell_Should_Return_Position_Of_Middle(int row, int column, int universeDimension)
+        public void Middle_Cell_Should_Return_Orientation_Of_Middle(int row, int column, int universeDimension)
         {
             //arrange
             var coordinate = new Coordinate(row, column);
             var state = State.Alive;
-            var cell = new Cell();
-            var expectedPosition = Position.Middle;
+            var cell = new Cell(coordinate, state);
+            var expectedPosition = Orientation.Middle;
 
             //act
-            var actualPosition = cell.GetPosition(coordinate, universeDimension);
+            var actualPosition = cell.GetOrientation(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
         }
         
         [Theory]
-        [InlineData(0, 1, Position.TopSide)]
-        [InlineData(2, 1, Position.BottomSide)] 
-        [InlineData(1, 0, Position.LeftSide)]
-        [InlineData(1, 2, Position.RightSide)]
-        public void Side_Cell_Should_Return_Position_Of_Side(int row, int column, Position expectedPosition)
+        [InlineData(0, 1, Orientation.TopSide)]
+        [InlineData(2, 1, Orientation.BottomSide)] 
+        [InlineData(1, 0, Orientation.LeftSide)]
+        [InlineData(1, 2, Orientation.RightSide)]
+        public void Side_Cell_Should_Return_Orientation_Of_Side(int row, int column, Orientation expectedPosition)
         {
             //arrange
             var coordinate = new Coordinate(row, column);
             var universeDimension = 3;
             var state = State.Alive;
-            var cell = new Cell();
+            var cell = new Cell(coordinate, state);
 
             //act
-            var actualPosition = cell.GetPosition(coordinate, universeDimension);
+            var actualPosition = cell.GetOrientation(coordinate, universeDimension);
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
-        }*/
+        }
         
         /*[Fact] 
         public void Top_Left_Cell_Position_Who_Has_Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()

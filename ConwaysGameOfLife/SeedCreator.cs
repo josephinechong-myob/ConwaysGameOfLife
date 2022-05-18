@@ -17,6 +17,12 @@ namespace ConwaysGameOfLife
             return new Seed(_seedDimensions, _seedGrid);
         }
 
+        public void MakeSeed()
+        {
+            SetSeedDimensions();
+            SetSeedCellState();
+        }
+
         public void SetSeedDimensions()
         {
             var validNumber = false;

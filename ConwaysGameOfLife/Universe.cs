@@ -28,7 +28,7 @@ namespace ConwaysGameOfLife
         
         public void DisplayUniverse(Cell[,] universe)
         {
-            var displayString = "";
+            //var displayString = "";
             var width = universe.GetLength(0);
             var height = universe.GetLength(1);
 
@@ -36,44 +36,11 @@ namespace ConwaysGameOfLife
             {
                 for (int j = 0; j < height; j++)
                 {
-                    //GameConsole.ForegroundColor(UniverseGrid[i, j].Colour);
-                    if (universe[i, j].State == State.Alive)
-                    {
-                        GameConsole.ForegroundColor(Constants.Alive);
-                    }
-                    else if (universe[i, j].State == State.Dead)
-                    {
-                        GameConsole.ForegroundColor(Constants.Dead);
-                    }
+                    GameConsole.ForegroundColor(universe[i, j].Colour);
                     GameConsole.Write(universe[i, j].Symbol);
                 }
                 GameConsole.Write("\n");
             }
         }
-        
-        /*public void DisplayUniverse()
-        {
-            var displayString = "";
-            var width = UniverseGrid.GetLength(0);
-            var height = UniverseGrid.GetLength(1);
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    //GameConsole.ForegroundColor(UniverseGrid[i, j].Colour);
-                    if (UniverseGrid[i, j].State == State.Alive)
-                    {
-                        GameConsole.ForegroundColor(Constants.Alive);
-                    }
-                    else if (UniverseGrid[i, j].State == State.Dead)
-                    {
-                        GameConsole.ForegroundColor(Constants.Dead);
-                    }
-                    GameConsole.Write(UniverseGrid[i, j].Symbol);
-                }
-                GameConsole.Write("\n");
-            }
-        }*/
     }
 }           
