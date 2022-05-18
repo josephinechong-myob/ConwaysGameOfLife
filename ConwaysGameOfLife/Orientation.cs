@@ -1,6 +1,6 @@
 namespace ConwaysGameOfLife
 {
-    public enum Position
+    public enum Orientation
     {
         TopLeftCorner,
         TopRightCorner,

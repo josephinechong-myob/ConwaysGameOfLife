@@ -2,7 +2,7 @@ using System;
 
 namespace ConwaysGameOfLife
 {
-    public class SeedConsole : IConsole
+    public class GameConsole : IGameConsole
     {
         public void ForegroundColor(ConsoleColor consoleColor)
         {
@@ -23,12 +23,10 @@ namespace ConwaysGameOfLife
             return Console.ReadLine();
         }
         
-        public ConsoleKeyInfo ReadKey()
+        public ConsoleKey ReadKey()
         {
-            return Console.ReadKey();
+            return Console.ReadKey().Key;
         }
-        
-        
         //print cell function (output for console)
     }
 }

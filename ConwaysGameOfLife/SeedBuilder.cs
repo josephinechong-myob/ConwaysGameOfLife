@@ -2,43 +2,54 @@ using System;
 
 namespace ConwaysGameOfLife
 {
-    public class Seed
+    public class SeedBuilder
     {
-        private readonly IGameConsole _seedGameConsole;
-        public int SeedDimensions;
-        public Cell[,] SeedGrid;
-
-        public Seed(IGameConsole gameConsole) //seed builder for console
+        private IGameConsole GameConsole;
+        private int SeedDimensions;
+        private Cell[,] SeedGrid;
+        
+        public SeedBuilder(IGameConsole gameConsole)
         {
-            _seedGameConsole = gameConsole;
+            GameConsole = gameConsole;
+        }
+        public Seed GetSeed()
+        {
+            return new Seed(SeedDimensions, SeedGrid);
         }
 
-        //public Seed(int seedDimensions, Cell[,] seedGrid)
-        public Seed(int seedDimensions, Cell[,] seedGrid)
-        {
-            //SeedDimensions = seedDimensions;
-           // SeedGrid = seedGrid;
-           // SeedGrid = new Cell[SeedDimensions, SeedDimensions];
-           SeedDimensions = seedDimensions;
-           SeedGrid = seedGrid;
-        }
-
-        /*public void SetSeedDimensions()
+        public void SetSeedDimensions()
         {
             var validNumber = false;
             
             while (!validNumber)
             {
-                _seedGameConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
-                var seed = _seedGameConsole.ReadLine();
+                GameConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
+                var seed = GameConsole.ReadLine();
                 validNumber = int.TryParse(seed, out SeedDimensions);
             }
-        }*/
+
+            SeedGrid = new Cell[SeedDimensions, SeedDimensions];
+        }
         
-        /*public void SetSeedCellState()
+        public void CreateUniverse()
+        {
+            var width = SeedGrid.GetUpperBound(0) + 1;
+            var height = SeedGrid.GetUpperBound(1) + 1;
+            
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    SeedGrid[x, y] = new Cell(new Coordinate(x, y), State.Dead);
+                }
+            }
+        }
+
+         public void SetSeedCellState()
         {
             int column = 0;
             int row = 0;
+            CreateUniverse();
             PrintSeedUniverseForUserSelection(SeedGrid, SeedGrid[column, row]);
             UserSelection(column, row, SeedGrid);
         }
@@ -47,7 +58,7 @@ namespace ConwaysGameOfLife
         {
             Console.Clear();
             int cellCount = 0;
-            _seedGameConsole.WriteLine($"Select cells you want ALIVE with keyboard arrows\nPress 'Enter' to select cell\nPress 'X' to exit");
+            GameConsole.WriteLine($"Select cells you want ALIVE with keyboard arrows\nPress 'Enter' to select cell\nPress 'X' to exit");
             
             foreach (Cell cell in universe)
             {
@@ -86,7 +97,7 @@ namespace ConwaysGameOfLife
             ConsoleKey keyInfo;
             do
             {
-                keyInfo = _seedGameConsole.ReadKey();
+                keyInfo = GameConsole.ReadKey();
 
                 if (keyInfo == ConsoleKey.DownArrow)
                 {
@@ -138,50 +149,7 @@ namespace ConwaysGameOfLife
                     }
                 }
             } while (keyInfo != ConsoleKey.X);
-
-            _seedGameConsole.ReadKey(); 
-        }*/
+            
+        }
     }
 }
-
-/*
-private readonly IGameConsole _seedGameConsole;
-public int SeedDimensions;
-//public Cell[,] SeedCellState; // delete this if I am updating the Cell state in Universe
-
-public Seed(IGameConsole gameConsole)
-{
-    _seedGameConsole = gameConsole;
-    //SeedDimensions = GetSeedDimensions();
-    //SeedCellState = GetSeedCellState();
-    //SeedInitialState = new State[SeedDimensions,SeedDimensions]
-}
-
-public void SetSeedDimensions()
-{
-    var validNumber = false;
-            
-    while (!validNumber)
-    {
-        _seedGameConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
-        var seed = _seedGameConsole.ReadLine();
-        validNumber = int.TryParse(seed, out SeedDimensions);
-    }
-    // return SeedDimensions;
-}
-        
-        
-public void SetSeedCellState(Universe universe)
-{
-    int column = 0;
-    int row = 0;
-            
-    //var universe = new Universe(_seedConsole, SeedDimensions);
-    //var universe = new Universe(_seedGameConsole);
-    var grid = universe.UniverseGrid;
-    //universe.CreateInitialUniverse();
-    universe.CreateUniverse();
-    PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-    UserSelection(column, row, grid);
-}
-*/

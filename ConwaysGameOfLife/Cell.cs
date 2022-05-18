@@ -6,7 +6,7 @@ namespace ConwaysGameOfLife
     {
         public State State;
         public Coordinate Coordinate { get; set; }
-        private Position? _position;
+        private Orientation? _orientation;
         public string Symbol { get; set; }
         public ConsoleColor Colour { get; set; }
         public int NumberOfLiveNeighbours;
@@ -39,13 +39,13 @@ namespace ConwaysGameOfLife
             return State == State.Alive;
         }
         
-        public Position GetPosition(Coordinate coordinate, int universeDimension)
+        public Orientation GetOrientation(Coordinate coordinate, int universeDimension)
         {
             CheckIfCorner(coordinate, universeDimension);
             CheckIfSide(coordinate, universeDimension);
-            _position ??= Position.Middle;
+            _orientation ??= Orientation.Middle;
 
-            return (Position) _position;
+            return (Orientation) _orientation;
         }
 
         /*public int GetLiveNeighbours(Coordinate coordinate, int universeDimension, State state)
@@ -122,19 +122,19 @@ namespace ConwaysGameOfLife
         {
             if (IsTopLeftCorner(coordinate))
             {
-                _position = Position.TopLeftCorner;
+                _orientation = Orientation.TopLeftCorner;
             }
             else if (IsTopRightCorner(coordinate, universeDimension))
             {
-                _position = Position.TopRightCorner;
+                _orientation = Orientation.TopRightCorner;
             }
             else if (IsBottomLeftCorner(coordinate, universeDimension))
             {
-                _position = Position.BottomLeftCorner;
+                _orientation = Orientation.BottomLeftCorner;
             }
             else if (IsBottomRightCorner(coordinate, universeDimension))
             {
-                _position = Position.BottomRightCorner;
+                _orientation = Orientation.BottomRightCorner;
             }
         }
         
@@ -142,19 +142,19 @@ namespace ConwaysGameOfLife
         {
             if (IsTopSide(coordinate, universeDimension)) //loop through all the functions, if true _position = Position.{function name}
             {
-                _position = Position.TopSide;
+                _orientation = Orientation.TopSide;
             }
             else if (IsBottomSide(coordinate, universeDimension))
             {
-                _position = Position.BottomSide;
+                _orientation = Orientation.BottomSide;
             }
             else if (IsLeftSide(coordinate, universeDimension))
             {
-                _position = Position.LeftSide;
+                _orientation = Orientation.LeftSide;
             }
             else if (IsRightSide(coordinate, universeDimension))
             {
-                _position = Position.RightSide;
+                _orientation = Orientation.RightSide;
             }
         }
         

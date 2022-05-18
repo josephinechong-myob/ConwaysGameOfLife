@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using ConwaysGameOfLife;
 using Moq;
 using Xunit;
@@ -35,15 +36,52 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(seedUniverseDimensions, actualUniverseColumnLength);
         }*/
 
-        [Theory, MemberData(nameof(ExpectedPrintedUniverseData))]
+        [Fact]
+        public void New_Universe_Should_Print_Initial_Universe_Dimensions()
+        {
+            //arrange
+            var mockSeedConsole = new Mock<IGameConsole>();
+            /*mockSeedConsole.SetupSequence(c => c.ReadLine())
+                .Returns("3");
+            mockSeedConsole.SetupSequence(c => c.ReadKey().Key)
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter);*/
+            mockSeedConsole.SetupSequence(c => c.ReadLine())
+                .Returns("3");
+            mockSeedConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter);
+            // var seed = new Seed(mockSeedConsole.Object);
+            // var seedUniverseDimensions = seed.SeedDimensions;
+            // var mockConsole = new Mock<IConsole>();
+            // var universe = new Universe(mockConsole.Object, seedUniverseDimensions);
+
+            //act
+          //  universe.CreateUniverse();
+           // universe.DisplayUniverse();
+            //var cell = universe.UniverseGrid[0,0];
+            
+            //assert
+            //mockSeedConsole.Verify(c=>c.Write(Constants.SquareCell), Times.Exactly(9));
+            mockSeedConsole.Verify(c => c.ForegroundColor(Constants.Alive), Times.Exactly(1));
+            //refactor using symbols to indicate colours
+            
+           // mockConsole.Verify(c=>c.ForegroundColor(colour) && cell);
+        }
+        /*[Theory, MemberData(nameof(ExpectedPrintedUniverseData))]
         public void New_Universe_Should_Print_Initial_Universe_Dimensions(int seedUniverseDimensions, int expectedTimesPrinted, string expectedPrintedUniverse, ConsoleColor colour, int colourTimes, State[,] cellsState)
         {
             //arrange
             var mockConsole = new Mock<IConsole>();
             var universe = new Universe(mockConsole.Object, seedUniverseDimensions);
+            mockConsole.SetupSequence(c => c.ReadLine()).Returns("3");
+            mockConsole.SetupSequence(c => c.ReadKey().Key)
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter);
+            var seed = new Seed(mockConsole.Object);
 
             //act
-            universe.CreateUniverse(cellsState);
+            universe.CreateUniverse();
             universe.DisplayUniverse();
             var cell = universe.UniverseGrid[0,0];
             
@@ -52,8 +90,8 @@ namespace ConwaysGameOfLifeTest
             mockConsole.Verify(c => c.ForegroundColor(colour), Times.Exactly(colourTimes));
             //refactor using symbols to indicate colours
             
-           // mockConsole.Verify(c=>c.ForegroundColor(colour) && cell);
-        }
+            // mockConsole.Verify(c=>c.ForegroundColor(colour) && cell);
+        }*/
         public static IEnumerable<object[]> ExpectedPrintedUniverseData => new List<object[]>
         {
             new object[] {

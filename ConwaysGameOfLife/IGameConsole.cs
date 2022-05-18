@@ -2,12 +2,12 @@ using System;
 
 namespace ConwaysGameOfLife
 {
-    public interface IConsole
+    public interface IGameConsole
     {
         public void ForegroundColor(ConsoleColor consoleColor);
         public void Write(string write);
         public void WriteLine(string writeLine);
         public string ReadLine();
-        public ConsoleKeyInfo ReadKey();
+        public ConsoleKey ReadKey();
     }
 }
