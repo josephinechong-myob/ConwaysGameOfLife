@@ -2,13 +2,13 @@ using System;
 
 namespace ConwaysGameOfLife
 {
-    public class SeedBuilder
+    public class SeedCreator
     {
         private IGameConsole GameConsole;
         private int SeedDimensions;
         private Cell[,] SeedGrid;
         
-        public SeedBuilder(IGameConsole gameConsole)
+        public SeedCreator(IGameConsole gameConsole)
         {
             GameConsole = gameConsole;
         }
