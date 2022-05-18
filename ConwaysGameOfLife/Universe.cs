@@ -2,18 +2,16 @@ namespace ConwaysGameOfLife
 {
     public class Universe
     {
-        public IGameConsole UniverseGameConsole;
+        private IGameConsole GameConsole;
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
 
-        public Universe(IGameConsole universeGameConsole, Seed seed)
+        public Universe(IGameConsole gameConsole, Seed seed)
         {
-            UniverseGameConsole = universeGameConsole;
-            UniverseGrid = seed.SeedGrid; // preset with user seed settings
-            //UniverseGrid = new Cell[seed.SeedDimensions, seed.SeedDimensions];
-            //UniverseGrid = seed.InitalGrid//new Cell[seed.SeedDimensions, seed.SeedDimensions];
+            GameConsole = gameConsole;
+            UniverseGrid = seed.SeedGrid;
         }
-        public void CreateUniverse()
+        public void CreateUniverse() //is this still needed?
         {
             var width = UniverseGrid.GetUpperBound(0) + 1;
             var height = UniverseGrid.GetUpperBound(1) + 1;
@@ -28,7 +26,32 @@ namespace ConwaysGameOfLife
             }
         }
         
-        public void DisplayUniverse()
+        public void DisplayUniverse(Cell[,] universe)
+        {
+            var displayString = "";
+            var width = universe.GetLength(0);
+            var height = universe.GetLength(1);
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    //GameConsole.ForegroundColor(UniverseGrid[i, j].Colour);
+                    if (universe[i, j].State == State.Alive)
+                    {
+                        GameConsole.ForegroundColor(Constants.Alive);
+                    }
+                    else if (universe[i, j].State == State.Dead)
+                    {
+                        GameConsole.ForegroundColor(Constants.Dead);
+                    }
+                    GameConsole.Write(universe[i, j].Symbol);
+                }
+                GameConsole.Write("\n");
+            }
+        }
+        
+        /*public void DisplayUniverse()
         {
             var displayString = "";
             var width = UniverseGrid.GetLength(0);
@@ -38,79 +61,19 @@ namespace ConwaysGameOfLife
             {
                 for (int j = 0; j < height; j++)
                 {
-                    UniverseGameConsole.ForegroundColor(UniverseGrid[i, j].Colour);
-                    UniverseGameConsole.Write(UniverseGrid[i, j].Symbol);
+                    //GameConsole.ForegroundColor(UniverseGrid[i, j].Colour);
+                    if (UniverseGrid[i, j].State == State.Alive)
+                    {
+                        GameConsole.ForegroundColor(Constants.Alive);
+                    }
+                    else if (UniverseGrid[i, j].State == State.Dead)
+                    {
+                        GameConsole.ForegroundColor(Constants.Dead);
+                    }
+                    GameConsole.Write(UniverseGrid[i, j].Symbol);
                 }
-                UniverseGameConsole.Write("\n");
-            }
-        }
-    }
-}
-
-// public IConsole SeedConsole;
-// public int SeedDimensions;
-// public string Content { get; set; }
-// public Cell[,] UniverseGrid { get; set; } 
-//
-// public Universe(IConsole seedConsole, int seedDimensions)
-// {
-//     SeedDimensions = seedDimensions;
-//     SeedConsole = seedConsole;
-//     UniverseGrid = new Cell[SeedDimensions, SeedDimensions];
-// }
-        
-//var cellsState = new State[seedUniverseDimensions, seedUniverseDimensions];
-
-
-/*public void CreateUniverse(State[,] userSeedState) //
-        {
-            var width = UniverseGrid.GetUpperBound(0) + 1;
-            var height = UniverseGrid.GetUpperBound(1) + 1;
-            
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    UniverseGrid[x, y] = new Cell(new Coordinate(x, y), userSeedState[x,y]);
-                }
+                GameConsole.Write("\n");
             }
         }*/
-        
-/*public void CreateInitialUniverse()
-       {
-           var width = UniverseGrid.GetUpperBound(0) + 1;
-           var height = UniverseGrid.GetUpperBound(1) + 1;
-           
-           for (int x = 0; x < width; x++)
-           {
-               for (int y = 0; y < height; y++)
-               {
-                   UniverseGrid[x, y] = new Cell(new Coordinate(x, y), State.Dead);
-               }
-           }
-       }
-       
-       public void CreateUniverse()
-       {
-           var width = UniverseGrid.GetUpperBound(0) + 1;
-           var height = UniverseGrid.GetUpperBound(1) + 1;
-           
-           for (int x = 0; x < width; x++)
-           {
-               for (int y = 0; y < height; y++)
-               {
-                   UniverseGrid[x, y] = new Cell(new Coordinate(x, y), UniverseGrid[x,y].State);
-               }
-           }
-       }*/
-       
-//public string Content { get; set; }
-        
-/*public Universe(IGameConsole universeGameConsole, Seed seed)
-{
-    UniverseGameConsole = universeGameConsole;
-    UniverseGrid = new Cell[seed.SeedDimensions, seed.SeedDimensions];
-    /*var seedDimensions = new Seed(universeGameConsole).SeedDimensions; //not sure if this is something I need to pass through
-    UniverseGrid = new Cell[seedDimensions, seedDimensions];#1#
-    //UniverseGrid = new Seed(seedConsole).GetSeedCellState();
-}*/
+    }
+}           

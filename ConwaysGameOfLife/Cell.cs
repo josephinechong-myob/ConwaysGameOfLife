@@ -10,18 +10,13 @@ namespace ConwaysGameOfLife
         public string Symbol { get; set; }
         public ConsoleColor Colour { get; set; }
         public int NumberOfLiveNeighbours;
-        
-        //public int SeedDimension;
-        
-        //public string DeadCellGridSymbol = " . ";
-        //public string AliveCellGridSymbol = " 1 ";
-        public static Cell GridSymbol { get; set; }
+     
         
         public Cell(Coordinate coordinate, State state)
         {
             Coordinate = coordinate;
             State = state;
-            Colour = State == State.Alive ? Constants.Alive : Constants.Dead;
+            Colour = state == State.Alive ? Constants.Alive : Constants.Dead;
             Symbol = Constants.SquareCell;
             //GridSymbol = State == State.Alive ? AliveCell : DeadCell;
             //GridSymbol = GetGridSymbol();

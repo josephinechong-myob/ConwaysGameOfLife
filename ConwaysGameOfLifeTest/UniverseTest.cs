@@ -1,144 +1,64 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 using ConwaysGameOfLife;
 using Moq;
 using Xunit;
-
 
 namespace ConwaysGameOfLifeTest
 {
     public class UniverseTest
     {
-        /*private Mock<IConsole> _mockConsole;
-        public UniverseTest()
-        {
-            _mockConsole = new Mock<IConsole>();
-        }
-        
-        [Theory]
-        [InlineData(3)]
-        [InlineData(5)]
-        [InlineData(10)]
-        [InlineData(100)]
-        public void Universe_Width_And_Height_Should_Reflect_Initial_Seed_Specifications_For_Universe_Dimensions(int seedUniverseDimensions)
-        {
-            //arrange
-            var universe = new Universe(seedUniverseDimensions);
-
-            //act
-            universe.CreateUniverse();
-            var actualUniverseRowLength = universe.Cells.GetLength(0);
-            var actualUniverseColumnLength = universe.Cells.GetLength(1);
-            
-            //assert
-            Assert.Equal(seedUniverseDimensions, actualUniverseRowLength);
-            Assert.Equal(seedUniverseDimensions, actualUniverseColumnLength);
-        }*/
-
-        [Fact]
-        public void New_Universe_Should_Print_Initial_Universe_Dimensions()
+        [Theory, MemberData(nameof(SeedUniverseData))]
+        public void Display_Universe_Should_Print_Universe(ConsoleKey firstGridInput, ConsoleKey secondGridInput, ConsoleKey thirdGridInput, State firstCellState, ConsoleColor firstCellColour, State secondCellState, ConsoleColor secondCellColour, State thirdCellState, ConsoleColor thirdCellColour, State fourthCellState, ConsoleColor fourthCellColour, State fifthCellState, ConsoleColor fifthCellColour, State sixthCellState, ConsoleColor sixthCellColour, State seventhCellState, ConsoleColor seventhCellColour, State eighthCellState, ConsoleColor eighthCellColour, State ninthCellState, ConsoleColor ninthCellColour)
         {
             //arrange
             var mockSeedConsole = new Mock<IGameConsole>();
-            /*mockSeedConsole.SetupSequence(c => c.ReadLine())
-                .Returns("3");
-            mockSeedConsole.SetupSequence(c => c.ReadKey().Key)
-                .Returns(ConsoleKey.DownArrow)
-                .Returns(ConsoleKey.Enter);*/
             mockSeedConsole.SetupSequence(c => c.ReadLine())
                 .Returns("3");
             mockSeedConsole.SetupSequence(c => c.ReadKey())
-                .Returns(ConsoleKey.DownArrow)
-                .Returns(ConsoleKey.Enter);
-            // var seed = new Seed(mockSeedConsole.Object);
-            // var seedUniverseDimensions = seed.SeedDimensions;
-            // var mockConsole = new Mock<IConsole>();
-            // var universe = new Universe(mockConsole.Object, seedUniverseDimensions);
+                .Returns(firstGridInput)
+                .Returns(secondGridInput)
+                .Returns(thirdGridInput);
+            var seedCreator = new SeedCreator(mockSeedConsole.Object);
+            seedCreator.SetSeedDimensions();
+            seedCreator.SetSeedCellState();
+            var seed = seedCreator.GetSeed();
+            var universe = new Universe(mockSeedConsole.Object, seed);
 
             //act
-          //  universe.CreateUniverse();
-           // universe.DisplayUniverse();
-            //var cell = universe.UniverseGrid[0,0];
-            
+            universe.DisplayUniverse(seed.SeedGrid);
+
             //assert
-            //mockSeedConsole.Verify(c=>c.Write(Constants.SquareCell), Times.Exactly(9));
+            mockSeedConsole.Verify(c=>c.Write(Constants.SquareCell), Times.Exactly(9));
             mockSeedConsole.Verify(c => c.ForegroundColor(Constants.Alive), Times.Exactly(1));
-            //refactor using symbols to indicate colours
+            mockSeedConsole.Verify(c => c.ForegroundColor(Constants.Dead), Times.Exactly(8));
             
-           // mockConsole.Verify(c=>c.ForegroundColor(colour) && cell);
+            Assert.Equal(firstCellState, seed.SeedGrid[0,0].State);
+            Assert.Equal(firstCellColour, seed.SeedGrid[0,0].Colour);
+            Assert.Equal(secondCellState, seed.SeedGrid[0,1].State);
+            Assert.Equal(secondCellColour, seed.SeedGrid[0,1].Colour);
+            Assert.Equal(thirdCellState, seed.SeedGrid[0,2].State);
+            Assert.Equal(thirdCellColour, seed.SeedGrid[0,2].Colour);
+            
+            Assert.Equal(fourthCellState, seed.SeedGrid[1,0].State);
+            Assert.Equal(fourthCellColour, seed.SeedGrid[1,0].Colour);
+            Assert.Equal(fifthCellState, seed.SeedGrid[1,1].State);
+            Assert.Equal(fifthCellColour, seed.SeedGrid[1,1].Colour);
+            Assert.Equal(sixthCellState, seed.SeedGrid[1,2].State);
+            Assert.Equal(sixthCellColour, seed.SeedGrid[1,2].Colour);
+           
+            Assert.Equal(seventhCellState, seed.SeedGrid[2,0].State);
+            Assert.Equal(seventhCellColour, seed.SeedGrid[2,0].Colour);
+            Assert.Equal(eighthCellState, seed.SeedGrid[2,1].State);
+            Assert.Equal(eighthCellColour, seed.SeedGrid[2,1].Colour);
+            Assert.Equal(ninthCellState, seed.SeedGrid[2,2].State);
+            Assert.Equal(ninthCellColour, seed.SeedGrid[2,2].Colour);
         }
-        /*[Theory, MemberData(nameof(ExpectedPrintedUniverseData))]
-        public void New_Universe_Should_Print_Initial_Universe_Dimensions(int seedUniverseDimensions, int expectedTimesPrinted, string expectedPrintedUniverse, ConsoleColor colour, int colourTimes, State[,] cellsState)
+        public static IEnumerable<object[]> SeedUniverseData => new List<object[]>
         {
-            //arrange
-            var mockConsole = new Mock<IConsole>();
-            var universe = new Universe(mockConsole.Object, seedUniverseDimensions);
-            mockConsole.SetupSequence(c => c.ReadLine()).Returns("3");
-            mockConsole.SetupSequence(c => c.ReadKey().Key)
-                .Returns(ConsoleKey.DownArrow)
-                .Returns(ConsoleKey.Enter);
-            var seed = new Seed(mockConsole.Object);
-
-            //act
-            universe.CreateUniverse();
-            universe.DisplayUniverse();
-            var cell = universe.UniverseGrid[0,0];
-            
-            //assert
-            mockConsole.Verify(c=>c.Write(expectedPrintedUniverse), Times.Exactly(expectedTimesPrinted));
-            mockConsole.Verify(c => c.ForegroundColor(colour), Times.Exactly(colourTimes));
-            //refactor using symbols to indicate colours
-            
-            // mockConsole.Verify(c=>c.ForegroundColor(colour) && cell);
-        }*/
-        public static IEnumerable<object[]> ExpectedPrintedUniverseData => new List<object[]>
-        {
-            new object[] {
-                1, 1, " \u25fc ", ConsoleColor.Cyan, 1, new State[,]
-                {
-                    {State.Alive}
-                }
-            },
-            new object[] {
-                1, 1, " \u25fc ", ConsoleColor.Magenta, 1, new State[,]
-                {
-                    {State.Dead}
-                }
-            },
-            new object[] {
-                3, 9, " \u25fc ", ConsoleColor.Cyan, 3, new State[,]
-                {
-                    {State.Dead, State.Dead, State.Dead}, 
-                    {State.Alive, State.Alive, State.Dead},
-                    {State.Dead, State.Dead, State.Alive}
-                }
-            },
-            new object[] {
-                4, 16, " \u25fc ", ConsoleColor.Cyan, 9, new State[,]
-                {
-                    {State.Alive, State.Dead, State.Dead, State.Alive}, 
-                    {State.Alive, State.Alive, State.Dead, State.Alive},
-                    {State.Dead, State.Dead, State.Alive, State.Alive},
-                    {State.Dead, State.Dead, State.Alive, State.Alive}
-                }
-            },
-            new object[] {
-                5, 25, " \u25fc ", ConsoleColor.Cyan, 16, new State[,]
-                {
-                    {State.Alive, State.Dead, State.Dead, State.Alive, State.Alive}, 
-                    {State.Alive, State.Alive, State.Dead, State.Alive, State.Alive},
-                    {State.Dead, State.Dead, State.Alive, State.Alive, State.Alive},
-                    {State.Dead, State.Dead, State.Alive, State.Alive, State.Alive},
-                    {State.Dead, State.Dead, State.Alive, State.Alive, State.Alive},
-                }
-            }
-            
-            /*new object[] {3, new[,] {{" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc "}}},
-            new object[] {4, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}},
-            new object[] {5, new[,] {{" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}, {" \u25fc ", " \u25fc ", " \u25fc ", " \u25fc ", " \u25fc "}}}*/
-            
-            //order of what console colour is printed
+            new object[] {ConsoleKey.Enter, ConsoleKey.X, ConsoleKey.X, State.Alive, Constants.Alive, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead},
+            new object[] {ConsoleKey.RightArrow, ConsoleKey.Enter, ConsoleKey.X, State.Dead, Constants.Dead, State.Alive, Constants.Alive, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead},
+            new object[] {ConsoleKey.DownArrow, ConsoleKey.Enter, ConsoleKey.X, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Alive, Constants.Alive, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead}
         };
     }
 }

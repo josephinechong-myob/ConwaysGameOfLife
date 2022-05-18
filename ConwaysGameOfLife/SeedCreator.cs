@@ -4,17 +4,17 @@ namespace ConwaysGameOfLife
 {
     public class SeedCreator
     {
-        private IGameConsole GameConsole;
-        private int SeedDimensions;
-        private Cell[,] SeedGrid;
+        private readonly IGameConsole _gameConsole;
+        private int _seedDimensions;
+        private Cell[,] _seedGrid;
         
         public SeedCreator(IGameConsole gameConsole)
         {
-            GameConsole = gameConsole;
+            _gameConsole = gameConsole;
         }
         public Seed GetSeed()
         {
-            return new Seed(SeedDimensions, SeedGrid);
+            return new Seed(_seedDimensions, _seedGrid);
         }
 
         public void SetSeedDimensions()
@@ -23,42 +23,42 @@ namespace ConwaysGameOfLife
             
             while (!validNumber)
             {
-                GameConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
-                var seed = GameConsole.ReadLine();
-                validNumber = int.TryParse(seed, out SeedDimensions);
+                _gameConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
+                var seed = _gameConsole.ReadLine();
+                validNumber = int.TryParse(seed, out _seedDimensions);
             }
 
-            SeedGrid = new Cell[SeedDimensions, SeedDimensions];
+            _seedGrid = new Cell[_seedDimensions, _seedDimensions];
         }
-        
-        public void CreateUniverse()
+
+        private void CreateUniverse()
         {
-            var width = SeedGrid.GetUpperBound(0) + 1;
-            var height = SeedGrid.GetUpperBound(1) + 1;
+            var width = _seedGrid.GetUpperBound(0) + 1;
+            var height = _seedGrid.GetUpperBound(1) + 1;
             
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    SeedGrid[x, y] = new Cell(new Coordinate(x, y), State.Dead);
+                    _seedGrid[x, y] = new Cell(new Coordinate(x, y), State.Dead);
                 }
             }
         }
 
          public void SetSeedCellState()
         {
-            int column = 0;
-            int row = 0;
+            var column = 0;
+            var row = 0;
             CreateUniverse();
-            PrintSeedUniverseForUserSelection(SeedGrid, SeedGrid[column, row]);
-            UserSelection(column, row, SeedGrid);
+            PrintSeedUniverseForUserSelection(_seedGrid, _seedGrid[column, row]);
+            UserSelection(column, row, _seedGrid);
         }
         
         private void PrintSeedUniverseForUserSelection(Cell[,] universe, Cell selectedCell)
         {
             Console.Clear();
             int cellCount = 0;
-            GameConsole.WriteLine($"Select cells you want ALIVE with keyboard arrows\nPress 'Enter' to select cell\nPress 'X' to exit");
+            _gameConsole.WriteLine($"Select cells you want ALIVE with keyboard arrows\nPress 'Enter' to select cell\nPress 'X' to exit");
             
             foreach (Cell cell in universe)
             {
@@ -85,7 +85,7 @@ namespace ConwaysGameOfLife
                 
                 cellCount++;
                 
-                if (cellCount % SeedDimensions == 0)
+                if (cellCount % _seedDimensions == 0)
                 {
                     Console.Write("\n");
                 }
@@ -97,7 +97,7 @@ namespace ConwaysGameOfLife
             ConsoleKey keyInfo;
             do
             {
-                keyInfo = GameConsole.ReadKey();
+                keyInfo = _gameConsole.ReadKey();
 
                 if (keyInfo == ConsoleKey.DownArrow)
                 {
@@ -140,16 +140,15 @@ namespace ConwaysGameOfLife
                     if (grid[column, row].State == State.Alive)
                     {
                         grid[column, row].State = State.Dead;
-                       // SeedCellState[column, row] = State.Dead; 
+                        grid[column, row].Colour = Constants.Dead;
                     }
                     else
                     {
                         grid[column, row].State = State.Alive;
-                       // SeedCellState[column, row] = State.Alive;
+                        grid[column, row].Colour = Constants.Alive;
                     }
                 }
             } while (keyInfo != ConsoleKey.X);
-            
         }
     }
 }
