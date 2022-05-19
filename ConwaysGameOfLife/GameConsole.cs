@@ -27,6 +27,5 @@ namespace ConwaysGameOfLife
         {
             return Console.ReadKey().Key;
         }
-        //print cell function (output for console)
     }
 }

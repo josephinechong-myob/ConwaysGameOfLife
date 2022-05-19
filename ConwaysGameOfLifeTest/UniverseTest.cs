@@ -84,7 +84,7 @@ namespace ConwaysGameOfLifeTest
 
             //act
             universe.GetOrientation(cell);
-            var actualPosition = cell._orientation;
+            var actualPosition = cell.Orientation;
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
@@ -113,7 +113,7 @@ namespace ConwaysGameOfLifeTest
 
             //act
             universe.GetOrientation(cell);
-            var actualPosition = cell._orientation;
+            var actualPosition = cell.Orientation;
 
             //assert
             Assert.Equal(Orientation.Middle, actualPosition);
@@ -142,7 +142,7 @@ namespace ConwaysGameOfLifeTest
 
             //act
             universe.GetOrientation(cell);
-            var actualPosition = cell._orientation;
+            var actualPosition = cell.Orientation;
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);

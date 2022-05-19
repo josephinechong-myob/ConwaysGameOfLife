@@ -51,7 +51,7 @@ namespace ConwaysGameOfLife
         {
             CheckIfCorner(cell);
             CheckIfSide(cell);
-            cell._orientation ??= Orientation.Middle;
+            cell.Orientation ??= Orientation.Middle;
         }
 
         public int GetLiveNeighbours(Cell cell)
@@ -143,19 +143,19 @@ namespace ConwaysGameOfLife
 
             if (IsTopLeftCorner(coordinate))
             {
-                cell._orientation = Orientation.TopLeftCorner;
+                cell.Orientation = Orientation.TopLeftCorner;
             }
             else if (IsTopRightCorner(coordinate))
             {
-                cell._orientation = Orientation.TopRightCorner;
+                cell.Orientation = Orientation.TopRightCorner;
             }
             else if (IsBottomLeftCorner(coordinate))
             {
-                cell._orientation = Orientation.BottomLeftCorner;
+                cell.Orientation = Orientation.BottomLeftCorner;
             }
             else if (IsBottomRightCorner(coordinate))
             {
-                cell._orientation = Orientation.BottomRightCorner;
+                cell.Orientation = Orientation.BottomRightCorner;
             }
         }
         
@@ -165,19 +165,19 @@ namespace ConwaysGameOfLife
 
             if (IsTopSide(coordinate)) //loop through all the functions, if true _position = Position.{function name}
             {
-                cell._orientation = Orientation.TopSide;
+                cell.Orientation = Orientation.TopSide;
             }
             else if (IsBottomSide(coordinate))
             {
-                cell._orientation = Orientation.BottomSide;
+                cell.Orientation = Orientation.BottomSide;
             }
             else if (IsLeftSide(coordinate))
             {
-                cell._orientation = Orientation.LeftSide;
+                cell.Orientation = Orientation.LeftSide;
             }
             else if (IsRightSide(coordinate))
             {
-                cell._orientation = Orientation.RightSide;
+                cell.Orientation = Orientation.RightSide;
             }
         }
          private bool IsTopLeftCorner(Coordinate coordinate)

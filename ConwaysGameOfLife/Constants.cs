@@ -8,7 +8,6 @@ namespace ConwaysGameOfLife
         public const ConsoleColor Alive = ConsoleColor.Cyan;
         public const ConsoleColor Dead = ConsoleColor.Magenta;
         
-        
         public const int LiveNeighbourLimitForDeathByUnderpopulationLaw = 2;
         public const int LiveNeighboursLimitForDeathByOvercrowdingLaw = 3;
         public const int TwoLiveNeighboursForRemainingAlive = 2;
