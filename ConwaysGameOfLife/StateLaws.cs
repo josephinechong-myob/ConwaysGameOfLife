@@ -1,8 +1,8 @@
 namespace ConwaysGameOfLife
 {
-    public class StateLaws
+    public static class StateLaws
     {
-        public State UpdateState(State state, int liveNeighbours)
+        public static State UpdateState(State state, int liveNeighbours)
         {
             if (IsAlive(state, liveNeighbours))
             {
@@ -15,17 +15,17 @@ namespace ConwaysGameOfLife
             return state;
         }
 
-        private bool IsDeadByUnderpopulation(State state, int liveNeighbours)
+        private static bool IsDeadByUnderpopulation(State state, int liveNeighbours)
         {
             return state == State.Alive && liveNeighbours < Constants.LiveNeighbourLimitForDeathByUnderpopulationLaw;
         }
 
-        private bool IsDeadByOvercrowding(State state, int liveNeighbours)
+        private static bool IsDeadByOvercrowding(State state, int liveNeighbours)
         {
             return state == State.Alive && liveNeighbours > Constants.LiveNeighboursLimitForDeathByOvercrowdingLaw;
         }
 
-        private bool IsAlive(State state, int liveNeighbours)
+        private static bool IsAlive(State state, int liveNeighbours)
         {
             return state == State.Alive && liveNeighbours == Constants.TwoLiveNeighboursForRemainingAlive || 
                    state == State.Alive && liveNeighbours == Constants.ThreeLiveNeighboursForRemainingAlive ||

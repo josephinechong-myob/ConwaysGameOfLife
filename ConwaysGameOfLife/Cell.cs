@@ -1,17 +1,18 @@
 using System;
+using System.Collections.Generic;
 
 namespace ConwaysGameOfLife
 {
     public class Cell
     {
         public Coordinate Coordinate { get; set; }
-        private Orientation? _orientation;
+        public Orientation? _orientation; //might not be needed
         public string Symbol { get; }
         public ConsoleColor Colour { get; set; }
         public int NumberOfLiveNeighbours;
         public State State;
-        
-        public Cell(Coordinate coordinate, State state)
+
+        public Cell(Coordinate coordinate, State state) //update state based on live neighbours
         {
             Coordinate = coordinate;
             State = state;
@@ -19,27 +20,28 @@ namespace ConwaysGameOfLife
             Symbol = Constants.SquareCell;
         }
 
-        /*public bool IsAlive()
-        { 
-            return State == State.Alive;
+        /*public void UpdateCellState(Coordinate coordinate, int dimensions, State state)
+        {
+            GetOrientation(coordinate, dimensions); //need orientation for live neighbours
+            var liveNeighbours = GetLiveNeighbours(coordinate, dimensions, state);
+            State = StateLaws.UpdateState(state, liveNeighbours);
         }*/
-        
-        public Orientation GetOrientation(Coordinate coordinate, int universeDimension)
+
+        /*public Orientation GetOrientation(Coordinate coordinate, int universeDimension)
         {
             CheckIfCorner(coordinate, universeDimension);
             CheckIfSide(coordinate, universeDimension);
             _orientation ??= Orientation.Middle;
 
             return (Orientation) _orientation;
-        }
-
-        /*public int GetLiveNeighbours(Coordinate coordinate, int universeDimension, State state)
-        {
-            return GetNeighboursOfTopLeftCornerCellPosition(coordinate, universeDimension, state);
         }*/
 
-        /*
-        private List<Cell> GetNeighboursOfTopLeftCornerCellPosition(int universeDimension)
+        /*public int GetLiveNeighbours(int universeDimension, Universe universe)
+        {
+            return GetLiveNeighboursOfTopLeftCornerCellPosition(universeDimension, universe);
+        }
+
+        private int GetLiveNeighboursOfTopLeftCornerCellPosition(int universeDimension, Universe universe) //not sure if i should be passing in universe
         {
             var neighbourCoordinates = new List<Coordinate>()
             {
@@ -52,16 +54,31 @@ namespace ConwaysGameOfLife
                 new Coordinate(Constants.FirstRowOrColumn, LastRowOrColumn(universeDimension)), //leftNeighbour
                 new Coordinate(Constants.FirstRowOrColumn, NextColumn(Coordinate)) //same as middle type cell ~ rightNeighbour
             };
-
-            var neighbourCells = new List<Cell>();
-
-            foreach (var neighbourCoordinate in neighbourCoordinates)
+            
+            var neighbourCells = new List<Cell>() //get coordinates - how to get cell state if I know coordinate?
             {
-                var neighbourCell = ;
-                neighbourCells.Add(neighbourCell);
+                new Cell(neighbourCoordinates[0], universe.UniverseGrid[LastRowOrColumn(universeDimension), LastRowOrColumn(universeDimension)].State), 
+                new Cell(neighbourCoordinates[1], universe.UniverseGrid[LastRowOrColumn(universeDimension), NextColumn(Coordinate)].State), 
+                new Cell(neighbourCoordinates[2], universe.UniverseGrid[NextRow(Coordinate), LastRowOrColumn(universeDimension)].State ), 
+                new Cell(neighbourCoordinates[3], universe.UniverseGrid[NextRow(Coordinate), NextColumn(Coordinate)].State),
+                new Cell(neighbourCoordinates[4], universe.UniverseGrid[LastRowOrColumn(universeDimension), Constants.FirstRowOrColumn].State), 
+                new Cell(neighbourCoordinates[5], universe.UniverseGrid[NextRow(Coordinate), Constants.FirstRowOrColumn].State), 
+                new Cell(neighbourCoordinates[6], universe.UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn(universeDimension)].State),
+                new Cell(neighbourCoordinates[7], universe.UniverseGrid[Constants.FirstRowOrColumn, NextColumn(Coordinate)].State)
+            };
+
+            var liveNeighbourCells = new List<Cell>();
+
+            foreach (var cell in neighbourCells)
+            {
+                if (State == State.Alive)
+                {
+                    liveNeighbourCells.Add(cell);
+                }
             }
-        }
-        */
+
+            return liveNeighbourCells.Count;
+        }*/
         
         /*public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
         {
@@ -69,8 +86,8 @@ namespace ConwaysGameOfLife
             
             foreach (var neighbourCoordinate in neighbourCoordinates)
             {
-                var neighbourCell = new Cell(state, neighbourCoordinate);
-                if (neighbourCell.IsAlive())
+                var neighbourCell = new Cell(neighbourCoordinate, state);
+                if (neighbourCell.State == State.Alive)
                 {
                     liveNeighbours += 1;
                 }
@@ -78,7 +95,7 @@ namespace ConwaysGameOfLife
             return liveNeighbours;
         }*/
         
-        private int LastRowOrColumn(int universeDimension)
+        /*private int LastRowOrColumn(int universeDimension)
         {
             return universeDimension - Constants.ZeroIndexAdjustmentValue;
         }
@@ -101,9 +118,9 @@ namespace ConwaysGameOfLife
         private int PreviousColumn(Coordinate coordinate)
         {
             return coordinate.Column - Constants.NeighbourPositionAdjustmentValue;
-        }
+        }*/
         
-        private void CheckIfCorner(Coordinate coordinate, int universeDimension)
+        /*private void CheckIfCorner(Coordinate coordinate, int universeDimension)
         {
             if (IsTopLeftCorner(coordinate))
             {
@@ -141,9 +158,9 @@ namespace ConwaysGameOfLife
             {
                 _orientation = Orientation.RightSide;
             }
-        }
+        }*/
         
-        private bool IsTopLeftCorner(Coordinate coordinate)
+        /*private bool IsTopLeftCorner(Coordinate coordinate)
         {
             var topLeftCorner = new Coordinate(Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
             return HasSameCoordinates(topLeftCorner, coordinate);
@@ -185,9 +202,9 @@ namespace ConwaysGameOfLife
         private bool IsRightSide(Coordinate coordinate, int universeDimension)
         {
             return IsSide(universeDimension - Constants.ZeroIndexAdjustmentValue, coordinate.Column, coordinate, universeDimension);
-        }
+        }*/
         
-        //checks
+        /*//checks
         private bool HasSameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
         {
             return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
@@ -201,6 +218,6 @@ namespace ConwaysGameOfLife
         private bool IsCorner(Coordinate coordinate, int universeDimension)
         {
             return IsTopLeftCorner(coordinate) || IsTopRightCorner(coordinate, universeDimension) || IsBottomLeftCorner(coordinate, universeDimension) || IsBottomRightCorner(coordinate, universeDimension);
-        }
+        }*/
     }
 }

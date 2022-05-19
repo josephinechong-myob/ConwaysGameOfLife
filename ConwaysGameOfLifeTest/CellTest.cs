@@ -24,7 +24,7 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedColour, actualColour);
         }
         
-        [Theory]
+        /*[Theory]
         [InlineData(0, 0, Orientation.TopLeftCorner)]
         [InlineData(2, 2, Orientation.BottomRightCorner)]
         [InlineData(0, 2, Orientation.TopRightCorner)]
@@ -42,9 +42,9 @@ namespace ConwaysGameOfLifeTest
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
-        }
+        }*/
         
-        [Theory]
+        /*[Theory]
         [InlineData(1, 1, 3)]
         [InlineData(2, 2, 5)] 
         [InlineData(2, 4, 9)]
@@ -83,29 +83,34 @@ namespace ConwaysGameOfLifeTest
             //assert
             Assert.Equal(expectedPosition, actualPosition);
         }
+        //seed > universe > cell > state
         
-        /*[Fact] 
-        public void Top_Left_Cell_Position_Who_Has_Two_Live_Neighbours_Should_Return_Two_Live_Neighbours()
+        [Fact] 
+        public void Alive_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var cellState = State.Alive;
-            var coordinate = new Coordinate(1, 1);
-            var cellPosition = Position.TopLeftCorner;
-            var universeDimension = 3;
-            var cell = new Cell(cellState, coordinate);
-            List<Coordinate> neighbourCoordinates =
-            {
-                
-                
-            }
+            var coordinate = new Coordinate(0, 0);
+            var cell = new Cell(coordinate, cellState);
+            List<Coordinate> neighbourCoordinates;
+            
             var expectedNumberOfLiveNeighbours = 2;
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.Setup(c => c.ReadLine()).Returns("3");
+            mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.X);
+            var seedCreator = new SeedCreator(mockConsole.Object);
+            var seed = seedCreator.GetSeed();
+            var universe = new Universe(mockConsole.Object, seed);
+            var universeDimension = universe.UniverseGrid.Length;
+            var coordinate = universe.UniverseGrid[0].Coordinate;
             
             //act
-            var actualNumberOfLiveNeighbours = cell.GetLiveNeighbours(coordinate, universeDimension, cellState);
+            var actualNumberOfLiveNeighbours = cell.GetLiveNeighbours(universeDimension, universe);
 
             //assert
             Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
         }*/
-        
     }
 }

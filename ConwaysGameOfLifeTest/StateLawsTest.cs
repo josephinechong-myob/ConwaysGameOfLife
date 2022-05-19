@@ -10,12 +10,11 @@ namespace ConwaysGameOfLifeTest
         {
             //arrange
             var originalCellState = State.Alive;
-            var stateLaw = new StateLaws();
             var numberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
-            var updatedCellState = stateLaw.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
@@ -26,12 +25,11 @@ namespace ConwaysGameOfLifeTest
         {
             //arrange
             var originalCellState = State.Alive;
-            var stateLaw = new StateLaws();
             var numberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
-            var updatedCellState = stateLaw.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
@@ -46,11 +44,10 @@ namespace ConwaysGameOfLifeTest
         {
             //arrange
             var originalCellState = State.Alive;
-            var stateLaw = new StateLaws();
             var expectedCellState = State.Alive;
 
             //act
-            var updatedCellState = stateLaw.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
@@ -61,12 +58,11 @@ namespace ConwaysGameOfLifeTest
         {
             //arrange
             var originalCellState = State.Dead;
-            var stateLaw = new StateLaws();
             var numberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
-            var updatedCellState = stateLaw.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
