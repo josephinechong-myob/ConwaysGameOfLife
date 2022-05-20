@@ -225,11 +225,11 @@ namespace ConwaysGameOfLifeTest
             var mockConsole = new Mock<IGameConsole>();
             mockConsole.Setup(c => c.ReadLine()).Returns("3");
             mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.DownArrow)
                 .Returns(ConsoleKey.Enter)
-                .Returns(ConsoleKey.UpArrow)
+                .Returns(ConsoleKey.DownArrow)
                 .Returns(ConsoleKey.Enter)
                 .Returns(ConsoleKey.RightArrow)
-                .Returns(ConsoleKey.DownArrow)
                 .Returns(ConsoleKey.Enter)
                 .Returns(ConsoleKey.X);
             var seedCreator = new SeedCreator(mockConsole.Object);

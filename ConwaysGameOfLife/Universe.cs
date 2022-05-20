@@ -66,6 +66,10 @@ namespace ConwaysGameOfLife
             {
                 _liveNeighbours = GetLiveNeighboursOfTopRightCornerCellPosition(cell.Coordinate);
             }
+            else if (cell.Orientation == Orientation.BottomLeftCorner)
+            {
+                _liveNeighbours = GetLiveNeighboursOfBottomLeftCornerCellPosition(cell.Coordinate);
+            }
 
             return _liveNeighbours;
         }
@@ -107,6 +111,26 @@ namespace ConwaysGameOfLife
 
             return numberOfLiveNeighbours;
         }
+        
+        private int GetLiveNeighboursOfBottomLeftCornerCellPosition(Coordinate coordinate)
+        {
+            var neighbourCellsState = new List<State>()
+            {
+                UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State, 
+                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State, 
+                UniverseGrid[LastRowOrColumn(), NextColumn(coordinate)].State,
+                UniverseGrid[Constants.FirstRowOrColumn, NextColumn(coordinate)].State, 
+                UniverseGrid[PreviousRow(coordinate), NextColumn(coordinate)].State, 
+                UniverseGrid[PreviousRow(coordinate), Constants.FirstRowOrColumn].State,
+                UniverseGrid[PreviousRow(coordinate), LastRowOrColumn()].State
+            };
+
+            var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
+
+            return numberOfLiveNeighbours;
+        }
+        
         public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
         {
             var liveNeighbours = 0;
