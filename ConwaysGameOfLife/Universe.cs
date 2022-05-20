@@ -77,19 +77,44 @@ namespace ConwaysGameOfLife
 
             return _liveNeighbours;
         }
+        
+        private int GetLiveNeighboursTemplate(Coordinate coordinate, int customColumn, int customRow, int secondCustomRow, int thirdCustomRow, int secondColumn)
+        {
+            var neighbourCellsState = new List<State>()
+            {
+                
+                UniverseGrid[thirdCustomRow, secondColumn].State,
+                UniverseGrid[secondCustomRow, LastRowOrColumn()].State, 
+                UniverseGrid[secondCustomRow, Constants.FirstRowOrColumn].State, 
+                
+                UniverseGrid[customRow, customColumn].State,
+                UniverseGrid[LastRowOrColumn(), customColumn].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, customColumn].State,
+                
+                UniverseGrid[customRow, Constants.FirstRowOrColumn].State,
+                UniverseGrid[customRow, LastRowOrColumn()].State
+            };
+
+            var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
+
+            return numberOfLiveNeighbours;
+        }
 
         private int GetLiveNeighboursOfTopLeftCornerCellPosition(Coordinate coordinate)
         {
             var neighbourCellsState = new List<State>()
             {
-                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State, 
-                UniverseGrid[LastRowOrColumn(), NextColumn(coordinate)].State, 
-                UniverseGrid[NextRow(coordinate), LastRowOrColumn()].State, 
-                UniverseGrid[NextRow(coordinate), NextColumn(coordinate)].State,
-                UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State, 
-                UniverseGrid[NextRow(coordinate), Constants.FirstRowOrColumn].State, 
+                
                 UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State,
-                UniverseGrid[Constants.FirstRowOrColumn, NextColumn(coordinate)].State
+                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State,
+                UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State,
+                
+                UniverseGrid[NextRow(coordinate), NextColumn(coordinate)].State,
+                UniverseGrid[LastRowOrColumn(), NextColumn(coordinate)].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, NextColumn(coordinate)].State,
+                
+                UniverseGrid[NextRow(coordinate), Constants.FirstRowOrColumn].State,
+                UniverseGrid[NextRow(coordinate), LastRowOrColumn()].State
             };
 
             var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
@@ -101,12 +126,14 @@ namespace ConwaysGameOfLife
         {
             var neighbourCellsState = new List<State>()
             {
-                UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State,
                 UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State, 
                 UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State, 
+                
                 UniverseGrid[Constants.FirstRowOrColumn, PreviousColumn(coordinate)].State,
                 UniverseGrid[NextRow(coordinate), PreviousColumn(coordinate)].State, 
                 UniverseGrid[LastRowOrColumn(), PreviousColumn(coordinate)].State, 
+                
                 UniverseGrid[NextRow(coordinate), Constants.FirstRowOrColumn].State,
                 UniverseGrid[NextRow(coordinate), LastRowOrColumn()].State
             };
@@ -120,12 +147,15 @@ namespace ConwaysGameOfLife
         {
             var neighbourCellsState = new List<State>()
             {
+                
+                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State,
+                UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State,
                 UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State, 
-                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State, 
-                UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State, 
+
                 UniverseGrid[LastRowOrColumn(), NextColumn(coordinate)].State,
                 UniverseGrid[Constants.FirstRowOrColumn, NextColumn(coordinate)].State, 
                 UniverseGrid[PreviousRow(coordinate), NextColumn(coordinate)].State, 
+                
                 UniverseGrid[PreviousRow(coordinate), Constants.FirstRowOrColumn].State,
                 UniverseGrid[PreviousRow(coordinate), LastRowOrColumn()].State
             };
@@ -139,12 +169,14 @@ namespace ConwaysGameOfLife
         {
             var neighbourCellsState = new List<State>()
             {
-                UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State, 
-                UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State, 
                 UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State,
+                UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State, 
+                
                 UniverseGrid[LastRowOrColumn(), PreviousColumn(coordinate)].State,
                 UniverseGrid[Constants.FirstRowOrColumn, PreviousColumn(coordinate)].State, 
                 UniverseGrid[PreviousRow(coordinate), PreviousColumn(coordinate)].State, 
+                
                 UniverseGrid[PreviousRow(coordinate), Constants.FirstRowOrColumn].State,
                 UniverseGrid[PreviousRow(coordinate), LastRowOrColumn()].State
             };
