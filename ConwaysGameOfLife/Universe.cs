@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConwaysGameOfLife
 {
@@ -7,13 +8,13 @@ namespace ConwaysGameOfLife
         private IGameConsole GameConsole;
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
-        public int UniverseDimensions;
+        private readonly int _universeDimensions;
 
         public Universe(IGameConsole gameConsole, Seed seed)
         {
             GameConsole = gameConsole;
             UniverseGrid = seed.SeedGrid;
-            UniverseDimensions = seed.SeedDimensions;
+            _universeDimensions = seed.SeedDimensions;
         }
         public void CreateUniverse() //is this still needed?
         {
@@ -56,48 +57,26 @@ namespace ConwaysGameOfLife
 
         public int GetLiveNeighbours(Cell cell)
         {
-            return GetLiveNeighboursOfTopLeftCornerCellPosition(cell);
+            return GetLiveNeighboursOfTopLeftCornerCellPosition(cell.Coordinate);
         }
 
-        private int GetLiveNeighboursOfTopLeftCornerCellPosition(Cell Cell)
+        private int GetLiveNeighboursOfTopLeftCornerCellPosition(Coordinate coordinate)
         {
-            var Coordinate = Cell.Coordinate;
-
-            var neighbourCoordinates = new List<Coordinate>()
+            var neighbourCellsState = new List<State>()
             {
-                new Coordinate(LastRowOrColumn(), LastRowOrColumn()), //topLeftNeighbour
-                new Coordinate(LastRowOrColumn(), NextColumn(Coordinate)), //topRightNeighbour
-                new Coordinate(NextRow(Coordinate), LastRowOrColumn()), //bottomLeftNeighbour
-                new Coordinate(NextRow(Coordinate), NextColumn(Coordinate)),// same as middle type cell bottom right ~ bottomRightNeighbour 
-                new Coordinate(LastRowOrColumn(), Constants.FirstRowOrColumn), //topNeighbour
-                new Coordinate(NextRow(Coordinate), Constants.FirstRowOrColumn), // same as middle type cell ~ bottomNeighbour
-                new Coordinate(Constants.FirstRowOrColumn, LastRowOrColumn()), //leftNeighbour
-                new Coordinate(Constants.FirstRowOrColumn, NextColumn(Coordinate)) //same as middle type cell ~ rightNeighbour
-            };
-            
-            var neighbourCells = new List<Cell>() //get coordinates - how to get cell state if I know coordinate?
-            {
-                new Cell(neighbourCoordinates[0], UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State), 
-                new Cell(neighbourCoordinates[1], UniverseGrid[LastRowOrColumn(), NextColumn(Coordinate)].State), 
-                new Cell(neighbourCoordinates[2], UniverseGrid[NextRow(Coordinate), LastRowOrColumn()].State ), 
-                new Cell(neighbourCoordinates[3], UniverseGrid[NextRow(Coordinate), NextColumn(Coordinate)].State),
-                new Cell(neighbourCoordinates[4], UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State), 
-                new Cell(neighbourCoordinates[5], UniverseGrid[NextRow(Coordinate), Constants.FirstRowOrColumn].State), 
-                new Cell(neighbourCoordinates[6], UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State),
-                new Cell(neighbourCoordinates[7], UniverseGrid[Constants.FirstRowOrColumn, NextColumn(Coordinate)].State)
+                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State, 
+                UniverseGrid[LastRowOrColumn(), NextColumn(coordinate)].State, 
+                UniverseGrid[NextRow(coordinate), LastRowOrColumn()].State, 
+                UniverseGrid[NextRow(coordinate), NextColumn(coordinate)].State,
+                UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State, 
+                UniverseGrid[NextRow(coordinate), Constants.FirstRowOrColumn].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State,
+                UniverseGrid[Constants.FirstRowOrColumn, NextColumn(coordinate)].State
             };
 
-            var liveNeighbourCells = new List<Cell>();
+            var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
 
-            foreach (var cell in neighbourCells)
-            {
-                if (cell.State == State.Alive)
-                {
-                    liveNeighbourCells.Add(cell);
-                }
-            }
-
-            return liveNeighbourCells.Count;
+            return numberOfLiveNeighbours;
         }
         public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
         {
@@ -115,24 +94,20 @@ namespace ConwaysGameOfLife
         }
         private int LastRowOrColumn()
         {
-            return UniverseDimensions - Constants.ZeroIndexAdjustmentValue;
+            return _universeDimensions - Constants.ZeroIndexAdjustmentValue;
         }
-        
         private int NextRow(Coordinate coordinate)
         {
             return coordinate.Row + Constants.NeighbourPositionAdjustmentValue;
         }
-        
         private int NextColumn(Coordinate coordinate)
         {
             return coordinate.Column + Constants.NeighbourPositionAdjustmentValue;
         }
-        
         private int PreviousRow(Coordinate coordinate)
         {
             return coordinate.Row - Constants.NeighbourPositionAdjustmentValue;
         }
-        
         private int PreviousColumn(Coordinate coordinate)
         {
             return coordinate.Column - Constants.NeighbourPositionAdjustmentValue;
@@ -158,7 +133,6 @@ namespace ConwaysGameOfLife
                 cell.Orientation = Orientation.BottomRightCorner;
             }
         }
-        
         private void CheckIfSide(Cell cell) //try adding these to a list of functions
         {
             var coordinate = cell.Coordinate;
@@ -180,60 +154,51 @@ namespace ConwaysGameOfLife
                 cell.Orientation = Orientation.RightSide;
             }
         }
-         private bool IsTopLeftCorner(Coordinate coordinate)
+        private bool IsTopLeftCorner(Coordinate coordinate)
         {
             var topLeftCorner = new Coordinate(Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
             return HasSameCoordinates(topLeftCorner, coordinate);
         }
-        
         private bool IsTopRightCorner(Coordinate coordinate)
         {
-            var topRightCorner = new Coordinate(Constants.FirstRowOrColumn, UniverseDimensions - Constants.ZeroIndexAdjustmentValue);
+            var topRightCorner = new Coordinate(Constants.FirstRowOrColumn, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
             return HasSameCoordinates(topRightCorner, coordinate);
         }
-        
         private bool IsBottomLeftCorner(Coordinate coordinate)
         {
-            var bottomLeftCorner = new Coordinate(UniverseDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
+            var bottomLeftCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
             return HasSameCoordinates(bottomLeftCorner, coordinate);
         }
-        
         private bool IsBottomRightCorner(Coordinate coordinate)
         {
-            var bottomRightCorner = new Coordinate(UniverseDimensions - Constants.ZeroIndexAdjustmentValue, UniverseDimensions - Constants.ZeroIndexAdjustmentValue);
+            var bottomRightCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
             return HasSameCoordinates(bottomRightCorner, coordinate);
         }
-        
         private bool IsTopSide(Coordinate coordinate)
         {
             return IsSide(Constants.FirstRowOrColumn, coordinate.Row, coordinate);
         }
-
         private bool IsBottomSide(Coordinate coordinate)
         {
-            return IsSide(UniverseDimensions - Constants.ZeroIndexAdjustmentValue, coordinate.Row, coordinate);
+            return IsSide(_universeDimensions - Constants.ZeroIndexAdjustmentValue, coordinate.Row, coordinate);
         }
-
         private bool IsLeftSide(Coordinate coordinate)
         {
             return IsSide(Constants.FirstRowOrColumn, coordinate.Column, coordinate);
         }
-
         private bool IsRightSide(Coordinate coordinate)
         {
-            return IsSide(UniverseDimensions - Constants.ZeroIndexAdjustmentValue, coordinate.Column, coordinate);
+            return IsSide(_universeDimensions - Constants.ZeroIndexAdjustmentValue, coordinate.Column, coordinate);
         }
         //checks
         private bool HasSameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
         {
             return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
         }
-
         private bool IsSide(int referenceSide, int actualSide, Coordinate coordinate)
         {
             return actualSide == referenceSide && !IsCorner(coordinate);
         }
-
         private bool IsCorner(Coordinate coordinate)
         {
             return IsTopLeftCorner(coordinate) || IsTopRightCorner(coordinate) || IsBottomLeftCorner(coordinate) || IsBottomRightCorner(coordinate);
