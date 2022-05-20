@@ -9,6 +9,7 @@ namespace ConwaysGameOfLife
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
         private readonly int _universeDimensions;
+        private int _liveNeighbours;
 
         public Universe(IGameConsole gameConsole, Seed seed)
         {
@@ -57,7 +58,16 @@ namespace ConwaysGameOfLife
 
         public int GetLiveNeighbours(Cell cell)
         {
-            return GetLiveNeighboursOfTopLeftCornerCellPosition(cell.Coordinate);
+            if (cell.Orientation == Orientation.TopLeftCorner)
+            {
+                _liveNeighbours = GetLiveNeighboursOfTopLeftCornerCellPosition(cell.Coordinate);
+            }
+            else if (cell.Orientation == Orientation.TopRightCorner)
+            {
+                _liveNeighbours = GetLiveNeighboursOfTopRightCornerCellPosition(cell.Coordinate);
+            }
+
+            return _liveNeighbours;
         }
 
         private int GetLiveNeighboursOfTopLeftCornerCellPosition(Coordinate coordinate)
@@ -72,6 +82,25 @@ namespace ConwaysGameOfLife
                 UniverseGrid[NextRow(coordinate), Constants.FirstRowOrColumn].State, 
                 UniverseGrid[Constants.FirstRowOrColumn, LastRowOrColumn()].State,
                 UniverseGrid[Constants.FirstRowOrColumn, NextColumn(coordinate)].State
+            };
+
+            var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
+
+            return numberOfLiveNeighbours;
+        }
+        
+        private int GetLiveNeighboursOfTopRightCornerCellPosition(Coordinate coordinate)
+        {
+            var neighbourCellsState = new List<State>()
+            {
+                UniverseGrid[Constants.FirstRowOrColumn, Constants.FirstRowOrColumn].State, 
+                UniverseGrid[LastRowOrColumn(), LastRowOrColumn()].State, 
+                UniverseGrid[LastRowOrColumn(), Constants.FirstRowOrColumn].State, 
+                UniverseGrid[Constants.FirstRowOrColumn, PreviousColumn(coordinate)].State,
+                UniverseGrid[NextRow(coordinate), PreviousColumn(coordinate)].State, 
+                UniverseGrid[LastRowOrColumn(), PreviousColumn(coordinate)].State, 
+                UniverseGrid[NextRow(coordinate), Constants.FirstRowOrColumn].State,
+                UniverseGrid[NextRow(coordinate), LastRowOrColumn()].State
             };
 
             var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);

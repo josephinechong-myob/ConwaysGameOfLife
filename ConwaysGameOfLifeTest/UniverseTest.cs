@@ -172,6 +172,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
+            universe.GetOrientation(cell);
             var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -207,6 +208,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
+            universe.GetOrientation(cell);
             var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
