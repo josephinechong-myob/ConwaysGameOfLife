@@ -27,20 +27,6 @@ namespace ConwaysGameOfLife
             _bottomLeftCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
             _bottomRightCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
         }
-        public void CreateUniverse() //is this still needed?
-        {
-            var width = UniverseGrid.GetUpperBound(0) + 1;
-            var height = UniverseGrid.GetUpperBound(1) + 1;
-            
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    var state = Generation == 0 ? State.Dead : UniverseGrid[x, y].State;
-                    UniverseGrid[x, y] = new Cell(new Coordinate(x, y), state);
-                }
-            }
-        }
         
         public void DisplayUniverse(Cell[,] universe)
         {
@@ -59,15 +45,14 @@ namespace ConwaysGameOfLife
             }
         }
         
-        
         public int GetLiveNeighbours(Cell cell)
         {
             _liveNeighbours = GetLiveNeighboursForCornerCell(cell);
             
             return _liveNeighbours;
         }
-
-        
+        //GetLiveNeighboursForSideCell
+        //GetLiveNeighboursForMiddleCell
         
         private int GetLiveNeighboursForCornerCell(Cell cell)
         {
@@ -93,22 +78,6 @@ namespace ConwaysGameOfLife
             return numberOfLiveNeighbours;
         }
         
-        public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
-        {
-            var liveNeighbours = 0;
-            
-            foreach (var neighbourCoordinate in neighbourCoordinates)
-            {
-                var neighbourCell = new Cell(neighbourCoordinate, state);
-                if (neighbourCell.State == State.Alive)
-                {
-                    liveNeighbours += 1;
-                }
-            }
-            return liveNeighbours;
-        }
-
-       
         public void SetOrientation(Cell cell)
         {
             if (SameCoordinates(_topLeftCorner, cell.Coordinate))
@@ -182,3 +151,33 @@ namespace ConwaysGameOfLife
         }
     }
 }
+
+/*public void CreateUniverse() //is this still needed?
+        {
+            var width = UniverseGrid.GetUpperBound(0) + 1;
+            var height = UniverseGrid.GetUpperBound(1) + 1;
+            
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    var state = Generation == 0 ? State.Dead : UniverseGrid[x, y].State;
+                    UniverseGrid[x, y] = new Cell(new Coordinate(x, y), state);
+                }
+            }
+        }*/
+
+/*public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
+        {
+            var liveNeighbours = 0;
+            
+            foreach (var neighbourCoordinate in neighbourCoordinates)
+            {
+                var neighbourCell = new Cell(neighbourCoordinate, state);
+                if (neighbourCell.State == State.Alive)
+                {
+                    liveNeighbours += 1;
+                }
+            }
+            return liveNeighbours;
+        }*/
