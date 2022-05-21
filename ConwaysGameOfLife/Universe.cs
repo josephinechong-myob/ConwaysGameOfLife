@@ -66,38 +66,16 @@ namespace ConwaysGameOfLife
             
             return _liveNeighbours;
         }
+
+        
         
         private int GetLiveNeighboursForCornerCell(Cell cell)
         {
-            int firstRow;
-            int secondRow;
-            int thirdRow;
-            int firstColumn;
-            int secondColumn;
-            
-            if (cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.TopRightCorner)
-            {
-                firstRow = Constants.FirstRowOrColumn;
-                secondRow = _lastRowOrColumn;
-                thirdRow = NextRow(cell.Coordinate);
-            }
-            else
-            {
-                firstRow = _lastRowOrColumn;
-                secondRow = Constants.FirstRowOrColumn;
-                thirdRow = PreviousRow(cell.Coordinate);
-            }
-
-            if (cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.BottomLeftCorner)
-            {
-                firstColumn = _lastRowOrColumn;
-                secondColumn = NextColumn(cell.Coordinate);
-            }
-            else
-            {
-                firstColumn = Constants.FirstRowOrColumn;
-                secondColumn = PreviousColumn(cell.Coordinate);
-            }
+            int firstRow = TopCorners(cell) ? Constants.FirstRowOrColumn : _lastRowOrColumn;
+            int secondRow = TopCorners(cell) ? _lastRowOrColumn : Constants.FirstRowOrColumn;
+            int thirdRow = TopCorners(cell) ? NextRow(cell.Coordinate) : PreviousRow(cell.Coordinate);
+            int firstColumn = BottomCorners(cell) ? _lastRowOrColumn : Constants.FirstRowOrColumn;
+            int secondColumn = BottomCorners(cell) ? NextColumn(cell.Coordinate) : PreviousColumn(cell.Coordinate);
             
             var neighbourCellsState = new List<State>()
             {
@@ -153,13 +131,13 @@ namespace ConwaysGameOfLife
             {
                 cell.Orientation = Orientation.TopSide;
             }
-            else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Column))
-            {
-                cell.Orientation = Orientation.LeftSide;
-            }
             else if (SameSide(_lastRowOrColumn, cell.Coordinate.Row))
             {
                 cell.Orientation = Orientation.BottomSide;
+            }
+            else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Column))
+            {
+                cell.Orientation = Orientation.LeftSide;
             }
             else if (SameSide(_lastRowOrColumn, cell.Coordinate.Column))
             {
@@ -170,7 +148,14 @@ namespace ConwaysGameOfLife
                 cell.Orientation = Orientation.Middle;
             }
         }
-        
+        private bool TopCorners(Cell cell)
+        {
+            return cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.TopRightCorner;
+        }
+        private bool BottomCorners(Cell cell)
+        {
+            return cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.BottomLeftCorner;
+        }
         private bool SameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
         {
             return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
