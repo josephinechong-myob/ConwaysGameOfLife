@@ -57,9 +57,30 @@ namespace ConwaysGameOfLife
             {
                 _liveNeighbours = GetLiveNeighboursForSideCell(cell); 
             }
+            else if (cell.Orientation == Orientation.Middle)
+            {
+                _liveNeighbours = GetLiveNeighboursForMiddleCell(cell); 
+            }
             return _liveNeighbours;
         }
-        //GetLiveNeighboursForMiddleCell
+
+        private int GetLiveNeighboursForMiddleCell(Cell cell)
+        {
+            var neighbourCellsState = new List<State>()
+            {
+                UniverseGrid[PreviousRow(cell.Coordinate), PreviousColumn(cell.Coordinate)].State,
+                UniverseGrid[PreviousRow(cell.Coordinate), cell.Coordinate.Column].State, 
+                UniverseGrid[PreviousRow(cell.Coordinate), NextColumn(cell.Coordinate)].State,
+                UniverseGrid[cell.Coordinate.Row, NextColumn(cell.Coordinate)].State,
+                UniverseGrid[cell.Coordinate.Row, PreviousColumn(cell.Coordinate)].State, 
+                UniverseGrid[NextRow(cell.Coordinate), PreviousColumn(cell.Coordinate)].State,
+                UniverseGrid[NextRow(cell.Coordinate), cell.Coordinate.Column].State,
+                UniverseGrid[NextRow(cell.Coordinate), NextColumn(cell.Coordinate)].State
+            };
+            
+            var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
+            return numberOfLiveNeighbours;
+        }
         
         private int GetLiveNeighboursForCornerCell(Cell cell)
         {
