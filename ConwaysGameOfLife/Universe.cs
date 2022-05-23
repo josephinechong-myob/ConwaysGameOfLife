@@ -167,6 +167,7 @@ namespace ConwaysGameOfLife
                     UniverseGrid[_lastRowOrColumn, NextColumn(cell.Coordinate)].State
                 };
             }
+            
             if (cell.Orientation == Orientation.BottomSide)
             {
                 neighbourCellsState = new List<State>()
@@ -181,6 +182,22 @@ namespace ConwaysGameOfLife
                     UniverseGrid[Constants.FirstRowOrColumn, NextColumn(cell.Coordinate)].State
                 };
             }
+            
+            if (cell.Orientation == Orientation.LeftSide)
+            {
+                neighbourCellsState = new List<State>()
+                {
+                    UniverseGrid[PreviousRow(cell.Coordinate), cell.Coordinate.Column].State,
+                    UniverseGrid[NextRow(cell.Coordinate), cell.Coordinate.Column].State, 
+                    UniverseGrid[cell.Coordinate.Row, NextColumn(cell.Coordinate)].State,
+                    UniverseGrid[PreviousRow(cell.Coordinate), NextColumn(cell.Coordinate)].State,
+                    UniverseGrid[NextRow(cell.Coordinate), NextColumn(cell.Coordinate)].State, 
+                    UniverseGrid[cell.Coordinate.Row, _lastRowOrColumn].State,
+                    UniverseGrid[PreviousRow(cell.Coordinate), _lastRowOrColumn].State,
+                    UniverseGrid[NextRow(cell.Coordinate), _lastRowOrColumn].State
+                };
+            }
+            
             var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
             return numberOfLiveNeighbours;
         }
