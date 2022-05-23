@@ -69,104 +69,86 @@ namespace ConwaysGameOfLife
         
         private int GetLiveNeighboursTemplate(Cell cell)
         {
-            int firstRow = 0;
-            int secondRow = 0;
-            int thirdRow = 0;
-            int firstColumn = 0;
-            int secondColumn = 0;
-            int thirdColumn = 0;
+            var firstRow = cell.Coordinate.Row;
+            var secondRow = 0;
+            var thirdRow = 0;
+            var firstColumn = cell.Coordinate.Column;
+            var secondColumn = 0;
+            var thirdColumn = 0;
             
             if (cell.Orientation == Orientation.Middle)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = PreviousRow(cell.Coordinate);
                 thirdRow = NextRow(cell.Coordinate);
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = PreviousColumn(cell.Coordinate);
                 thirdColumn = NextColumn(cell.Coordinate);
             }
             else if (cell.Orientation == Orientation.TopLeftCorner)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = _lastRowOrColumn;
                 thirdRow = NextRow(cell.Coordinate);
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = _lastRowOrColumn;
                 thirdColumn = NextColumn(cell.Coordinate);
             }
             else if (cell.Orientation == Orientation.TopRightCorner)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = _lastRowOrColumn;
                 thirdRow = NextRow(cell.Coordinate);
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = Constants.FirstRowOrColumn;
                 thirdColumn = PreviousColumn(cell.Coordinate);
             }
             else if (cell.Orientation == Orientation.BottomLeftCorner)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = PreviousRow(cell.Coordinate);
                 thirdRow = Constants.FirstRowOrColumn;
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = NextColumn(cell.Coordinate);
                 thirdColumn = _lastRowOrColumn;
             }
             
             else if (cell.Orientation == Orientation.BottomRightCorner)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = PreviousRow(cell.Coordinate);
                 thirdRow = Constants.FirstRowOrColumn;
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = Constants.FirstRowOrColumn;
                 thirdColumn = PreviousColumn(cell.Coordinate);
             }
             
             else if (cell.Orientation == Orientation.TopSide)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = NextRow(cell.Coordinate);
                 thirdRow = _lastRowOrColumn;
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = NextColumn(cell.Coordinate);
                 thirdColumn = PreviousColumn(cell.Coordinate);
             }
             
             else if (cell.Orientation == Orientation.BottomSide)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = PreviousRow(cell.Coordinate);
                 thirdRow = Constants.FirstRowOrColumn;
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = NextColumn(cell.Coordinate);
                 thirdColumn = PreviousColumn(cell.Coordinate);
             }
             
             else if (cell.Orientation == Orientation.LeftSide)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = PreviousRow(cell.Coordinate);
                 thirdRow = NextRow(cell.Coordinate);
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = NextColumn(cell.Coordinate);
                 thirdColumn = _lastRowOrColumn;
             }
             else if (cell.Orientation == Orientation.RightSide)
             {
-                firstRow = cell.Coordinate.Row;
                 secondRow = PreviousRow(cell.Coordinate);
                 thirdRow = NextRow(cell.Coordinate);
                 
-                firstColumn = cell.Coordinate.Column;
                 secondColumn = Constants.FirstRowOrColumn;
                 thirdColumn = PreviousColumn(cell.Coordinate);
             }
