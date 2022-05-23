@@ -295,11 +295,10 @@ namespace ConwaysGameOfLifeTest
             var mockConsole = new Mock<IGameConsole>();
             mockConsole.Setup(c => c.ReadLine()).Returns("3");
             mockConsole.SetupSequence(c => c.ReadKey())
-                .Returns(ConsoleKey.RightArrow)
                 .Returns(ConsoleKey.Enter)
                 .Returns(ConsoleKey.RightArrow)
                 .Returns(ConsoleKey.Enter)
-                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.RightArrow)
                 .Returns(ConsoleKey.Enter)
                 .Returns(ConsoleKey.X);
             var seedCreator = new SeedCreator(mockConsole.Object);
@@ -307,7 +306,7 @@ namespace ConwaysGameOfLifeTest
             seedCreator.SetSeedCellState();
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
-            var cell = universe.UniverseGrid[2, 2];
+            var cell = universe.UniverseGrid[0, 1];
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
