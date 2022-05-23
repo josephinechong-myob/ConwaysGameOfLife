@@ -198,6 +198,21 @@ namespace ConwaysGameOfLife
                 };
             }
             
+            if (cell.Orientation == Orientation.RightSide)
+            {
+                neighbourCellsState = new List<State>()
+                {
+                    UniverseGrid[PreviousRow(cell.Coordinate), cell.Coordinate.Column].State,
+                    UniverseGrid[NextRow(cell.Coordinate), cell.Coordinate.Column].State, 
+                    UniverseGrid[cell.Coordinate.Row, PreviousColumn(cell.Coordinate)].State,
+                    UniverseGrid[PreviousRow(cell.Coordinate), PreviousColumn(cell.Coordinate)].State,
+                    UniverseGrid[NextRow(cell.Coordinate), PreviousColumn(cell.Coordinate)].State, 
+                    UniverseGrid[cell.Coordinate.Row, Constants.FirstRowOrColumn].State,
+                    UniverseGrid[PreviousRow(cell.Coordinate), Constants.FirstRowOrColumn].State,
+                    UniverseGrid[NextRow(cell.Coordinate), Constants.FirstRowOrColumn].State
+                };
+            }
+            
             var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
             return numberOfLiveNeighbours;
         }
