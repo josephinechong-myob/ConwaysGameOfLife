@@ -67,104 +67,138 @@ namespace ConwaysGameOfLife
             return _liveNeighbours;
         }
         
-        private int GetLiveNeighboursTemplate(Cell cell)
+        private int GetLiveNeighboursTemplate(Cell cell) //strathergy deign pattren to get the live neighbours
         {
-            var firstRow = cell.Coordinate.Row;
+            var sameRow = cell.Coordinate.Row;
+            var firstRow = 0;
             var secondRow = 0;
-            var thirdRow = 0;
-            var firstColumn = cell.Coordinate.Column;
+            var sameColumn = cell.Coordinate.Column;
+            var firstColumn = 0;
             var secondColumn = 0;
-            var thirdColumn = 0;
-            
-            if (cell.Orientation == Orientation.Middle)
+
+            if (cell.Orientation == Orientation.Middle || cell.Orientation ==  Orientation.LeftSide || cell.Orientation == Orientation.RightSide )
             {
-                secondRow = PreviousRow(cell.Coordinate);
-                thirdRow = NextRow(cell.Coordinate);
-                
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = NextRow(cell.Coordinate);
+            }
+            if (cell.Orientation == Orientation.BottomSide || cell.Orientation == Orientation.BottomRightCorner || cell.Orientation == Orientation.BottomLeftCorner )
+            {
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = Constants.FirstRowOrColumn;
+            }
+            if (cell.Orientation == Orientation.TopSide || cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.TopRightCorner )
+            {
+                firstRow = _lastRowOrColumn;
+                secondRow = NextRow(cell.Coordinate);
+            }
+
+            if (cell.Orientation == Orientation.Middle || cell.Orientation == Orientation.TopSide || cell.Orientation == Orientation.BottomSide)
+            {
+                firstColumn = PreviousColumn(cell.Coordinate);
+                secondColumn = NextColumn(cell.Coordinate);
+            }
+            
+            if (cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.BottomLeftCorner || cell.Orientation == Orientation.LeftSide)
+            {
+                firstColumn = _lastRowOrColumn;
+                secondColumn = NextColumn(cell.Coordinate);
+            }
+            
+            if (cell.Orientation == Orientation.TopRightCorner || cell.Orientation == Orientation.RightSide || cell.Orientation == Orientation.BottomRightCorner)
+            {
+                firstColumn = Constants.FirstRowOrColumn;
                 secondColumn = PreviousColumn(cell.Coordinate);
-                thirdColumn = NextColumn(cell.Coordinate);
+            }
+            
+            /*if (cell.Orientation == Orientation.Middle)
+            {
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = NextRow(cell.Coordinate);
+
+                firstColumn = PreviousColumn(cell.Coordinate);
+                secondColumn = NextColumn(cell.Coordinate);
             }
             else if (cell.Orientation == Orientation.TopLeftCorner)
             {
-                secondRow = _lastRowOrColumn;
-                thirdRow = NextRow(cell.Coordinate);
+                firstRow = _lastRowOrColumn;
+                secondRow = NextRow(cell.Coordinate);
                 
-                secondColumn = _lastRowOrColumn;
-                thirdColumn = NextColumn(cell.Coordinate);
+                firstColumn = _lastRowOrColumn;
+                secondColumn = NextColumn(cell.Coordinate);
             }
             else if (cell.Orientation == Orientation.TopRightCorner)
             {
-                secondRow = _lastRowOrColumn;
-                thirdRow = NextRow(cell.Coordinate);
+                firstRow = _lastRowOrColumn;
+                secondRow = NextRow(cell.Coordinate);
                 
-                secondColumn = Constants.FirstRowOrColumn;
-                thirdColumn = PreviousColumn(cell.Coordinate);
+                firstColumn = Constants.FirstRowOrColumn;
+                secondColumn = PreviousColumn(cell.Coordinate);
             }
             else if (cell.Orientation == Orientation.BottomLeftCorner)
             {
-                secondRow = PreviousRow(cell.Coordinate);
-                thirdRow = Constants.FirstRowOrColumn;
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = Constants.FirstRowOrColumn;
                 
-                secondColumn = NextColumn(cell.Coordinate);
-                thirdColumn = _lastRowOrColumn;
+                firstColumn = NextColumn(cell.Coordinate);
+                secondColumn = _lastRowOrColumn;
             }
             
             else if (cell.Orientation == Orientation.BottomRightCorner)
             {
-                secondRow = PreviousRow(cell.Coordinate);
-                thirdRow = Constants.FirstRowOrColumn;
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = Constants.FirstRowOrColumn;
                 
-                secondColumn = Constants.FirstRowOrColumn;
-                thirdColumn = PreviousColumn(cell.Coordinate);
+                firstColumn = Constants.FirstRowOrColumn;
+                secondColumn = PreviousColumn(cell.Coordinate);
             }
             
             else if (cell.Orientation == Orientation.TopSide)
             {
-                secondRow = NextRow(cell.Coordinate);
-                thirdRow = _lastRowOrColumn;
+                firstRow = NextRow(cell.Coordinate);
+                secondRow = _lastRowOrColumn;
                 
-                secondColumn = NextColumn(cell.Coordinate);
-                thirdColumn = PreviousColumn(cell.Coordinate);
+                firstColumn = NextColumn(cell.Coordinate);
+                secondColumn = PreviousColumn(cell.Coordinate);
             }
             
             else if (cell.Orientation == Orientation.BottomSide)
             {
-                secondRow = PreviousRow(cell.Coordinate);
-                thirdRow = Constants.FirstRowOrColumn;
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = Constants.FirstRowOrColumn;
                 
-                secondColumn = NextColumn(cell.Coordinate);
-                thirdColumn = PreviousColumn(cell.Coordinate);
+                firstColumn = NextColumn(cell.Coordinate);
+                secondColumn = PreviousColumn(cell.Coordinate);
             }
             
             else if (cell.Orientation == Orientation.LeftSide)
             {
-                secondRow = PreviousRow(cell.Coordinate);
-                thirdRow = NextRow(cell.Coordinate);
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = NextRow(cell.Coordinate);
                 
-                secondColumn = NextColumn(cell.Coordinate);
-                thirdColumn = _lastRowOrColumn;
+                firstColumn = NextColumn(cell.Coordinate);
+                secondColumn = _lastRowOrColumn;
             }
             else if (cell.Orientation == Orientation.RightSide)
             {
-                secondRow = PreviousRow(cell.Coordinate);
-                thirdRow = NextRow(cell.Coordinate);
+                firstRow = PreviousRow(cell.Coordinate);
+                secondRow = NextRow(cell.Coordinate);
                 
-                secondColumn = Constants.FirstRowOrColumn;
-                thirdColumn = PreviousColumn(cell.Coordinate);
-            }
+                firstColumn = Constants.FirstRowOrColumn;
+                secondColumn = PreviousColumn(cell.Coordinate);
+            }*/
             
             var neighbourCellsState = new List<State>()
             {
-                UniverseGrid[firstRow, secondColumn].State, 
-                UniverseGrid[firstRow, thirdColumn].State,
+                UniverseGrid[sameRow, firstColumn].State, 
+                UniverseGrid[sameRow, secondColumn].State,
                 
-                UniverseGrid[secondRow, firstColumn].State, 
-                UniverseGrid[secondRow, secondColumn].State,
-                UniverseGrid[secondRow, thirdColumn].State,
+                UniverseGrid[firstRow, sameColumn].State, 
+                UniverseGrid[firstRow, firstColumn].State,
+                UniverseGrid[firstRow, secondColumn].State,
                 
-                UniverseGrid[thirdRow, firstColumn].State,
-                UniverseGrid[thirdRow, secondColumn].State,
-                UniverseGrid[thirdRow, thirdColumn].State
+                UniverseGrid[secondRow, sameColumn].State,
+                UniverseGrid[secondRow, firstColumn].State,
+                UniverseGrid[secondRow, secondColumn].State
             };
             
             var numberOfLiveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
