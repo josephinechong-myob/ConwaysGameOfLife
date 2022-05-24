@@ -210,7 +210,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Top_Left_Corner_Cell_Who_Has_Less_Than_Two_Live_Neighbours_Should_Die()
+        public void Live_Top_Left_Corner_Cell_Which_Has_Less_Than_Two_Live_Neighbours_Should_Die()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -241,7 +241,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Top_Left_Corner_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Top_Left_Corner_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -275,7 +275,7 @@ namespace ConwaysGameOfLifeTest
         }
         
         [Fact]
-        public void Dead_Top_Left_Corner_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Top_Left_Corner_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -378,7 +378,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Top_Right_Corner_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Top_Right_Corner_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -414,7 +414,7 @@ namespace ConwaysGameOfLifeTest
         }
         
         [Fact]
-        public void Dead_Top_Right_Corner_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Top_Right_Corner_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -517,7 +517,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Bottom_Left_Corner_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Bottom_Left_Corner_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -551,7 +551,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Bottom_Left_Corner_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Bottom_Left_Corner_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -652,7 +652,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Bottom_Right_Corner_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Bottom_Right_Corner_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -688,7 +688,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Bottom_Right_Corner_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Bottom_Right_Corner_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -792,7 +792,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Top_Side_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Top_Side_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -825,7 +825,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Top_Side_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Top_Side_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -928,7 +928,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Bottom_Side_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Bottom_Side_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -963,7 +963,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Bottom_Side_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Bottom_Side_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -1067,7 +1067,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Left_Side_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Left_Side_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -1100,7 +1100,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Left_Side_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Left_Side_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -1204,7 +1204,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Right_Side_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Right_Side_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -1239,7 +1239,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Right_Side_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Right_Side_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -1344,7 +1344,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Live_Middle_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
+        public void Live_Middle_Cell_Which_Has_Two_Live_Neighbours_Should_Stay_Alive()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -1378,7 +1378,7 @@ namespace ConwaysGameOfLifeTest
         }
 
         [Fact]
-        public void Dead_Middle_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        public void Dead_Middle_Cell_Which_Has_Three_Live_Neighbours_Should_Live()
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
