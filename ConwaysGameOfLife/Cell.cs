@@ -1,11 +1,12 @@
 using System;
+using ConwaysGameOfLife.Orientations;
 
 namespace ConwaysGameOfLife
 {
     public class Cell
     {
         public Coordinate Coordinate { get; }
-        public Orientation? Orientation;
+        public Orientation Orientation;
         public string Symbol { get; }
         public ConsoleColor Colour { get; set; }
         public State State;

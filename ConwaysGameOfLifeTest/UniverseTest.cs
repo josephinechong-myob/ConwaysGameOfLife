@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ConwaysGameOfLife;
+using ConwaysGameOfLife.Orientations;
 using Moq;
 using Xunit;
 
