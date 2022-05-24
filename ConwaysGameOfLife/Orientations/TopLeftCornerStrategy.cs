@@ -4,38 +4,16 @@ namespace ConwaysGameOfLife.Orientations
 {
     public static class TopLeftCornerStrategy
     {
-        private static int NextRow(Coordinate coordinate)
-        {
-            return coordinate.Row + Constants.NeighbourPositionAdjustmentValue;
-        }
-        private static int NextColumn(Coordinate coordinate)
-        {
-            return coordinate.Column + Constants.NeighbourPositionAdjustmentValue;
-        }
-
         public static List<State> GetNeighbourCellsState(Cell cell, Cell[,] universeGrid, int universeDimensions)
         {
-            var lastRowOrColumn = universeDimensions - Constants.ZeroIndexAdjustmentValue;
-            var sameRow = cell.Coordinate.Row;
-            var firstRow = lastRowOrColumn;
-            var secondRow = NextRow(cell.Coordinate);
-            var sameColumn = cell.Coordinate.Column;
-            var firstColumn = lastRowOrColumn;
-            var secondColumn = NextColumn(cell.Coordinate);
+            var neighbour = new Neighbour(cell, universeDimensions);
             
-            var neighbourCellsState = new List<State>()
-            {
-                universeGrid[sameRow, firstColumn].State, 
-                universeGrid[sameRow, secondColumn].State,
-                
-                universeGrid[firstRow, sameColumn].State, 
-                universeGrid[firstRow, firstColumn].State,
-                universeGrid[firstRow, secondColumn].State,
-                
-                universeGrid[secondRow, sameColumn].State,
-                universeGrid[secondRow, firstColumn].State,
-                universeGrid[secondRow, secondColumn].State
-            };
+            var firstRow = neighbour.LastRowOrColumn;
+            var secondRow = neighbour.NextRow;
+            var firstColumn = neighbour.LastRowOrColumn;
+            var secondColumn = neighbour.NextColumn;
+            
+            var neighbourCellsState = neighbour.GetNeighbourCellsState(universeGrid, firstRow, secondRow, firstColumn, secondColumn);
             return neighbourCellsState;
         }
     }

@@ -205,6 +205,40 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
             Assert.Equal(expectedCellState, actualCellState);
         }
+        
+        [Fact]
+        public void Dead_Top_Left_Corner_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        {
+            //arrange
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.Setup(c => c.ReadLine()).Returns("3");
+            mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.RightArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.LeftArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.X);
+            var seedCreator = new SeedCreator(mockConsole.Object);
+            seedCreator.SetSeedDimensions();
+            seedCreator.SetSeedCellState();
+            var seed = seedCreator.GetSeed();
+            var universe = new Universe(mockConsole.Object, seed);
+            var cell = universe.UniverseGrid[0, 0];
+            var expectedNumberOfLiveNeighbours = 3;
+            var expectedCellState = State.Alive;
+
+            //act
+            universe.SetOrientation(cell);
+            var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
+            cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
+            var actualCellState = cell.State;
+
+            //assert
+            Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
+            Assert.Equal(expectedCellState, actualCellState);
+        }
 
         [Fact]
         public void Live_Top_Right_Corner_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()
@@ -241,6 +275,39 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
             Assert.Equal(expectedCellState, actualCellState);
         }
+        
+        /*public void Dead_Top_Right_Corner_Cell_Who_Has_Three_Live_Neighbours_Should_Live()
+        {
+            //arrange
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.Setup(c => c.ReadLine()).Returns("3");
+            mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.RightArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.RightArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.X);
+            var seedCreator = new SeedCreator(mockConsole.Object);
+            seedCreator.SetSeedDimensions();
+            seedCreator.SetSeedCellState();
+            var seed = seedCreator.GetSeed();
+            var universe = new Universe(mockConsole.Object, seed);
+            var cell = universe.UniverseGrid[0, 2];
+            var expectedNumberOfLiveNeighbours = 2;
+            var expectedCellState = State.Alive;
+
+            //act
+            universe.SetOrientation(cell);
+            var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
+            cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
+            var actualCellState = cell.State;
+
+            //assert
+            Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
+            Assert.Equal(expectedCellState, actualCellState);
+        }*/
 
         [Fact]
         public void Live_Bottom_Left_Corner_Cell_Who_Has_Two_Live_Neighbours_Should_Stay_Alive()

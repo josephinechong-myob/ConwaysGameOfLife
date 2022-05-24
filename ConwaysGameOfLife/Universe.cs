@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using ConwaysGameOfLife.Orientations;
 
@@ -9,9 +8,9 @@ namespace ConwaysGameOfLife
         private IGameConsole GameConsole;
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
-        public readonly int UniverseDimensions;
+        private readonly int _universeDimensions;
         private int _liveNeighbours;
-        public readonly int LastRowOrColumn;
+        private readonly int _lastRowOrColumn;
         private readonly Coordinate _topLeftCorner;
         private readonly Coordinate _topRightCorner;
         private readonly Coordinate _bottomLeftCorner;
@@ -20,15 +19,13 @@ namespace ConwaysGameOfLife
         public Universe(IGameConsole gameConsole, Seed seed)
         {
             GameConsole = gameConsole;
-            
             UniverseGrid = seed.SeedGrid;
-            UniverseDimensions = seed.SeedDimensions;
-            
-            LastRowOrColumn = UniverseDimensions - Constants.ZeroIndexAdjustmentValue;
+            _universeDimensions = seed.SeedDimensions;
+            _lastRowOrColumn = _universeDimensions - Constants.ZeroIndexAdjustmentValue;
             _topLeftCorner = new Coordinate (Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
-            _topRightCorner = new Coordinate(Constants.FirstRowOrColumn, UniverseDimensions - Constants.ZeroIndexAdjustmentValue);
-            _bottomLeftCorner = new Coordinate(UniverseDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
-            _bottomRightCorner = new Coordinate(UniverseDimensions - Constants.ZeroIndexAdjustmentValue, UniverseDimensions - Constants.ZeroIndexAdjustmentValue);
+            _topRightCorner = new Coordinate(Constants.FirstRowOrColumn, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
+            _bottomLeftCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
+            _bottomRightCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
         }
         
         public void DisplayUniverse(Cell[,] universe)
@@ -50,7 +47,7 @@ namespace ConwaysGameOfLife
         
         public int GetLiveNeighbours(Cell cell)
         {
-            var neighbourCellsState = new OrientationContext(cell.Orientation).GetNeighbourCellsState(cell, UniverseGrid, UniverseDimensions);
+            var neighbourCellsState = new OrientationContext(cell.Orientation).GetNeighbourCellsState(cell, UniverseGrid, _universeDimensions);
             _liveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
             return _liveNeighbours;
         }
@@ -77,7 +74,7 @@ namespace ConwaysGameOfLife
             {
                 cell.Orientation = Orientation.TopSide;
             }
-            else if (SameSide(LastRowOrColumn, cell.Coordinate.Row))
+            else if (SameSide(_lastRowOrColumn, cell.Coordinate.Row))
             {
                 cell.Orientation = Orientation.BottomSide;
             }
@@ -85,7 +82,7 @@ namespace ConwaysGameOfLife
             {
                 cell.Orientation = Orientation.LeftSide;
             }
-            else if (SameSide(LastRowOrColumn, cell.Coordinate.Column))
+            else if (SameSide(_lastRowOrColumn, cell.Coordinate.Column))
             {
                 cell.Orientation = Orientation.RightSide;
             }
@@ -135,58 +132,3 @@ namespace ConwaysGameOfLife
             }
             return liveNeighbours;
         }*/
-        
-        /*var sameRow = cell.Coordinate.Row;
-            var firstRow = 0;
-            var secondRow = 0;
-            var sameColumn = cell.Coordinate.Column;
-            var firstColumn = 0;
-            var secondColumn = 0;
-
-            if (cell.Orientation == Orientation.Middle || cell.Orientation ==  Orientation.LeftSide || cell.Orientation == Orientation.RightSide )
-            {
-                firstRow = PreviousRow(cell.Coordinate);
-                secondRow = NextRow(cell.Coordinate);
-            }
-            if (cell.Orientation == Orientation.BottomSide || cell.Orientation == Orientation.BottomRightCorner || cell.Orientation == Orientation.BottomLeftCorner )
-            {
-                firstRow = PreviousRow(cell.Coordinate);
-                secondRow = Constants.FirstRowOrColumn;
-            }
-            if (cell.Orientation == Orientation.TopSide || cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.TopRightCorner )
-            {
-                firstRow = _lastRowOrColumn;
-                secondRow = NextRow(cell.Coordinate);
-            }
-
-            if (cell.Orientation == Orientation.Middle || cell.Orientation == Orientation.TopSide || cell.Orientation == Orientation.BottomSide)
-            {
-                firstColumn = PreviousColumn(cell.Coordinate);
-                secondColumn = NextColumn(cell.Coordinate);
-            }
-            
-            if (cell.Orientation == Orientation.TopLeftCorner || cell.Orientation == Orientation.BottomLeftCorner || cell.Orientation == Orientation.LeftSide)
-            {
-                firstColumn = _lastRowOrColumn;
-                secondColumn = NextColumn(cell.Coordinate);
-            }
-            
-            if (cell.Orientation == Orientation.TopRightCorner || cell.Orientation == Orientation.RightSide || cell.Orientation == Orientation.BottomRightCorner)
-            {
-                firstColumn = Constants.FirstRowOrColumn;
-                secondColumn = PreviousColumn(cell.Coordinate);
-            }
-            
-            var neighbourCellsState = new List<State>()
-            {
-                UniverseGrid[sameRow, firstColumn].State, 
-                UniverseGrid[sameRow, secondColumn].State,
-                
-                UniverseGrid[firstRow, sameColumn].State, 
-                UniverseGrid[firstRow, firstColumn].State,
-                UniverseGrid[firstRow, secondColumn].State,
-                
-                UniverseGrid[secondRow, sameColumn].State,
-                UniverseGrid[secondRow, firstColumn].State,
-                UniverseGrid[secondRow, secondColumn].State
-            };*/
