@@ -1,6 +1,3 @@
-using System;
-using ConwaysGameOfLife.Orientations;
-
 namespace ConwaysGameOfLife
 {
     public class Game
@@ -22,6 +19,5 @@ namespace ConwaysGameOfLife
             universe.UpdateUniverse(universe);
             universe.UpdateUniverse(universe);
         }
-        
     }
 }

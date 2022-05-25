@@ -4,8 +4,8 @@ namespace ConwaysGameOfLife
 {
     public class Coordinate
     {
-        public int Row;
-        public int Column;
+        public readonly int Row;
+        public readonly int Column;
 
         public Coordinate(int row, int column)
         {

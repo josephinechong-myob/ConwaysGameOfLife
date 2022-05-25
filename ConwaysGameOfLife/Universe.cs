@@ -6,8 +6,8 @@ namespace ConwaysGameOfLife
     public class Universe
     {
         private readonly IGameConsole _gameConsole;
-        public Cell[,] UniverseGrid { get; set; }
-        public int Generation { get; set; }
+        public Cell[,] UniverseGrid { get; }
+        private int Generation { get; set; }
         public readonly int UniverseDimensions;
 
         public Universe(IGameConsole gameConsole, Seed seed)
