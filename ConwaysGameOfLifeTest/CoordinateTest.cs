@@ -9,17 +9,19 @@ namespace ConwaysGameOfLifeTest
         [InlineData("1, 1", 1, 1)]
         [InlineData("3, 3", 3, 3)]
         [InlineData("9, 9", 9, 9)]
-        public void Try_Parse_Should_Return_True_If_Input_For_Coordinate_Is_Valid(string input, int yPosition, int xPosition)
+        public void Try_Parse_Should_Return_True_If_Input_For_Coordinate_Is_Valid(string input, int xPosition, int yPosition)
         {
             //arrange
             Coordinate coordinate = new Coordinate(xPosition, yPosition);
+            var expectedCoordinate = new Coordinate(xPosition, yPosition);
 
             //act
             var actualCoordinate = Coordinate.TryParse(input, out coordinate);
 
             //assert
             Assert.True(actualCoordinate);
-            //checking if my output is a coordinate????
+            Assert.Equal(expectedCoordinate.Column, coordinate.Column);
+            Assert.Equal(expectedCoordinate.Row, coordinate.Row);
         }
         
         [Theory]
