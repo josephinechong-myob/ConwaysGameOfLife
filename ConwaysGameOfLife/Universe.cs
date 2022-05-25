@@ -28,32 +28,8 @@ namespace ConwaysGameOfLife
                 neighbour.SetOrientation(cell);
                 var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
                 cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
-                //cell.UpdateColour(cell.State);
             }
-            
             universe.DisplayUniverse(universe.UniverseGrid);
-
-            //WORKING
-            /*var width = universe.UniverseGrid.GetLength(0);
-            var height = universe.UniverseGrid.GetLength(1);
-            
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    var cell = universe.UniverseGrid[x, y];
-                    var neighbour = new Neighbour(cell, universe.UniverseDimensions);
-                    neighbour.SetOrientation(cell);
-                    var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
-                    universe.UniverseGrid[x, y].State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
-                    cell.UpdateColour(universe.UniverseGrid[x, y].State);
-
-                }
-            }*/
-            
-           
-            
-            
         }
         
         public void DisplayUniverse(Cell[,] universe)
