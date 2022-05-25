@@ -1,30 +1,17 @@
-using System.Linq;
-using ConwaysGameOfLife.Orientations;
-
 namespace ConwaysGameOfLife
 {
     public class Universe
     {
-        private IGameConsole GameConsole;
+        private readonly IGameConsole _gameConsole;
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
-        public readonly int _universeDimensions;
-        //private readonly int _lastRowOrColumn;
-        /*private readonly Coordinate _topLeftCorner;
-        private readonly Coordinate _topRightCorner;
-        private readonly Coordinate _bottomLeftCorner;
-        private readonly Coordinate _bottomRightCorner;*/
+        public readonly int UniverseDimensions;
 
         public Universe(IGameConsole gameConsole, Seed seed)
         {
-            GameConsole = gameConsole;
+            _gameConsole = gameConsole;
             UniverseGrid = seed.SeedGrid;
-            _universeDimensions = seed.SeedDimensions;
-            //_lastRowOrColumn = _universeDimensions - Constants.ZeroIndexAdjustmentValue;
-            /*_topLeftCorner = new Coordinate (Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
-            _topRightCorner = new Coordinate(Constants.FirstRowOrColumn, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
-            _bottomLeftCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
-            _bottomRightCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, _universeDimensions - Constants.ZeroIndexAdjustmentValue);*/
+            UniverseDimensions = seed.SeedDimensions;
         }
         
         public void DisplayUniverse(Cell[,] universe)
@@ -36,90 +23,11 @@ namespace ConwaysGameOfLife
             {
                 for (int column = 0; column < height; column++)
                 {
-                    GameConsole.ForegroundColor(universe[row, column].Colour);
-                    GameConsole.Write(universe[row, column].Symbol);
+                    _gameConsole.ForegroundColor(universe[row, column].Colour);
+                    _gameConsole.Write(universe[row, column].Symbol);
                 }
-                GameConsole.Write("\n");
+                _gameConsole.Write("\n");
             }
         }
-
-        /*public void SetOrientation(Cell cell)
-        {
-            if (SameCoordinates(_topLeftCorner, cell.Coordinate))
-            {
-                cell.Orientation = Orientation.TopLeftCorner;
-            }
-            else if (SameCoordinates(_topRightCorner, cell.Coordinate))
-            {
-                cell.Orientation = Orientation.TopRightCorner;
-            }
-            else if (SameCoordinates(_bottomLeftCorner, cell.Coordinate))
-            {
-                cell.Orientation = Orientation.BottomLeftCorner;
-            }
-            else if (SameCoordinates(_bottomRightCorner, cell.Coordinate))
-            {
-                cell.Orientation = Orientation.BottomRightCorner;
-            }
-            else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Row))
-            {
-                cell.Orientation = Orientation.TopSide;
-            }
-            else if (SameSide(_lastRowOrColumn, cell.Coordinate.Row))
-            {
-                cell.Orientation = Orientation.BottomSide;
-            }
-            else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Column))
-            {
-                cell.Orientation = Orientation.LeftSide;
-            }
-            else if (SameSide(_lastRowOrColumn, cell.Coordinate.Column))
-            {
-                cell.Orientation = Orientation.RightSide;
-            }
-            else
-            {
-                cell.Orientation = Orientation.Middle;
-            }
-        }
-
-        private bool SameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
-        {
-            return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
-        }
-        private bool SameSide(int referenceSide, int actualSide)
-        {
-            return actualSide == referenceSide;
-        }*/
     }
-}
-
-/*public void CreateUniverse() //is this still needed?
-        {
-            var width = UniverseGrid.GetUpperBound(0) + 1;
-            var height = UniverseGrid.GetUpperBound(1) + 1;
-            
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    var state = Generation == 0 ? State.Dead : UniverseGrid[x, y].State;
-                    UniverseGrid[x, y] = new Cell(new Coordinate(x, y), state);
-                }
-            }
-        }*/
-
-/*public int SumLiveNeighbours(State state, List<Coordinate> neighbourCoordinates)
-        {
-            var liveNeighbours = 0;
-            
-            foreach (var neighbourCoordinate in neighbourCoordinates)
-            {
-                var neighbourCell = new Cell(neighbourCoordinate, state);
-                if (neighbourCell.State == State.Alive)
-                {
-                    liveNeighbours += 1;
-                }
-            }
-            return liveNeighbours;
-        }*/
+}     

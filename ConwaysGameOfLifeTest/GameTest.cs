@@ -29,11 +29,11 @@ namespace ConwaysGameOfLifeTest
             var expectedCellSeedState = State.Alive;
             var expectedNumberOfLiveNeighbours = 0;
             var expectedCellState = State.Dead;
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
 
             //act
             game.UpdateUniverse(universe);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             var actualCellState = cell.State;
 
             //assert

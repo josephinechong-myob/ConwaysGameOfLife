@@ -105,7 +105,7 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[row, column];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
 
             //act
             neighbour.SetOrientation(cell);
@@ -135,7 +135,7 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[row, column];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
 
             //act
             neighbour.SetOrientation(cell);
@@ -165,7 +165,7 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[row, column];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
 
             //act
             neighbour.SetOrientation(cell);

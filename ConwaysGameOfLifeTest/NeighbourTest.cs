@@ -30,13 +30,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
             
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -61,13 +61,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
             
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -95,13 +95,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -129,13 +129,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -166,13 +166,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -198,13 +198,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -234,13 +234,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -268,13 +268,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -305,13 +305,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -337,13 +337,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -371,13 +371,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -405,13 +405,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -442,13 +442,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
             
@@ -476,13 +476,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -512,13 +512,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -548,13 +548,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -585,13 +585,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -616,13 +616,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -649,13 +649,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -682,13 +682,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[0, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -719,13 +719,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -752,13 +752,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -787,13 +787,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -823,13 +823,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[2, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -860,13 +860,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -891,13 +891,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -924,13 +924,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -958,13 +958,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 0];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -995,13 +995,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1028,13 +1028,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1063,13 +1063,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1099,13 +1099,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 2];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1136,13 +1136,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 4;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1168,13 +1168,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 1;
             var expectedCellState = State.Dead;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1202,13 +1202,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 2;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
@@ -1235,13 +1235,13 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[1, 1];
-            var neighbour = new Neighbour(cell, universe._universeDimensions);
+            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
             var expectedNumberOfLiveNeighbours = 3;
             var expectedCellState = State.Alive;
 
             //act
             neighbour.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
 
