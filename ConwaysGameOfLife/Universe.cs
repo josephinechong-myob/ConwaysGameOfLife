@@ -9,7 +9,7 @@ namespace ConwaysGameOfLife
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
         public readonly int _universeDimensions;
-        private int _liveNeighbours;
+        //private int _liveNeighbours;
         private readonly int _lastRowOrColumn;
         private readonly Coordinate _topLeftCorner;
         private readonly Coordinate _topRightCorner;
@@ -30,27 +30,26 @@ namespace ConwaysGameOfLife
         
         public void DisplayUniverse(Cell[,] universe)
         {
-            //var displayString = "";
             var width = universe.GetLength(0);
             var height = universe.GetLength(1);
 
-            for (int i = 0; i < width; i++)
+            for (int row = 0; row < width; row++)
             {
-                for (int j = 0; j < height; j++)
+                for (int column = 0; column < height; column++)
                 {
-                    GameConsole.ForegroundColor(universe[i, j].Colour);
-                    GameConsole.Write(universe[i, j].Symbol);
+                    GameConsole.ForegroundColor(universe[row, column].Colour);
+                    GameConsole.Write(universe[row, column].Symbol);
                 }
                 GameConsole.Write("\n");
             }
         }
         
-        public int GetLiveNeighbours(Cell cell)
+        /*public int GetLiveNeighbours(Cell cell)
         {
             var neighbourCellsState = new OrientationContext(cell.Orientation).GetNeighbourCellsState(cell, UniverseGrid, _universeDimensions);
             _liveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
             return _liveNeighbours;
-        }
+        }*/
         
         public void SetOrientation(Cell cell)
         {

@@ -1,5 +1,6 @@
 using System;
 using ConwaysGameOfLife;
+using ConwaysGameOfLife.Orientations;
 using Moq;
 using Xunit;
 
@@ -28,10 +29,11 @@ namespace ConwaysGameOfLifeTest
             var expectedCellSeedState = State.Alive;
             var expectedNumberOfLiveNeighbours = 0;
             var expectedCellState = State.Dead;
+            var neighbour = new Neighbour(cell, universe._universeDimensions);
 
             //act
             game.UpdateUniverse(universe);
-            var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             var actualCellState = cell.State;
             /*universe.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);

@@ -1,4 +1,5 @@
 using System;
+using ConwaysGameOfLife.Orientations;
 
 namespace ConwaysGameOfLife
 {
@@ -36,8 +37,11 @@ namespace ConwaysGameOfLife
                 for (int y = 0; y < height; y++)
                 {
                     var cell = universe.UniverseGrid[x, y];
+                    var neighbour = new Neighbour(cell, universe._universeDimensions);
                     universe.SetOrientation(cell);
-                    var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
+                    //var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
+                    var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
+                    
                     universe.UniverseGrid[x, y].State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
                     cell.UpdateColour(universe.UniverseGrid[x, y].State);
 
