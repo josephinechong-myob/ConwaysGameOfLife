@@ -146,12 +146,12 @@ namespace ConwaysGameOfLife
                     if (grid[column, row].State == State.Alive)
                     {
                         grid[column, row].State = State.Dead;
-                        grid[column, row].Colour = Constants.Dead;
+                        //grid[column, row].Colour = Constants.Dead;
                     }
                     else
                     {
                         grid[column, row].State = State.Alive;
-                        grid[column, row].Colour = Constants.Alive;
+                        //grid[column, row].Colour = Constants.Alive;
                     }
                 }
             } while (keyInfo != ConsoleKey.X);

@@ -19,6 +19,7 @@ namespace ConwaysGameOfLifeTest
 
             //assert
             Assert.True(actualCoordinate);
+            //checking if my output is a coordinate????
         }
         
         [Theory]
