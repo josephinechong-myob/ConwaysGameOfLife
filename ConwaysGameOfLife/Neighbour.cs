@@ -1,7 +1,8 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using ConwaysGameOfLife.Orientations;
 
-namespace ConwaysGameOfLife.Orientations
+namespace ConwaysGameOfLife
 {
     public class Neighbour
     {
@@ -64,6 +65,7 @@ namespace ConwaysGameOfLife.Orientations
         {
             return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
         }
+        
         private bool SameSide(int referenceSide, int actualSide)
         {
             return actualSide == referenceSide;
