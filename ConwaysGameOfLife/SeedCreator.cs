@@ -41,7 +41,7 @@ namespace ConwaysGameOfLife
         {
             var width = _seedGrid.GetUpperBound(0) + 1;
             var height = _seedGrid.GetUpperBound(1) + 1;
-            
+
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)

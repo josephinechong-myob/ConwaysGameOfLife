@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using ConwaysGameOfLife.Orientations;
 
 namespace ConwaysGameOfLife
@@ -15,8 +16,14 @@ namespace ConwaysGameOfLife
         {
             Coordinate = coordinate;
             State = state;
-            Colour = state == State.Alive ? Constants.Alive : Constants.Dead;
+            UpdateColour(state);
+            //Colour = state == State.Alive ? Constants.Alive : Constants.Dead;
             Symbol = Constants.SquareCell;
+        }
+
+        public void UpdateColour(State state)
+        {
+            Colour = state == State.Alive ? Constants.Alive : Constants.Dead;
         }
     }
 }

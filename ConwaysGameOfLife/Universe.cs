@@ -8,7 +8,7 @@ namespace ConwaysGameOfLife
         private IGameConsole GameConsole;
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
-        private readonly int _universeDimensions;
+        public readonly int _universeDimensions;
         private int _liveNeighbours;
         private readonly int _lastRowOrColumn;
         private readonly Coordinate _topLeftCorner;
