@@ -35,7 +35,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
             
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -66,7 +66,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
             
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -100,7 +100,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -134,7 +134,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -171,7 +171,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -203,7 +203,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -239,7 +239,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -273,7 +273,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -310,7 +310,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -342,7 +342,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -376,7 +376,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -410,7 +410,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -447,7 +447,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -481,7 +481,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -517,7 +517,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -553,7 +553,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -590,7 +590,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -621,7 +621,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -654,7 +654,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -687,7 +687,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -724,7 +724,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -757,7 +757,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -792,7 +792,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -828,7 +828,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -865,7 +865,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -896,7 +896,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -929,7 +929,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -963,7 +963,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1000,7 +1000,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1033,7 +1033,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1068,7 +1068,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1104,7 +1104,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1141,7 +1141,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1173,7 +1173,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1207,7 +1207,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;
@@ -1240,7 +1240,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            universe.SetOrientation(cell);
+            neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             var actualCellState = cell.State;

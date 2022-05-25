@@ -35,17 +35,12 @@ namespace ConwaysGameOfLifeTest
             game.UpdateUniverse(universe);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe._universeDimensions);
             var actualCellState = cell.State;
-            /*universe.SetOrientation(cell);
-            var actualNumberOfLiveNeighbours = universe.GetLiveNeighbours(cell);
-            cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
-            var actualCellState = cell.State;*/
 
             //assert
             Assert.Equal(expectedCellSeedState, cellSeedState);
             Assert.Equal(expectedNumberOfLiveNeighbours, actualNumberOfLiveNeighbours);
             Assert.Equal(expectedCellState, actualCellState);
-            Assert.Equal(ConsoleColor.Magenta, cell.Colour);
-            
+            Assert.Equal(Constants.Dead, cell.Colour);
         }
     }
 }

@@ -9,23 +9,22 @@ namespace ConwaysGameOfLife
         public Cell[,] UniverseGrid { get; set; }
         public int Generation { get; set; }
         public readonly int _universeDimensions;
-        //private int _liveNeighbours;
-        private readonly int _lastRowOrColumn;
-        private readonly Coordinate _topLeftCorner;
+        //private readonly int _lastRowOrColumn;
+        /*private readonly Coordinate _topLeftCorner;
         private readonly Coordinate _topRightCorner;
         private readonly Coordinate _bottomLeftCorner;
-        private readonly Coordinate _bottomRightCorner;
+        private readonly Coordinate _bottomRightCorner;*/
 
         public Universe(IGameConsole gameConsole, Seed seed)
         {
             GameConsole = gameConsole;
             UniverseGrid = seed.SeedGrid;
             _universeDimensions = seed.SeedDimensions;
-            _lastRowOrColumn = _universeDimensions - Constants.ZeroIndexAdjustmentValue;
-            _topLeftCorner = new Coordinate (Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
+            //_lastRowOrColumn = _universeDimensions - Constants.ZeroIndexAdjustmentValue;
+            /*_topLeftCorner = new Coordinate (Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
             _topRightCorner = new Coordinate(Constants.FirstRowOrColumn, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
             _bottomLeftCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
-            _bottomRightCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, _universeDimensions - Constants.ZeroIndexAdjustmentValue);
+            _bottomRightCorner = new Coordinate(_universeDimensions - Constants.ZeroIndexAdjustmentValue, _universeDimensions - Constants.ZeroIndexAdjustmentValue);*/
         }
         
         public void DisplayUniverse(Cell[,] universe)
@@ -43,15 +42,8 @@ namespace ConwaysGameOfLife
                 GameConsole.Write("\n");
             }
         }
-        
-        /*public int GetLiveNeighbours(Cell cell)
-        {
-            var neighbourCellsState = new OrientationContext(cell.Orientation).GetNeighbourCellsState(cell, UniverseGrid, _universeDimensions);
-            _liveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
-            return _liveNeighbours;
-        }*/
-        
-        public void SetOrientation(Cell cell)
+
+        /*public void SetOrientation(Cell cell)
         {
             if (SameCoordinates(_topLeftCorner, cell.Coordinate))
             {
@@ -98,7 +90,7 @@ namespace ConwaysGameOfLife
         private bool SameSide(int referenceSide, int actualSide)
         {
             return actualSide == referenceSide;
-        }
+        }*/
     }
 }
 
