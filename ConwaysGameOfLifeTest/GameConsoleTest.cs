@@ -13,7 +13,7 @@ namespace ConwaysGameOfLifeTest
         {
             //arrange
             var gameConsole = new GameConsole();
-            var expectedColour = ConsoleColor.Cyan;
+            var expectedColour = Constants.Alive;
 
             //act
             gameConsole.ForegroundColor(Constants.Alive);

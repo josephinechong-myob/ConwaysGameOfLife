@@ -7,7 +7,7 @@ namespace ConwaysGameOfLife
         private readonly IGameConsole _gameConsole;
         private int _seedDimensions;
         private Cell[,] _seedGrid;
-        
+
         public SeedCreator(IGameConsole gameConsole)
         {
             _gameConsole = gameConsole;
@@ -77,6 +77,7 @@ namespace ConwaysGameOfLife
                     if (cell.State == State.Alive)
                     {
                         Console.ForegroundColor = Constants.Alive;
+
                     }
                     else if (cell.State == State.Dead)
                     {
@@ -88,7 +89,7 @@ namespace ConwaysGameOfLife
                     }
                 }
                 Console.Write(" \u25fc ");
-                
+
                 cellCount++;
                 
                 if (cellCount % _seedDimensions == 0)

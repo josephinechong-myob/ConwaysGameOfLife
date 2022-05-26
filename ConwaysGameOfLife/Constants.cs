@@ -5,8 +5,8 @@ namespace ConwaysGameOfLife
     public static class Constants
     {
         public const string SquareCell = " \u25fc ";
-        public const ConsoleColor Alive = ConsoleColor.Cyan;
-        public const ConsoleColor Dead = ConsoleColor.Magenta;
+        public const ConsoleColor Alive = ConsoleColor.Green;
+        public const ConsoleColor Dead = ConsoleColor.DarkBlue;
         
         public const int LiveNeighbourLimitForDeathByUnderpopulationLaw = 2;
         public const int LiveNeighboursLimitForDeathByOvercrowdingLaw = 3;

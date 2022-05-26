@@ -61,12 +61,12 @@ namespace ConwaysGameOfLife
             return _neighbourCellsState;
         }
         
-        private bool SameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
+        private static bool SameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
         {
             return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
         }
         
-        private bool SameSide(int referenceSide, int actualSide)
+        private static bool SameSide(int referenceSide, int actualSide)
         {
             return actualSide == referenceSide;
         }
