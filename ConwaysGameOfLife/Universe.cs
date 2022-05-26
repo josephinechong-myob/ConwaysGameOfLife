@@ -1,6 +1,3 @@
-using System;
-using ConwaysGameOfLife.Orientations;
-
 namespace ConwaysGameOfLife
 {
     public class Universe
@@ -31,6 +28,10 @@ namespace ConwaysGameOfLife
             }
 
             AllCellsAreDead = count == universeGrid.Length;
+            if (AllCellsAreDead)
+            {
+                _gameConsole.WriteLine("All cells are dead");
+            }
         }
         
          public void UpdateUniverse(Universe universe)
