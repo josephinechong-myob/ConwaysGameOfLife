@@ -1,3 +1,5 @@
+using System;
+
 namespace ConwaysGameOfLife
 {
     public class Universe
@@ -30,7 +32,8 @@ namespace ConwaysGameOfLife
             AllCellsAreDead = count == universeGrid.Length;
             if (AllCellsAreDead)
             {
-                _gameConsole.WriteLine("All cells are dead");
+                _gameConsole.ForegroundColor(Constants.Terminal);
+                _gameConsole.WriteLine(Constants.DeadUniverse);
             }
         }
         

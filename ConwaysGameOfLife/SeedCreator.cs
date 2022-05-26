@@ -29,7 +29,8 @@ namespace ConwaysGameOfLife
             
             while (!validNumber)
             {
-                _gameConsole.WriteLine("How big would you like the universe grid size to be? Please enter a number (i.e. 3)");
+                _gameConsole.ForegroundColor(Constants.Terminal);
+                _gameConsole.WriteLine(Constants.RequestUniverseGrid);
                 var seed = _gameConsole.ReadLine();
                 validNumber = int.TryParse(seed, out _seedDimensions);
             }
@@ -64,7 +65,8 @@ namespace ConwaysGameOfLife
         {
             Console.Clear();
             int cellCount = 0;
-            _gameConsole.WriteLine($"Select cells you want ALIVE with keyboard arrows\nPress 'Enter' to select cell\nPress 'X' to exit");
+            Console.ForegroundColor = Constants.Terminal;
+            _gameConsole.WriteLine(Constants.UniverseGridInstructions);
             
             foreach (Cell cell in universe)
             {
@@ -88,7 +90,7 @@ namespace ConwaysGameOfLife
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
-                Console.Write(" \u25fc ");
+                Console.Write(Constants.SquareCell);
 
                 cellCount++;
                 
