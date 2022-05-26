@@ -9,7 +9,7 @@ namespace ConwaysGameOfLife
         public Cell[,] UniverseGrid { get; }
         private int Generation { get; set; }
         public readonly int UniverseDimensions;
-        public bool AllCellsDead;
+        public bool AllCellsAreDead;
 
         public Universe(IGameConsole gameConsole, Seed seed)
         {
@@ -18,11 +18,11 @@ namespace ConwaysGameOfLife
             UniverseDimensions = seed.SeedDimensions;
         }
 
-        public void AllCellsAreDead(Universe universe)
+        private void CheckIfAllCellsAreDead(Cell[,] universeGrid)
         {
             var count = 0;
 
-            foreach (var cell in universe.UniverseGrid)
+            foreach (var cell in universeGrid)
             {
                 if (cell.State == State.Dead)
                 {
@@ -30,14 +30,7 @@ namespace ConwaysGameOfLife
                 }
             }
 
-            if (count == universe.UniverseGrid.Length)
-            {
-                AllCellsDead = true;
-            }
-            else
-            {
-                AllCellsDead = false;
-            }
+            AllCellsAreDead = count == universeGrid.Length;
         }
         
          public void UpdateUniverse(Universe universe)
@@ -52,7 +45,7 @@ namespace ConwaysGameOfLife
                 cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
             }
             
-            AllCellsAreDead(universe);
+            CheckIfAllCellsAreDead(universe.UniverseGrid);
         }
         
         public void DisplayUniverse(Cell[,] universe)

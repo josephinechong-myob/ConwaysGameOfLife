@@ -35,7 +35,7 @@ namespace ConwaysGameOfLife
                     break;
                 }*/
             }
-            while (!universe.AllCellsDead);
+            while (!universe.AllCellsAreDead);
             //} while (keyInfo != ConsoleKey.X);
         }
     }

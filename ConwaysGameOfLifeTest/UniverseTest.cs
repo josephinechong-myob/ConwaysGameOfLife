@@ -208,5 +208,55 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedCellState, actualCellState);
             Assert.Equal(Constants.Dead, cell.Colour);
         }
+
+        [Fact]
+        public void All_Cells_Are_Dead_Should_Return_True_If_All_Cells_In_Universe_Are_Dead()
+        {
+            //arrange
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.Setup(c => c.ReadLine()).Returns("3");
+            mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.X);
+            var seedCreator = new SeedCreator(mockConsole.Object);
+            seedCreator.MakeSeed();
+            var seed = seedCreator.GetSeed();
+            var universe = new Universe(mockConsole.Object, seed);
+            var expectedValue = true;
+
+            //act
+            universe.UpdateUniverse(universe);
+
+            //assert
+            Assert.Equal(expectedValue, universe.AllCellsAreDead);
+        }
+        
+        [Fact]
+        public void All_Cells_Are_Dead_Should_Return_False_If_All_Cells_In_Universe_Are_Not_Dead()
+        {
+            //arrange
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.Setup(c => c.ReadLine()).Returns("3");
+            mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.DownArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.RightArrow)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.X);
+            var seedCreator = new SeedCreator(mockConsole.Object);
+            seedCreator.MakeSeed();
+            var seed = seedCreator.GetSeed();
+            var universe = new Universe(mockConsole.Object, seed);
+            var expectedValue = false;
+
+            //act
+            universe.UpdateUniverse(universe);
+            var actualValue = universe.AllCellsAreDead;
+
+            //assert
+            Assert.Equal(expectedValue, actualValue);
+        }
     }
 }
