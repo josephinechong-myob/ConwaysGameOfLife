@@ -1,5 +1,3 @@
-using System;
-
 namespace ConwaysGameOfLife
 {
     public class Universe

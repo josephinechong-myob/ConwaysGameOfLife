@@ -40,8 +40,8 @@ namespace ConwaysGameOfLife
 
         private void CreateUniverse()
         {
-            var width = _seedGrid.GetUpperBound(0) + 1;
-            var height = _seedGrid.GetUpperBound(1) + 1;
+            var width = _seedGrid.GetUpperBound(0) + Constants.ZeroIndexAdjustmentValue;
+            var height = _seedGrid.GetUpperBound(1) + Constants.ZeroIndexAdjustmentValue;
 
             for (int x = 0; x < width; x++)
             {
@@ -65,38 +65,37 @@ namespace ConwaysGameOfLife
         {
             Console.Clear();
             int cellCount = 0;
-            Console.ForegroundColor = Constants.Terminal;
+            _gameConsole.ForegroundColor(Constants.Terminal);
             _gameConsole.WriteLine(Constants.UniverseGridInstructions);
             
             foreach (Cell cell in universe)
             {
                 if (cell == selectedCell)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    _gameConsole.ForegroundColor(Constants.Cursor);
                 }
                 else
                 {
                     if (cell.State == State.Alive)
                     {
-                        Console.ForegroundColor = Constants.Alive;
-
+                        _gameConsole.ForegroundColor(Constants.Alive);
                     }
                     else if (cell.State == State.Dead)
                     {
-                        Console.ForegroundColor = Constants.Dead;
+                        _gameConsole.ForegroundColor(Constants.Dead);
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
+                        _gameConsole.ForegroundColor(ConsoleColor.White);
                     }
                 }
-                Console.Write(Constants.SquareCell);
+                _gameConsole.Write(Constants.SquareCell);
 
                 cellCount++;
                 
                 if (cellCount % _seedDimensions == 0)
                 {
-                    Console.Write("\n");
+                    _gameConsole.Write("\n");
                 }
             }
         }
@@ -110,7 +109,7 @@ namespace ConwaysGameOfLife
 
                 if (keyInfo == ConsoleKey.DownArrow)
                 {
-                    if (column + 1 < grid.Length)
+                    if (column + Constants.ZeroIndexAdjustmentValue < grid.Length)
                     {
                         column++;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
@@ -119,7 +118,7 @@ namespace ConwaysGameOfLife
 
                 if (keyInfo == ConsoleKey.UpArrow)
                 {
-                    if (column - 1 >= 0)
+                    if (column - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn)
                     {
                         column--;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
@@ -128,7 +127,7 @@ namespace ConwaysGameOfLife
 
                 if (keyInfo == ConsoleKey.RightArrow)
                 {
-                    if (row + 1 < grid.Length)
+                    if (row + Constants.ZeroIndexAdjustmentValue < grid.Length)
                     {
                         row++;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
@@ -137,7 +136,7 @@ namespace ConwaysGameOfLife
 
                 if (keyInfo == ConsoleKey.LeftArrow)
                 {
-                    if (row - 1 >= 0)
+                    if (row - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn)
                     {
                         row--;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
@@ -146,14 +145,7 @@ namespace ConwaysGameOfLife
 
                 if (keyInfo == ConsoleKey.Enter)
                 {
-                    if (grid[column, row].State == State.Alive)
-                    {
-                        grid[column, row].State = State.Dead;
-                    }
-                    else
-                    {
-                        grid[column, row].State = State.Alive;
-                    }
+                    grid[column, row].State = grid[column, row].State == State.Alive ? State.Dead : State.Alive;
                 }
             } while (keyInfo != ConsoleKey.X);
         }
