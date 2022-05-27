@@ -111,22 +111,22 @@ namespace ConwaysGameOfLife
                 switch (keyInfo)
                 {
                     case ConsoleKey.DownArrow:
-                        column = column + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? column + 1 : 0;
+                        column = column + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? column + Constants.ZeroIndexAdjustmentValue : 0;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                         break;
                     
                     case ConsoleKey.UpArrow:
-                        column = column - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn ? column - 1 : _seedDimensions - 1;
+                        column = column - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn ? column - Constants.ZeroIndexAdjustmentValue : _seedDimensions - Constants.ZeroIndexAdjustmentValue;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                         break;
                     
                     case ConsoleKey.RightArrow:
-                        row = row + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? row + 1 : 0;
+                        row = row + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? row + Constants.ZeroIndexAdjustmentValue : 0;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                         break;
                     
                     case ConsoleKey.LeftArrow:
-                        row = row - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn ? row - 1 : _seedDimensions - 1;
+                        row = row - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn ? row - Constants.ZeroIndexAdjustmentValue : _seedDimensions - Constants.ZeroIndexAdjustmentValue;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                         break;
                     
@@ -136,76 +136,5 @@ namespace ConwaysGameOfLife
                 }
             } while (keyInfo != ConsoleKey.X);
         }
-
-        /*private void UserSelection(int column, int row, Cell[,] grid)
-        {
-            ConsoleKey keyInfo;
-            
-            do
-            {
-                keyInfo = _gameConsole.ReadKey();
-
-                if (keyInfo == ConsoleKey.DownArrow)
-                {
-                    if (column + Constants.ZeroIndexAdjustmentValue < _seedDimensions)
-                    {
-                        column++;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                    else
-                    {
-                        column = 0;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]); 
-                    }
-                }
-
-                if (keyInfo == ConsoleKey.UpArrow)
-                {
-                    if (column - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn)
-                    {
-                        column--;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                    else
-                    {
-                        column = _seedDimensions - 1;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                }
-
-                if (keyInfo == ConsoleKey.RightArrow)
-                {
-                    if (row + Constants.ZeroIndexAdjustmentValue < _seedDimensions)
-                    {
-                        row++;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                    else
-                    {
-                        row = 0;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                }
-
-                if (keyInfo == ConsoleKey.LeftArrow)
-                {
-                    if (row - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn)
-                    {
-                        row--;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                    else
-                    {
-                        row = _seedDimensions - 1;
-                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
-                    }
-                }
-
-                if (keyInfo == ConsoleKey.Enter)
-                {
-                    grid[column, row].State = grid[column, row].State == State.Alive ? State.Dead : State.Alive;
-                }
-            } while (keyInfo != ConsoleKey.X);
-        }*/
     }
 }
