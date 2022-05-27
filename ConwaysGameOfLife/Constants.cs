@@ -5,6 +5,7 @@ namespace ConwaysGameOfLife
     public static class Constants
     {
         public const string SquareCell = " \u25fc ";
+        public const string NewLine = "\n";
         public const string Welcome = "\nWelcome to Conways Game of Life.\n\nEnter:\n'1' - to set your seed universe\n'2' - to demo the game";
         public const string Option1 = "1";
         public const string Option2 = "2";

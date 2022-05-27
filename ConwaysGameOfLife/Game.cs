@@ -11,6 +11,12 @@ namespace ConwaysGameOfLife
         {
             _gameConsole = gameConsole;
         }
+        
+        //To do:
+        //1. refactoring (Wed COB)                                                                                       
+        //2. file organisation for files                                                                                     
+        //3. updating the class diagram                                                                                     
+        //4. slide deck - Diagram, live Dem0, design patterns, any lessons learned, questions, possible strech goals (      
 
         public void Options()
         {
@@ -25,10 +31,6 @@ namespace ConwaysGameOfLife
             else if (input == Constants.Option2)
             {
                 Demo();
-                //(3) refactoring (Wed COB)
-                //file organisation for files
-                // updating the class diagram
-                // slide deck - Diagram, live Dem0, design patterns, any lessons learned, questions, possible strech goals (
             }
         }
         

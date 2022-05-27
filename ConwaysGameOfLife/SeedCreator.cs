@@ -52,58 +52,40 @@ namespace ConwaysGameOfLife
             }
         }
 
-         public void SetSeedCellState()
+        public void SetSeedCellState()
         {
-            var column = 0;
-            var row = 0;
+            var column = Constants.FirstRowOrColumn;
+            var row = Constants.FirstRowOrColumn;
             CreateSeedUniverse();
             PrintSeedUniverseForUserSelection(_seedGrid, _seedGrid[column, row]);
             UserSelection(column, row, _seedGrid);
         }
-        
+         
         private void PrintSeedUniverseForUserSelection(Cell[,] universe, Cell selectedCell)
         {
-            Console.Clear();
-            var cellCount = 0;
-            _gameConsole.ForegroundColor(Constants.Terminal);
-            _gameConsole.WriteLine(Constants.UniverseGridInstructions);
+             Console.Clear();
+             var cellCount = 0;
+             _gameConsole.ForegroundColor(Constants.Terminal);
+             _gameConsole.WriteLine(Constants.UniverseGridInstructions);
             
-            foreach (Cell cell in universe)
-            {
-                if (cell == selectedCell)
-                {
-                    _gameConsole.ForegroundColor(Constants.Cursor);
-                }
-                else
-                {
-                    if (cell.State == State.Alive)
-                    {
-                        _gameConsole.ForegroundColor(Constants.Alive);
-                    }
-                    else if (cell.State == State.Dead)
-                    {
-                        _gameConsole.ForegroundColor(Constants.Dead);
-                    }
-                    else
-                    {
-                        _gameConsole.ForegroundColor(ConsoleColor.White);
-                    }
-                }
-                _gameConsole.Write(Constants.SquareCell);
+             foreach (Cell cell in universe)
+             {
+                 var colour = cell == selectedCell ? Constants.Cursor : cell.State == State.Alive ? Constants.Alive : cell.State == State.Dead ? Constants.Dead : ConsoleColor.White;
+                 _gameConsole.ForegroundColor(colour);
+                 _gameConsole.Write(Constants.SquareCell);
+                 cellCount++;
 
-                cellCount++;
-                
-                if (cellCount % _seedDimensions == 0)
-                {
-                    _gameConsole.Write("\n");
-                }
-            }
+                 if (cellCount % _seedDimensions == 0)
+                 {
+                     _gameConsole.Write(Constants.NewLine); 
+                     
+                 }
+             }
         }
         
         private void UserSelection(int column, int row, Cell[,] grid)
         {
             ConsoleKey keyInfo;
-            
             do
             {
                 keyInfo = _gameConsole.ReadKey();
