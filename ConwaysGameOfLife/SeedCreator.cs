@@ -64,7 +64,7 @@ namespace ConwaysGameOfLife
         private void PrintSeedUniverseForUserSelection(Cell[,] universe, Cell selectedCell)
         {
             Console.Clear();
-            int cellCount = 0;
+            var cellCount = 0;
             _gameConsole.ForegroundColor(Constants.Terminal);
             _gameConsole.WriteLine(Constants.UniverseGridInstructions);
             
@@ -111,7 +111,7 @@ namespace ConwaysGameOfLife
                 switch (keyInfo)
                 {
                     case ConsoleKey.DownArrow:
-                        column = column + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? column + Constants.ZeroIndexAdjustmentValue : 0;
+                        column = column + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? column + Constants.ZeroIndexAdjustmentValue : Constants.FirstRowOrColumn;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                         break;
                     
@@ -121,7 +121,7 @@ namespace ConwaysGameOfLife
                         break;
                     
                     case ConsoleKey.RightArrow:
-                        row = row + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? row + Constants.ZeroIndexAdjustmentValue : 0;
+                        row = row + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? row + Constants.ZeroIndexAdjustmentValue : Constants.FirstRowOrColumn;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                         break;
                     
