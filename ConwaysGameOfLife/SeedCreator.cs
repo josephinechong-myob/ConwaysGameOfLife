@@ -99,10 +99,48 @@ namespace ConwaysGameOfLife
                 }
             }
         }
-
+        
         private void UserSelection(int column, int row, Cell[,] grid)
         {
             ConsoleKey keyInfo;
+            
+            do
+            {
+                keyInfo = _gameConsole.ReadKey();
+
+                switch (keyInfo)
+                {
+                    case ConsoleKey.DownArrow:
+                        column = column + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? column + 1 : 0;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                        break;
+                    
+                    case ConsoleKey.UpArrow:
+                        column = column - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn ? column - 1 : _seedDimensions - 1;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                        break;
+                    
+                    case ConsoleKey.RightArrow:
+                        row = row + Constants.ZeroIndexAdjustmentValue < _seedDimensions ? row + 1 : 0;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                        break;
+                    
+                    case ConsoleKey.LeftArrow:
+                        row = row - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn ? row - 1 : _seedDimensions - 1;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                        break;
+                    
+                    case ConsoleKey.Enter:
+                        grid[column, row].State = grid[column, row].State == State.Alive ? State.Dead : State.Alive;
+                        break;
+                }
+            } while (keyInfo != ConsoleKey.X);
+        }
+
+        /*private void UserSelection(int column, int row, Cell[,] grid)
+        {
+            ConsoleKey keyInfo;
+            
             do
             {
                 keyInfo = _gameConsole.ReadKey();
@@ -168,6 +206,6 @@ namespace ConwaysGameOfLife
                     grid[column, row].State = grid[column, row].State == State.Alive ? State.Dead : State.Alive;
                 }
             } while (keyInfo != ConsoleKey.X);
-        }
+        }*/
     }
 }
