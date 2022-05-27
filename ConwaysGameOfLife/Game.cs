@@ -24,7 +24,6 @@ namespace ConwaysGameOfLife
             }
             else if (input == Constants.Option2)
             {
-                //fix user going beyond grid 
                 Demo();
                 //(3) refactoring (Wed COB)
                 //file organisation for files
@@ -50,8 +49,6 @@ namespace ConwaysGameOfLife
 
         private void Demo()
         {
-            _gameConsole.WriteLine("This is the demo");
-
             var seedDimensions = 30;
             Cell[,] seedGrid = {
                 {
@@ -1024,7 +1021,7 @@ namespace ConwaysGameOfLife
                 Console.Clear();                                                 
                 universe.UpdateUniverse(universe);                               
                 universe.DisplayUniverse(universe.UniverseGrid);                 
-                Thread.Sleep(800);                                               
+                Thread.Sleep(550);                                               
             }                                                                    
         }
     }

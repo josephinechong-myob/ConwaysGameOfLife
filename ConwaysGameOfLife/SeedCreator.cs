@@ -100,7 +100,7 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void UserSelection(int column, int row, Cell[,] grid) //(1)Need to cater for when user moves outside of grid?
+        private void UserSelection(int column, int row, Cell[,] grid)
         {
             ConsoleKey keyInfo;
             do
@@ -109,10 +109,15 @@ namespace ConwaysGameOfLife
 
                 if (keyInfo == ConsoleKey.DownArrow)
                 {
-                    if (column + Constants.ZeroIndexAdjustmentValue < grid.Length)
+                    if (column + Constants.ZeroIndexAdjustmentValue < _seedDimensions)
                     {
                         column++;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                    }
+                    else
+                    {
+                        column = 0;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]); 
                     }
                 }
 
@@ -123,13 +128,23 @@ namespace ConwaysGameOfLife
                         column--;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
+                    else
+                    {
+                        column = _seedDimensions - 1;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                    }
                 }
 
                 if (keyInfo == ConsoleKey.RightArrow)
                 {
-                    if (row + Constants.ZeroIndexAdjustmentValue < grid.Length)
+                    if (row + Constants.ZeroIndexAdjustmentValue < _seedDimensions)
                     {
                         row++;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                    }
+                    else
+                    {
+                        row = 0;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
                 }
@@ -139,6 +154,11 @@ namespace ConwaysGameOfLife
                     if (row - Constants.ZeroIndexAdjustmentValue >= Constants.FirstRowOrColumn)
                     {
                         row--;
+                        PrintSeedUniverseForUserSelection(grid, grid[column, row]);
+                    }
+                    else
+                    {
+                        row = _seedDimensions - 1;
                         PrintSeedUniverseForUserSelection(grid, grid[column, row]);
                     }
                 }
