@@ -38,7 +38,7 @@ namespace ConwaysGameOfLife
             _seedGrid = new Cell[_seedDimensions, _seedDimensions];
         }
 
-        private void CreateUniverse()
+        private void CreateSeedUniverse()
         {
             var width = _seedGrid.GetUpperBound(0) + Constants.ZeroIndexAdjustmentValue;
             var height = _seedGrid.GetUpperBound(1) + Constants.ZeroIndexAdjustmentValue;
@@ -56,7 +56,7 @@ namespace ConwaysGameOfLife
         {
             var column = 0;
             var row = 0;
-            CreateUniverse();
+            CreateSeedUniverse();
             PrintSeedUniverseForUserSelection(_seedGrid, _seedGrid[column, row]);
             UserSelection(column, row, _seedGrid);
         }
@@ -100,7 +100,7 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void UserSelection(int column, int row, Cell[,] grid) //Need to cater for when user moves outside of grid?
+        private void UserSelection(int column, int row, Cell[,] grid) //(1)Need to cater for when user moves outside of grid?
         {
             ConsoleKey keyInfo;
             do

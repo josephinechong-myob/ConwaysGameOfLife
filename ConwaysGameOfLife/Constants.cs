@@ -17,14 +17,13 @@ namespace ConwaysGameOfLife
         public const ConsoleColor Terminal = ConsoleColor.Yellow;
         public const ConsoleColor Cursor = ConsoleColor.Red;
         
+        public const int FirstRowOrColumn = 0;
+        public const int ZeroIndexAdjustmentValue = 1;
+        public const int NeighbourPositionAdjustmentValue = 1;
+        
         public const int LiveNeighbourLimitForDeathByUnderpopulationLaw = 2;
         public const int LiveNeighboursLimitForDeathByOvercrowdingLaw = 3;
         public const int TwoLiveNeighboursForRemainingAlive = 2;
         public const int ThreeLiveNeighboursForRemainingAlive = 3;
-        
-        public const int FirstRowOrColumn = 0;
-        public const int ZeroIndexAdjustmentValue = 1;
-
-        public const int NeighbourPositionAdjustmentValue = 1;
     }
 }
