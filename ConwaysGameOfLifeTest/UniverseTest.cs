@@ -26,15 +26,20 @@ namespace ConwaysGameOfLifeTest
                 .Returns(secondGridInput)
                 .Returns(thirdGridInput);
             var seedCreator = new SeedCreator(mockSeedConsole.Object);
-            seedCreator.SetSeedDimensions();
-            seedCreator.SetSeedCellState();
+            seedCreator.MakeSeed(); //
+            /*SetSeedDimensions(); - 0grid
+            SetSeedCellState();*/ 
+            //1 print before user selection
+            //
+            
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockSeedConsole.Object, seed);
 
             //act
-            universe.DisplayUniverse(seed.SeedGrid);
+            universe.DisplayUniverse(seed.SeedGrid); //1 print grid
 
             //assert
+            // NOT SURE IF WE NEED THE FOLLOWING TESTS
             //mockSeedConsole.Verify(c => c.Write(Constants.SquareCell), Times.Exactly(9));
             //mockSeedConsole.Verify(c => c.ForegroundColor(Constants.Alive), Times.Exactly(1));
             //mockSeedConsole.Verify(c => c.ForegroundColor(Constants.Dead), Times.Exactly(8));
@@ -63,13 +68,19 @@ namespace ConwaysGameOfLifeTest
 
         public static IEnumerable<object[]> SeedUniverseData => new List<object[]>
         {
-            new object[]
+            new object[] //1 + 1 + 1 (+1 Display universe)
+            {
+                ConsoleKey.DownArrow, ConsoleKey.DownArrow, ConsoleKey.X, State.Dead, Constants.Dead, State.Dead, Constants.Dead,
+                State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead,
+                Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead
+            },
+            new object[] //1 + (+1 Display universe) (3?)
             {
                 ConsoleKey.Enter, ConsoleKey.X, ConsoleKey.X, State.Alive, Constants.Alive, State.Dead, Constants.Dead,
                 State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead,
                 Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead
             },
-            new object[]
+            new object[] //
             {
                 ConsoleKey.RightArrow, ConsoleKey.Enter, ConsoleKey.X, State.Dead, Constants.Dead, State.Alive,
                 Constants.Alive, State.Dead, Constants.Dead, State.Dead, Constants.Dead, State.Dead, Constants.Dead,

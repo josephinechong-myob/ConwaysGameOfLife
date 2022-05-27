@@ -6,7 +6,8 @@
         {
             var console = new GameConsole();
             var game = new Game(console);
-            game.Run();
+            
+            game.Options();
         }
     }
 }

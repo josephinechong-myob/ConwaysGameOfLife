@@ -100,7 +100,7 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void UserSelection(int column, int row, Cell[,] grid)
+        private void UserSelection(int column, int row, Cell[,] grid) //Need to cater for when user moves outside of grid?
         {
             ConsoleKey keyInfo;
             do
