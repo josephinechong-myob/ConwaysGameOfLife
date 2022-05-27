@@ -77,8 +77,7 @@ namespace ConwaysGameOfLife
 
                  if (cellCount % _seedDimensions == 0)
                  {
-                     _gameConsole.Write(Constants.NewLine); 
-                     
+                     _gameConsole.Write(Constants.NewLine);
                  }
              }
         }
