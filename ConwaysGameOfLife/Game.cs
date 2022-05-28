@@ -12,85 +12,93 @@ namespace ConwaysGameOfLife
             _gameConsole = gameConsole;
         }
         
-        //To do:
-        //1. refactoring (Wed COB)                                                                                       
-        //2. file organisation for files                                                                                     
-        //3. updating the class diagram                                                                                     
-        //4. slide deck - Diagram, live Dem0, design patterns, any lessons learned, questions, possible strech goals (      
-
+        private bool InvalidEntry(string input)
+        {
+            return input != Constants.Option1 && input != Constants.Option2;
+        }
+        
         public void Options()
         {
-            _gameConsole.ForegroundColor(Constants.Terminal);
-            _gameConsole.WriteLine(Constants.Welcome);
-            var input = _gameConsole.ReadLine();
-            
-            if (input == Constants.Option1)
+            var input = " ";
+            var count = 0;
+
+            while (InvalidEntry(input))
             {
-                Run(); 
-            }
-            else if (input == Constants.Option2)
-            {
-                _gameConsole.ForegroundColor(Constants.Terminal); 
-                _gameConsole.WriteLine($"Enter '1' - for grid size 30 demo\nEnter '2' - for grid size 40 demo");
-                input = _gameConsole.ReadLine();
+                input = GetUserInput(Constants.Welcome, count);
+                
                 if (input == Constants.Option1)
                 {
-                    Demo30(); 
+                    Play(); 
                 }
                 else if (input == Constants.Option2)
                 {
-                    Demo40();
+                    input = " ";
+                    count = 0;
+                    var demo = new Demo();
+                    while (InvalidEntry(input))
+                    {
+                        input = GetUserInput(Constants.SelectDemo, count);
+                        
+                        if (input == Constants.Option1)
+                        {
+                            Demo(30, demo.Seed30Grid);
+                    
+                        }
+                        else if (input == Constants.Option2)
+                        {
+                            Demo(40, demo.Seed40Grid);
+                        }
+                        else
+                        {
+                            _gameConsole.WriteLine(Constants.InvalidEntry);
+                            count++;
+                        }
+                    }
+                }
+                else
+                {
+                    _gameConsole.WriteLine(Constants.InvalidEntry);
+                    count++;
                 }
             }
         }
         
-        public void Run()                                                          
-        {                                                                          
-            SeedCreator seedCreator = new SeedCreator(_gameConsole);               
-            seedCreator.MakeSeed();                                                
-            var universe = new Universe(_gameConsole, seedCreator.GetSeed());      
-                                                                            
+        private string GetUserInput(string greeting, int count)
+        {
+            if (count == 0)
+            {
+                _gameConsole.ForegroundColor(Constants.Terminal);
+                _gameConsole.WriteLine(greeting);
+            }
+            return _gameConsole.ReadLine();
+        }
+        
+        private void Run(Universe universe)
+        {
             while (!Console.KeyAvailable && !universe.AllCellsAreDead)             
             {                                                                      
                 Console.Clear();                                                   
                 universe.UpdateUniverse(universe);                                 
                 universe.DisplayUniverse(universe.UniverseGrid);                   
-                Thread.Sleep(800);                                                 
-            }                                                                      
+                Thread.Sleep(550);                                                 
+            } 
         }
 
-        private void Demo30()
-        {
-            var seedDimensions = 40;
-            var demo = new Demo();
-            var seedGrid = demo.Seed40Grid;
-            var seed = new Seed(seedDimensions, seedGrid);
-            var universe = new Universe(_gameConsole, seed);    
-                                                                     
-            while (!Console.KeyAvailable && !universe.AllCellsAreDead)           
-            {                                                                    
-                Console.Clear();                                                 
-                universe.UpdateUniverse(universe);                               
-                universe.DisplayUniverse(universe.UniverseGrid);                 
-                Thread.Sleep(550);                                               
-            }                                                                    
+        private void Play()                                                          
+        {                                                                          
+            SeedCreator seedCreator = new SeedCreator(_gameConsole);               
+            seedCreator.MakeSeed();                                                
+            var universe = new Universe(_gameConsole, seedCreator.GetSeed());      
+            Run(universe); 
+            
+            //thread.sleep(800)
         }
         
-        private void Demo40()                                                  
-        {                                                                      
-            var seedDimensions = 30;                                           
-            var demo = new Demo();                                             
-            var seedGrid = demo.Seed30Grid;                                    
+        private void Demo(int seedDimensions, Cell[,] seedGrid)                                                  
+        {
             var seed = new Seed(seedDimensions, seedGrid);                     
             var universe = new Universe(_gameConsole, seed);                   
-                                                                       
-            while (!Console.KeyAvailable && !universe.AllCellsAreDead)         
-            {                                                                  
-                Console.Clear();                                               
-                universe.UpdateUniverse(universe);                             
-                universe.DisplayUniverse(universe.UniverseGrid);               
-                Thread.Sleep(550);                                             
-            }                                                                  
-        }                                                                      
+            Run(universe);
+        }
     }
 }
