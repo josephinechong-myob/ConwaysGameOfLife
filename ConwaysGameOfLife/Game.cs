@@ -12,11 +12,6 @@ namespace ConwaysGameOfLife
             _gameConsole = gameConsole;
         }
         
-        private bool InvalidEntry(string input)
-        {
-            return input != Constants.Option1 && input != Constants.Option2;
-        }
-        
         public void Options()
         {
             var input = " ";
@@ -32,28 +27,7 @@ namespace ConwaysGameOfLife
                 }
                 else if (input == Constants.Option2)
                 {
-                    input = " ";
-                    count = 0;
-                    var demo = new Demo();
-                    while (InvalidEntry(input))
-                    {
-                        input = GetUserInput(Constants.SelectDemo, count);
-                        
-                        if (input == Constants.Option1)
-                        {
-                            Demo(30, demo.Seed30Grid);
-                    
-                        }
-                        else if (input == Constants.Option2)
-                        {
-                            Demo(40, demo.Seed40Grid);
-                        }
-                        else
-                        {
-                            _gameConsole.WriteLine(Constants.InvalidEntry);
-                            count++;
-                        }
-                    }
+                    Demo();
                 }
                 else
                 {
@@ -61,6 +35,11 @@ namespace ConwaysGameOfLife
                     count++;
                 }
             }
+        }
+        
+        private bool InvalidEntry(string input)
+        {
+            return input != Constants.Option1 && input != Constants.Option2;
         }
         
         private string GetUserInput(string greeting, int count)
@@ -94,11 +73,37 @@ namespace ConwaysGameOfLife
             //thread.sleep(800)
         }
         
-        private void Demo(int seedDimensions, Cell[,] seedGrid)                                                  
+        private void RunDemo(int seedDimensions, Cell[,] seedGrid)                                                  
         {
             var seed = new Seed(seedDimensions, seedGrid);                     
             var universe = new Universe(_gameConsole, seed);                   
             Run(universe);
+        }
+
+        private void Demo()
+        {
+            var input = " ";
+            var count = 0;
+            var demo = new Demo();
+            while (InvalidEntry(input))
+            {
+                input = GetUserInput(Constants.SelectDemo, count);
+                        
+                if (input == Constants.Option1)
+                {
+                    RunDemo(30, demo.Seed30Grid);
+                    
+                }
+                else if (input == Constants.Option2)
+                {
+                    RunDemo(40, demo.Seed40Grid);
+                }
+                else
+                {
+                    _gameConsole.WriteLine(Constants.InvalidEntry);
+                    count++;
+                }
+            }
         }
     }
 }
