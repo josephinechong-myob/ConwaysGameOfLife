@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using ConwaysGameOfLife;
-using Moq;
 using Xunit;
 
 namespace ConwaysGameOfLifeTest
