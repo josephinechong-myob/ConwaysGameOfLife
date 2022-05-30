@@ -36,5 +36,28 @@ namespace ConwaysGameOfLifeTest
             //assert
             mockConsole.Verify(c => c.WriteLine("All cells are dead"), Times.Once);
         }
+        
+        [Fact]
+        public void User_Should_Be_Prompted_To_Enter_Valid_Option_If_Invalid_Value_Entered()
+        {
+            //arrange
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.SetupSequence(c => c.ReadLine())
+                .Returns("p")
+                .Returns("2")
+                .Returns("1")
+                .Returns("r");
+            mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.Enter)
+                .Returns(ConsoleKey.Enter);
+            var game = new Game(mockConsole.Object);
+
+            //act
+            game.Options();
+            
+            //assert
+            mockConsole.Verify(c => c.WriteLine(Constants.InvalidEntry), Times.Once);
+        }
     }
 }

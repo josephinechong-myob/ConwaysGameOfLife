@@ -27,7 +27,7 @@ namespace ConwaysGameOfLife
                 }
                 else if (input == Constants.Option2)
                 {
-                    Demo();
+                    Demo(input);
                 }
                 else
                 {
@@ -80,9 +80,9 @@ namespace ConwaysGameOfLife
             Run(universe);
         }
 
-        private void Demo()
+        private void Demo(string input)
         {
-            var input = " ";
+            //var input = " ";
             var count = 0;
             var demo = new Demo();
             while (InvalidEntry(input))
