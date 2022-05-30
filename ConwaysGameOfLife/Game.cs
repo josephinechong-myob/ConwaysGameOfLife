@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 
 namespace ConwaysGameOfLife
@@ -67,7 +66,7 @@ namespace ConwaysGameOfLife
         {                                                                          
             SeedCreator seedCreator = new SeedCreator(_gameConsole);               
             seedCreator.MakeSeed();                                                
-            var universe = new Universe(_gameConsole, seedCreator.GetSeed());      
+            var universe = new Universe(_gameConsole, seedCreator.GetSeed());
             Run(universe); 
             
             //thread.sleep(800)
@@ -76,7 +75,8 @@ namespace ConwaysGameOfLife
         private void RunDemo(int seedDimensions, Cell[,] seedGrid)                                                  
         {
             var seed = new Seed(seedDimensions, seedGrid);                     
-            var universe = new Universe(_gameConsole, seed);                   
+            var universe = new Universe(_gameConsole, seed);  
+            _gameConsole.WriteLine("Running demo");
             Run(universe);
         }
 
