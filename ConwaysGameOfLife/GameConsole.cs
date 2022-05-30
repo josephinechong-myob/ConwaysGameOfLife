@@ -8,6 +8,16 @@ namespace ConwaysGameOfLife
         {
             Console.ForegroundColor = consoleColor;
         }
+        
+        public void Clear()
+        {
+            Console.Clear();
+        }
+
+        public bool KeyAvailable()
+        {
+            return Console.KeyAvailable;
+        }
 
         public void Write(string write)
         {

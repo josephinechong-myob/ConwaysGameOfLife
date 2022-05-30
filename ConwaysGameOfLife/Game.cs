@@ -23,11 +23,11 @@ namespace ConwaysGameOfLife
                 
                 if (input == Constants.Option1)
                 {
-                    Play(); 
+                    Play();
                 }
                 else if (input == Constants.Option2)
                 {
-                    Demo(input);
+                    Demo();
                 }
                 else
                 {
@@ -54,13 +54,13 @@ namespace ConwaysGameOfLife
         
         private void Run(Universe universe)
         {
-            while (!Console.KeyAvailable && !universe.AllCellsAreDead)             
+            while (!_gameConsole.KeyAvailable() && !universe.AllCellsAreDead)             
             {                                                                      
-                Console.Clear();                                                   
+                _gameConsole.Clear();                                                   
                 universe.UpdateUniverse(universe);                                 
                 universe.DisplayUniverse(universe.UniverseGrid);                   
                 Thread.Sleep(550);                                                 
-            } 
+            }
         }
 
         private void Play()                                                          
@@ -80,9 +80,9 @@ namespace ConwaysGameOfLife
             Run(universe);
         }
 
-        private void Demo(string input)
+        private void Demo()
         {
-            //var input = " ";
+            var input = " ";
             var count = 0;
             var demo = new Demo();
             while (InvalidEntry(input))
