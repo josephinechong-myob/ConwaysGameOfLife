@@ -63,7 +63,7 @@ namespace ConwaysGameOfLife
          
         private void PrintSeedUniverseForUserSelection(Cell[,] universe, Cell selectedCell)
         {
-             Console.Clear();
+             _gameConsole.Clear();
              var cellCount = 0;
              _gameConsole.ForegroundColor(Constants.Terminal);
              _gameConsole.WriteLine(Constants.UniverseGridInstructions);

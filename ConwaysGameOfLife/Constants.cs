@@ -7,6 +7,7 @@ namespace ConwaysGameOfLife
         public const string SquareCell = " \u25fc ";
         public const string NewLine = "\n";
         public const string Welcome = "\nWelcome to Conways Game of Life.\n\nEnter:\n'1' - to set your seed universe\n'2' - to demo the game";
+        public const string WelcomeLine = "Enter:\n'1' - to set your seed universe\n'2' - to demo the game";
         public const string SelectDemo = "Enter '1' - for grid size 30 demo\nEnter '2' - for grid size 40 demo";
         public const string InvalidEntry = "Please enter option '1' or '2'";
         public const string Option1 = "1";
@@ -16,7 +17,7 @@ namespace ConwaysGameOfLife
         public const string DeadUniverse = "All cells are dead";
         
         public const ConsoleColor Alive = ConsoleColor.Yellow;
-        //public const ConsoleColor Alive = ConsoleColor.Green;
+        public const ConsoleColor Green = ConsoleColor.Green;
         public const ConsoleColor Dead = ConsoleColor.DarkBlue;
         public const ConsoleColor Terminal = ConsoleColor.Yellow;
         public const ConsoleColor Cursor = ConsoleColor.Red;
