@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace ConwaysGameOfLife
+﻿namespace ConwaysGameOfLife
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var console = new GameConsole();
+            var game = new Game(console);
+            
+            game.Options();
         }
     }
 }

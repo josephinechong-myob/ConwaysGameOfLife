@@ -4,14 +4,14 @@
     "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj": {}
   },
   "projects": {
-    "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj": {
+    "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj",
-        "projectName": "ConwaysGameOfLifeTest",
-        "projectPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj",
+        "projectUniqueName": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj",
+        "projectName": "ConwaysGameOfLife",
+        "projectPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj",
         "packagesPath": "/Users/josephine.chong/.nuget/packages/",
-        "outputPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/obj/",
+        "outputPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/josephine.chong/.nuget/NuGet/NuGet.Config"
@@ -38,9 +38,75 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Moq": {
+              "target": "Package",
+              "version": "[4.17.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj",
+        "projectName": "ConwaysGameOfLifeTest",
+        "projectPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/ConwaysGameOfLifeTest.csproj",
+        "packagesPath": "/Users/josephine.chong/.nuget/packages/",
+        "outputPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLifeTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/josephine.chong/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj": {
+                "projectPath": "/Users/josephine.chong/Documents/FMA/ConwaysGameOfLife/ConwaysGameOfLife/ConwaysGameOfLife.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.7.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.17.2, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
