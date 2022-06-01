@@ -8,6 +8,7 @@ namespace ConwaysGameOfLife
         {
             Console.Clear();
         }
+        //on the unit level no value for testing implmentation of some of the console commands?
         
         public void ForegroundColor(ConsoleColor consoleColor)
         {

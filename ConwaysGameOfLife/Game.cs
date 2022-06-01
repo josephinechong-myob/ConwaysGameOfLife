@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 
 namespace ConwaysGameOfLife
@@ -20,16 +19,7 @@ namespace ConwaysGameOfLife
             while (InvalidEntry(input))
             {
                 input = GetUserInput(Constants.Welcome, count);
-
-                /*if (count > 0)
-                {
-                    input = GetUserInput(Constants.InvalidEntry, count);
-                }
-                else
-                {
-                    GetUserInput(Constants.Welcome, count);
-                }*/
-
+                
                 if (input == Constants.Option1)
                 {
                     Play();
