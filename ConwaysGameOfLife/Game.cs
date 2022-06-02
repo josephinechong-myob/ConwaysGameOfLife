@@ -81,9 +81,7 @@ namespace ConwaysGameOfLife
             SeedCreator seedCreator = new SeedCreator(_gameConsole);               
             seedCreator.MakeSeed();                                                
             var universe = new Universe(_gameConsole, seedCreator.GetSeed());
-            Run(universe); 
-            
-            //thread.sleep(800)
+            Run(universe);
         }
         
         private void RunDemo(int seedDimensions, Cell[,] seedGrid)                                                  
