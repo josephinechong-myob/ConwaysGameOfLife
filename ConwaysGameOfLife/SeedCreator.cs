@@ -23,7 +23,7 @@ namespace ConwaysGameOfLife
             SetSeedCellState();
         }
 
-        public void SetSeedDimensions()
+        private void SetSeedDimensions()
         {
             var validNumber = false;
             
@@ -52,7 +52,7 @@ namespace ConwaysGameOfLife
             }
         }
 
-        public void SetSeedCellState()
+        private void SetSeedCellState()
         {
             var column = Constants.FirstRowOrColumn;
             var row = Constants.FirstRowOrColumn;
