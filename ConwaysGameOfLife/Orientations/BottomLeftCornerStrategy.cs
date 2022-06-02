@@ -10,6 +10,7 @@ namespace ConwaysGameOfLife.Orientations
             
             var firstRow = neighbour.PreviousRow;
             var secondRow = Constants.FirstRowOrColumn;
+            
             var firstColumn = neighbour.LastRowOrColumn;
             var secondColumn = neighbour.NextColumn;
             
