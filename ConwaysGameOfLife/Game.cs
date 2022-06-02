@@ -48,7 +48,6 @@ namespace ConwaysGameOfLife
                 if (count == 0)
                 {
                     _gameConsole.ForegroundColor(Constants.Green);
-                    //_gameConsole.FancyFont();
                     _gameConsole.Write(Constants.Title);
                     _gameConsole.ForegroundColor(Constants.Terminal);
                     _gameConsole.WriteLine(Constants.WelcomeLine);
@@ -82,9 +81,7 @@ namespace ConwaysGameOfLife
             SeedCreator seedCreator = new SeedCreator(_gameConsole);               
             seedCreator.MakeSeed();                                                
             var universe = new Universe(_gameConsole, seedCreator.GetSeed());
-            Run(universe); 
-            
-            //thread.sleep(800)
+            Run(universe);
         }
         
         private void RunDemo(int seedDimensions, Cell[,] seedGrid)                                                  
