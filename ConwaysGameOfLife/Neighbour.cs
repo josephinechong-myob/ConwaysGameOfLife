@@ -62,16 +62,6 @@ namespace ConwaysGameOfLife
             return _neighbourCellsState;
         }
         
-        private static bool SameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
-        {
-            return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
-        }
-        
-        private static bool SameSide(int referenceSide, int actualSide)
-        {
-            return actualSide == referenceSide;
-        }
-        
         public void SetOrientation(Cell cell)
         {
             if (SameCoordinates(_topLeftCorner, cell.Coordinate))
@@ -110,6 +100,16 @@ namespace ConwaysGameOfLife
             {
                 cell.Orientation = Orientation.Middle;
             }
+        }
+        
+        private static bool SameCoordinates(Coordinate referenceCoordinate, Coordinate actualCoordinate)
+        {
+            return actualCoordinate.Row == referenceCoordinate.Row && actualCoordinate.Column == referenceCoordinate.Column;
+        }
+        
+        private static bool SameSide(int referenceSide, int actualSide)
+        {
+            return actualSide == referenceSide;
         }
     }
 }

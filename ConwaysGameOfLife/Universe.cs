@@ -14,26 +14,6 @@ namespace ConwaysGameOfLife
             UniverseGrid = seed.SeedGrid;
             UniverseDimensions = seed.SeedDimensions;
         }
-
-        private void CheckIfAllCellsAreDead(Cell[,] universeGrid)
-        {
-            var count = 0;
-
-            foreach (var cell in universeGrid)
-            {
-                if (cell.State == State.Dead)
-                {
-                    count++;
-                }
-            }
-
-            AllCellsAreDead = count == universeGrid.Length;
-            if (AllCellsAreDead)
-            {
-                _gameConsole.ForegroundColor(Constants.Terminal);
-                _gameConsole.WriteLine(Constants.DeadUniverse);
-            }
-        }
         
         public void UpdateUniverse(Universe universe)
         {
@@ -63,6 +43,26 @@ namespace ConwaysGameOfLife
                     _gameConsole.Write(universe[row, column].Symbol);
                 }
                 _gameConsole.Write("\n");
+            }
+        }
+        
+        private void CheckIfAllCellsAreDead(Cell[,] universeGrid)
+        {
+            var count = 0;
+
+            foreach (var cell in universeGrid)
+            {
+                if (cell.State == State.Dead)
+                {
+                    count++;
+                }
+            }
+
+            AllCellsAreDead = count == universeGrid.Length;
+            if (AllCellsAreDead)
+            {
+                _gameConsole.ForegroundColor(Constants.Terminal);
+                _gameConsole.WriteLine(Constants.DeadUniverse);
             }
         }
     }

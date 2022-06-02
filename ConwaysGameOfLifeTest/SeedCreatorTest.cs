@@ -14,46 +14,42 @@ namespace ConwaysGameOfLifeTest
         {
             _mockConsole = new Mock<IGameConsole>();
         }
+        
+        [Theory, MemberData(nameof(ValidData))]
 
-        [Theory]
-        [InlineData("3", 3)]
-        [InlineData("6", 6)]
-        [InlineData("9", 9)]
-        [InlineData("15", 15)]
-        [InlineData("30", 30)]
-
-        public void Seed_Dimensions_Should_Be_A_Valid_Number(string inputValue, int expectedDimension)
+        public void Seed_Dimensions_Should_Be_A_Valid_Number(string inputValue, int expectedDimension, ConsoleKey firstGridInput, ConsoleKey secondGridInput)
         {
             //arrange
             _mockConsole.Setup(c => c.ReadLine()).Returns(inputValue);
+            _mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(firstGridInput)
+                .Returns(secondGridInput);
             var seedCreator = new SeedCreator(_mockConsole.Object);
 
             //act
-            seedCreator.SetSeedDimensions();
+            seedCreator.MakeSeed();
             var actualDimension = seedCreator.GetSeed().SeedDimensions;
             
             //assert
             Assert.Equal(expectedDimension, actualDimension);
         }
-
-        [Theory]
-        [InlineData("i", "3")]
-        [InlineData(" ", "6")]
-        [InlineData("}", "9")]
-        [InlineData("fifteen", "15")]
-        [InlineData("3T", "30")]
+        
+        [Theory, MemberData(nameof(InvalidData))]
 
         public void User_Should_Be_Prompted_To_ReEnter_Value_If_Entry_For_Seed_Grid_Dimensions_Are_Invalid(
-            string inputValue, string secondInputValue)
+            string inputValue, string secondInputValue, ConsoleKey firstGridInput, ConsoleKey secondGridInput)
         {
             //arrange
             _mockConsole.SetupSequence(c => c.ReadLine())
                 .Returns(inputValue)
                 .Returns(secondInputValue);
+            _mockConsole.SetupSequence(c => c.ReadKey())
+                .Returns(firstGridInput)
+                .Returns(secondGridInput);
             var seedCreator = new SeedCreator(_mockConsole.Object);
 
             //act
-            seedCreator.SetSeedDimensions();
+            seedCreator.MakeSeed();
 
             //assert
             _mockConsole.Verify(
@@ -84,6 +80,24 @@ namespace ConwaysGameOfLifeTest
             Assert.NotNull(seed);
             Assert.Equal(State.Alive, seed.SeedGrid[x,y].State);
         }
+        
+        public static IEnumerable<object[]> ValidData => new List<object[]>
+        {
+            new object[] {"3", 3, ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"6", 6, ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"9", 9, ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"15", 15, ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"30", 30, ConsoleKey.Enter, ConsoleKey.X}
+        };
+        
+        public static IEnumerable<object[]> InvalidData => new List<object[]>
+        {
+            new object[] {"i", "3", ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {" ", "6", ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"}", "9", ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"fifteen", "15", ConsoleKey.Enter, ConsoleKey.X},
+            new object[] {"3T", "30", ConsoleKey.Enter, ConsoleKey.X}
+        };
         
         public static IEnumerable<object[]> SeedUniverseData => new List<object[]>
         {
