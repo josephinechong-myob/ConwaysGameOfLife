@@ -35,7 +35,7 @@ namespace ConwaysGameOfLife
             }
         }
         
-         public void UpdateUniverse(Universe universe)
+        public void UpdateUniverse(Universe universe)
         {
             universe.Generation++;
 
