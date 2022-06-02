@@ -31,6 +31,6 @@ You need to be able to read the code on an IDE that can compile C# (i.e. Rider).
 - DRY principle (do not repeat yourself)
 - Readability for functions and their names
 
-## Game design (WIP)
+## Game design
 
 ![UML diagram](https://github.com/josephinechong-myob/ConwaysGameOfLife/blob/main/ConwaysGameOfLifeWithDemo.drawio.png)
