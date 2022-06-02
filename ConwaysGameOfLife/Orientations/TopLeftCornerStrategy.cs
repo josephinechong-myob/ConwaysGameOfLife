@@ -7,13 +7,9 @@ namespace ConwaysGameOfLife.Orientations
         public static List<State> GetNeighbourCellsState(Cell cell, Cell[,] universeGrid, int universeDimensions)
         {
             var neighbour = new Neighbour(cell, universeDimensions);
-            
-            var firstRow = neighbour.LastRowOrColumn;
-            var secondRow = neighbour.NextRow;
-            var firstColumn = neighbour.LastRowOrColumn;
-            var secondColumn = neighbour.NextColumn;
-            
-            var neighbourCellsState = neighbour.GetNeighbourCellsState(universeGrid, firstRow, secondRow, firstColumn, secondColumn);
+            var rows = new List<int> {neighbour.LastRowOrColumn, neighbour.NextRow};
+            var columns = new List<int> {neighbour.LastRowOrColumn, neighbour.NextColumn};
+            var neighbourCellsState = neighbour.GetNeighbourCellsState(universeGrid, rows, columns);
             return neighbourCellsState;
         }
     }

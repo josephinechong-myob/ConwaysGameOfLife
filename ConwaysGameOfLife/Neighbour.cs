@@ -42,20 +42,21 @@ namespace ConwaysGameOfLife
             return _liveNeighbours;
         }
 
-        public List<State> GetNeighbourCellsState(Cell[,] universeGrid, int firstRow, int secondRow, int firstColumn, int secondColumn)
+        public List<State> GetNeighbourCellsState(Cell[,] universeGrid, List<int> rows, List<int> columns)
         {
+            
             _neighbourCellsState = new List<State>()
             {
-                universeGrid[_sameRow, firstColumn].State, 
-                universeGrid[_sameRow, secondColumn].State,
+                universeGrid[_sameRow, columns[0]].State, 
+                universeGrid[_sameRow, columns[1]].State,
                 
-                universeGrid[firstRow, _sameColumn].State, 
-                universeGrid[firstRow, firstColumn].State,
-                universeGrid[firstRow, secondColumn].State,
+                universeGrid[rows[0], _sameColumn].State, 
+                universeGrid[rows[0], columns[0]].State,
+                universeGrid[rows[0], columns[1]].State,
                 
-                universeGrid[secondRow, _sameColumn].State,
-                universeGrid[secondRow, firstColumn].State,
-                universeGrid[secondRow, secondColumn].State
+                universeGrid[rows[1], _sameColumn].State,
+                universeGrid[rows[1], columns[0]].State,
+                universeGrid[rows[1], columns[1]].State
             };
             
             return _neighbourCellsState;
