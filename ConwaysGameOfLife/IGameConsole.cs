@@ -11,6 +11,5 @@ namespace ConwaysGameOfLife
         public string ReadLine();
         public void Write(string write);
         public void WriteLine(string writeLine);
-        public void FancyFont();
     }
 }

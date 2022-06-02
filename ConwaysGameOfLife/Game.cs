@@ -48,7 +48,8 @@ namespace ConwaysGameOfLife
                 if (count == 0)
                 {
                     _gameConsole.ForegroundColor(Constants.Green);
-                    _gameConsole.FancyFont();
+                    //_gameConsole.FancyFont();
+                    _gameConsole.Write(Constants.Title);
                     _gameConsole.ForegroundColor(Constants.Terminal);
                     _gameConsole.WriteLine(Constants.WelcomeLine);
                 }
