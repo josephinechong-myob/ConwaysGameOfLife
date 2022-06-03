@@ -30,7 +30,7 @@ namespace ConwaysGameOfLife
                 }
                 else
                 {
-                    _gameConsole.WriteLine(Constants.InvalidEntry);
+                    _gameConsole.WriteLine(Constants.Terminal, Constants.InvalidEntry);
                     count++;
                 }
             }
@@ -47,20 +47,13 @@ namespace ConwaysGameOfLife
             {
                 if (count == 0)
                 {
-                    _gameConsole.ForegroundColor(Constants.Green);
-                    _gameConsole.Write(Constants.Title);
-                    _gameConsole.ForegroundColor(Constants.Terminal);
-                    _gameConsole.WriteLine(Constants.WelcomeLine);
-                }
-                else
-                {
-                    _gameConsole.ForegroundColor(Constants.Terminal);
+                    _gameConsole.WriteLine(Constants.Green, Constants.Title);
+                    _gameConsole.WriteLine(Constants.Terminal, Constants.WelcomeLine);
                 }
             }
             else
             {
-                _gameConsole.ForegroundColor(Constants.Terminal);
-                _gameConsole.WriteLine(greeting);
+                _gameConsole.WriteLine(Constants.Terminal, greeting);
             }
             return _gameConsole.ReadLine();
         }
@@ -87,8 +80,8 @@ namespace ConwaysGameOfLife
         private void RunDemo(int seedDimensions, Cell[,] seedGrid)                                                  
         {
             var seed = new Seed(seedDimensions, seedGrid);                     
-            var universe = new Universe(_gameConsole, seed);  
-            _gameConsole.WriteLine("Running demo");
+            var universe = new Universe(_gameConsole, seed);
+            _gameConsole.WriteLine(Constants.Terminal, Constants.Demo);
             Run(universe);
         }
 
@@ -112,7 +105,7 @@ namespace ConwaysGameOfLife
                 }
                 else
                 {
-                    _gameConsole.WriteLine(Constants.InvalidEntry);
+                    _gameConsole.WriteLine(Constants.Terminal, Constants.InvalidEntry);
                     count++;
                 }
             }

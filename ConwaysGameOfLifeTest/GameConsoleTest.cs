@@ -32,7 +32,7 @@ namespace ConwaysGameOfLifeTest
             var expectedText = "hello";
 
             //act
-            gameConsole.Write("hello");
+            gameConsole.Write(Constants.Terminal,"hello");
 
             //assert
             Assert.Equal(expectedText, stringWriter.ToString());
@@ -48,7 +48,7 @@ namespace ConwaysGameOfLifeTest
             var expectedText = "hello\n";
 
             //act
-            gameConsole.WriteLine("hello");
+            gameConsole.WriteLine(Constants.Terminal,"hello");
 
             //assert
             Assert.Equal(expectedText, stringWriter.ToString());
@@ -69,20 +69,5 @@ namespace ConwaysGameOfLifeTest
             //assert
             Assert.Equal(expectedLine, actualLine);
         }
-        
-        //NOT SURE HOW TO TEST READKEY.KEY
-        /*[Fact]
-        public void Game_Console_ReadKey_Should_Be_Console_Key_Read_By_Console()
-        {
-            //arrange
-            var gameConsole = new GameConsole();
-
-            //act
-            var expected = gameConsole.ReadKey();
-            var actualKey = Console.ReadKey().Key;
-
-            //assert
-            Assert.Equal(expected, actualKey);
-        }*/
     }
 }

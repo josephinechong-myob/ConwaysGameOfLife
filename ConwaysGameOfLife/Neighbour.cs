@@ -5,7 +5,7 @@ using ConwaysGameOfLife.Orientations;
 namespace ConwaysGameOfLife
 {
     public class Neighbour
-    {
+    { 
         private int _liveNeighbours;
         private List<State> _neighbourCellsState;
         private readonly int _sameRow;

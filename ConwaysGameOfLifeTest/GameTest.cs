@@ -34,7 +34,7 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine("All cells are dead"), Times.Once);
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, "All cells are dead"), Times.Once);
         }
         
         [Fact]
@@ -65,7 +65,7 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine(Constants.InvalidEntry), Times.Once);
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal,Constants.InvalidEntry), Times.Once);
         }
         
         [Fact]
@@ -97,7 +97,7 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine(Constants.InvalidEntry), Times.Exactly(2));
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.InvalidEntry), Times.Exactly(2));
         }
         
         [Fact]
@@ -116,7 +116,7 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine("Running demo"), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, "Running demo"), Times.Exactly(1));
         }
         
         [Fact]
@@ -136,8 +136,8 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine(Constants.InvalidEntry), Times.Once);
-            mockConsole.Verify(c => c.WriteLine("Running demo"), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal,Constants.InvalidEntry), Times.Once);
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo), Times.Exactly(1));
         }
         [Fact]
         public void User_Should_Be_Prompted_Three_Times_To_Enter_Valid_Option_If_Invalid_Value_Entered_Three_Times()
@@ -158,7 +158,7 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine(Constants.InvalidEntry), Times.Exactly(3));
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.InvalidEntry), Times.Exactly(3));
         }
     }
 }
