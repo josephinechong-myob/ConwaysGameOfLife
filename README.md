@@ -33,4 +33,4 @@ You need to be able to read the code on an IDE that can compile C# (i.e. Rider).
 
 ## Game design
 
-![UML diagram](https://github.com/josephinechong-myob/ConwaysGameOfLife/blob/main/ConwaysGameOfLifeWithDemo.drawio.png)
+![UML diagram](https://github.com/josephinechong-myob/ConwaysGameOfLife/blob/main/ConwaysGameOfLifeUpdated3-6-22.drawio.png)
