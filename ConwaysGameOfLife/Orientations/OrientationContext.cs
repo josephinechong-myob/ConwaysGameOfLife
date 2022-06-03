@@ -41,7 +41,7 @@ namespace ConwaysGameOfLife.Orientations
                 case Orientation.Middle:
                     return MiddleStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                default: throw new ArgumentException("A valid orientation was not found");
+                default: throw new ArgumentException(Constants.InvalidOrientation);
             }
         }
     }

@@ -39,10 +39,9 @@ namespace ConwaysGameOfLife
             {
                 for (int column = 0; column < height; column++)
                 {
-                    _gameConsole.ForegroundColor(universe[row, column].Colour);
-                    _gameConsole.Write(universe[row, column].Symbol);
+                    _gameConsole.Write(universe[row, column].Colour, universe[row, column].Symbol);
                 }
-                _gameConsole.Write("\n");
+                _gameConsole.Write(Constants.Terminal, Constants.NewLine);
             }
         }
         
@@ -61,8 +60,7 @@ namespace ConwaysGameOfLife
             AllCellsAreDead = count == universeGrid.Length;
             if (AllCellsAreDead)
             {
-                _gameConsole.ForegroundColor(Constants.Terminal);
-                _gameConsole.WriteLine(Constants.DeadUniverse);
+                _gameConsole.WriteLine(Constants.Terminal, Constants.DeadUniverse);
             }
         }
     }

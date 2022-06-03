@@ -35,8 +35,6 @@ namespace ConwaysGameOfLifeTest
             Assert.Equal(expectedCellState, updatedCellState);
         }
         
-        
-        
         [Theory]
         [InlineData(2)]
         [InlineData(3)]

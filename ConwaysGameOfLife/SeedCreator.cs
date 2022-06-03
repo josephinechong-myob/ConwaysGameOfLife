@@ -29,8 +29,7 @@ namespace ConwaysGameOfLife
             
             while (!validNumber)
             {
-                _gameConsole.ForegroundColor(Constants.Terminal);
-                _gameConsole.WriteLine(Constants.RequestUniverseGrid);
+                _gameConsole.WriteLine(Constants.Terminal, Constants.RequestUniverseGrid);
                 var seed = _gameConsole.ReadLine();
                 validNumber = int.TryParse(seed, out _seedDimensions);
             }
@@ -65,19 +64,17 @@ namespace ConwaysGameOfLife
         {
              _gameConsole.Clear();
              var cellCount = 0;
-             _gameConsole.ForegroundColor(Constants.Terminal);
-             _gameConsole.WriteLine(Constants.UniverseGridInstructions);
+             _gameConsole.WriteLine(Constants.Terminal, Constants.UniverseGridInstructions);
             
              foreach (Cell cell in universe)
              {
                  var colour = cell == selectedCell ? Constants.Cursor : cell.State == State.Alive ? Constants.Alive : cell.State == State.Dead ? Constants.Dead : ConsoleColor.White;
-                 _gameConsole.ForegroundColor(colour);
-                 _gameConsole.Write(Constants.SquareCell);
+                 _gameConsole.Write(colour, Constants.SquareCell);
                  cellCount++;
 
                  if (cellCount % _seedDimensions == 0)
                  {
-                     _gameConsole.Write(Constants.NewLine);
+                     _gameConsole.Write(Constants.Terminal, Constants.NewLine);
                  }
              }
         }

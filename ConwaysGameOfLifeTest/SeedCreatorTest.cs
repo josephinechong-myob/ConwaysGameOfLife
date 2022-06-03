@@ -53,7 +53,7 @@ namespace ConwaysGameOfLifeTest
 
             //assert
             _mockConsole.Verify(
-                w => w.WriteLine(
+                w => w.WriteLine(It.Is<ConsoleColor>(c => c == Constants.Terminal),
                     It.Is<string>(s =>
                         s == "How big would you like the universe grid size to be? Please enter a number (i.e. 3)")
                 ), Times.Exactly(2)

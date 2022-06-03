@@ -29,14 +29,16 @@ namespace ConwaysGameOfLife
             return Console.ReadLine();
         }
 
-        public void Write(string write)
+        public void WriteLine(ConsoleColor colour, string writeLine)
         {
-            Console.Write(write);
+            Console.ForegroundColor = colour;
+            Console.WriteLine(writeLine);
         }
         
-        public void WriteLine(string writeLine)
+        public void Write(ConsoleColor colour, string write)
         {
-            Console.WriteLine(writeLine);
+            Console.ForegroundColor = colour;
+            Console.Write(write);
         }
     }
 }
