@@ -1,4 +1,6 @@
-namespace ConwaysGameOfLife
+using ConwaysGameOfLife.Model;
+
+namespace ConwaysGameOfLife.Controller
 {
     public static class StateLaws
     {

@@ -1,4 +1,4 @@
-using ConwaysGameOfLife;
+using ConwaysGameOfLife.Model;
 using Xunit;
 
 namespace ConwaysGameOfLifeTest

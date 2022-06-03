@@ -1,3 +1,5 @@
+using ConwaysGameOfLife.Model;
+
 namespace ConwaysGameOfLife
 {
     public class Demo
