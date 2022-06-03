@@ -1,4 +1,7 @@
-﻿namespace ConwaysGameOfLife
+﻿using ConwaysGameOfLife.Controller;
+using ConwaysGameOfLife.View;
+
+namespace ConwaysGameOfLife
 {
     internal static class Program
     {

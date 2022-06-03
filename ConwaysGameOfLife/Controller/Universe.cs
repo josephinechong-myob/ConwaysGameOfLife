@@ -1,12 +1,15 @@
-namespace ConwaysGameOfLife
+using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.View;
+
+namespace ConwaysGameOfLife.Controller
 {
     public class Universe
     {
-        private readonly IGameConsole _gameConsole;
         public Cell[,] UniverseGrid { get; }
-        private int Generation { get; set; }
         public readonly int UniverseDimensions;
         public bool AllCellsAreDead;
+        private readonly IGameConsole _gameConsole;
+        private int Generation { get; set; }
 
         public Universe(IGameConsole gameConsole, Seed seed)
         {

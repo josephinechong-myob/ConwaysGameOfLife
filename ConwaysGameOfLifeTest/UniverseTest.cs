@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
-using ConwaysGameOfLife;
-using ConwaysGameOfLife.Orientations;
+using ConwaysGameOfLife.Controller;
+using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.View;
 using Moq;
 using Xunit;
 

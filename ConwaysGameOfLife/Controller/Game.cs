@@ -1,6 +1,8 @@
 using System.Threading;
+using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.View;
 
-namespace ConwaysGameOfLife
+namespace ConwaysGameOfLife.Controller
 {
     public class Game
     {

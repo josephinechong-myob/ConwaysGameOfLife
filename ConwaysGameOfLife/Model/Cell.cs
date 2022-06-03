@@ -1,7 +1,6 @@
 using System;
-using ConwaysGameOfLife.Orientations;
 
-namespace ConwaysGameOfLife
+namespace ConwaysGameOfLife.Model
 {
     public class Cell
     {

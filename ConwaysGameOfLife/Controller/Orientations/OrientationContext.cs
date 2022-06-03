@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using ConwaysGameOfLife.Controller.Orientations.Strategies;
+using ConwaysGameOfLife.Model;
 
-namespace ConwaysGameOfLife.Orientations
+namespace ConwaysGameOfLife.Controller.Orientations
 {
     public class OrientationContext
     {

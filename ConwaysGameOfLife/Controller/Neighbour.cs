@@ -1,20 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
-using ConwaysGameOfLife.Orientations;
+using ConwaysGameOfLife.Controller.Orientations;
+using ConwaysGameOfLife.Model;
 
-namespace ConwaysGameOfLife
+namespace ConwaysGameOfLife.Controller
 {
     public class Neighbour
-    { 
-        private int _liveNeighbours;
-        private List<State> _neighbourCellsState;
-        private readonly int _sameRow;
-        private readonly int _sameColumn;
+    {
         public readonly int NextRow;
         public readonly int NextColumn;
         public readonly int PreviousRow;
         public readonly int PreviousColumn;
         public readonly int LastRowOrColumn;
+        private int _liveNeighbours;
+        private List<State> _neighbourCellsState;
+        private readonly int _sameRow;
+        private readonly int _sameColumn;
         private readonly Coordinate _topLeftCorner;
         private readonly Coordinate _topRightCorner;
         private readonly Coordinate _bottomLeftCorner;
@@ -22,13 +23,13 @@ namespace ConwaysGameOfLife
         
         public Neighbour(Cell cell, int universeDimensions)
         {
-            _sameRow = cell.Coordinate.Row;
-            _sameColumn = cell.Coordinate.Column;
             NextRow = cell.Coordinate.Row + Constants.NeighbourPositionAdjustmentValue;
             NextColumn = cell.Coordinate.Column + Constants.NeighbourPositionAdjustmentValue;
             PreviousRow = cell.Coordinate.Row - Constants.NeighbourPositionAdjustmentValue;
             PreviousColumn = cell.Coordinate.Column - Constants.NeighbourPositionAdjustmentValue;
             LastRowOrColumn = universeDimensions - Constants.ZeroIndexAdjustmentValue;LastRowOrColumn = universeDimensions - Constants.ZeroIndexAdjustmentValue;
+            _sameRow = cell.Coordinate.Row;
+            _sameColumn = cell.Coordinate.Column;
             _topLeftCorner = new Coordinate (Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
             _topRightCorner = new Coordinate(Constants.FirstRowOrColumn, universeDimensions - Constants.ZeroIndexAdjustmentValue);
             _bottomLeftCorner = new Coordinate(universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);

@@ -1,4 +1,4 @@
-namespace ConwaysGameOfLife.Orientations
+namespace ConwaysGameOfLife.Model
 {
     public enum Orientation
     {
