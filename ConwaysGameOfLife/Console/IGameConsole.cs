@@ -1,6 +1,6 @@
 using System;
 
-namespace ConwaysGameOfLife.View
+namespace ConwaysGameOfLife.Console
 {
     public interface IGameConsole
     {

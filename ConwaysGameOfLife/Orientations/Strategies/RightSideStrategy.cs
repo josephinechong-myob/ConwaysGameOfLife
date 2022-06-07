@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ConwaysGameOfLife.Model;
 
-namespace ConwaysGameOfLife.Controller.Orientations.Strategies
+namespace ConwaysGameOfLife.Orientations.Strategies
 {
     public static class RightSideStrategy
     {

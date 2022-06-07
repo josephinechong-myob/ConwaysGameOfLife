@@ -1,8 +1,8 @@
 using System.Threading;
+using ConwaysGameOfLife.Console;
 using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.View;
 
-namespace ConwaysGameOfLife.Controller
+namespace ConwaysGameOfLife
 {
     public class Game
     {
@@ -67,7 +67,7 @@ namespace ConwaysGameOfLife.Controller
                 _gameConsole.Clear();                                                   
                 universe.UpdateUniverse(universe);                                 
                 universe.DisplayUniverse(universe.UniverseGrid);                   
-                Thread.Sleep(550);                                                 
+                Thread.Sleep(500);                                                 
             }
         }
 
@@ -79,11 +79,11 @@ namespace ConwaysGameOfLife.Controller
             Run(universe);
         }
         
-        private void RunDemo(int seedDimensions, Cell[,] seedGrid)                                                  
+        private void RunDemo(int seedDimensions, Cell[,] seedGrid, string demo)                                                  
         {
             var seed = new Seed(seedDimensions, seedGrid);                     
             var universe = new Universe(_gameConsole, seed);
-            _gameConsole.WriteLine(Constants.Terminal, Constants.Demo);
+            _gameConsole.WriteLine(Constants.Terminal, demo);
             Run(universe);
         }
 
@@ -98,12 +98,12 @@ namespace ConwaysGameOfLife.Controller
                         
                 if (input == Constants.Option1)
                 {
-                    RunDemo(30, demo.Seed30Grid);
+                    RunDemo(30, demo.Seed30Grid, Constants.Demo1);
                     
                 }
                 else if (input == Constants.Option2)
                 {
-                    RunDemo(40, demo.Seed40Grid);
+                    RunDemo(40, demo.Seed40Grid, Constants.Demo2);
                 }
                 else
                 {

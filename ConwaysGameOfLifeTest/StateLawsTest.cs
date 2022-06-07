@@ -1,5 +1,4 @@
-using ConwaysGameOfLife.Controller;
-using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife;
 using Xunit;
 
 namespace ConwaysGameOfLifeTest
@@ -15,7 +14,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.GetNextState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
@@ -30,7 +29,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Dead;
 
             //act
-            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.GetNextState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
@@ -46,7 +45,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.GetNextState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);
@@ -61,7 +60,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellState = State.Alive;
 
             //act
-            var updatedCellState = StateLaws.UpdateState(originalCellState, numberOfLiveNeighbours);
+            var updatedCellState = StateLaws.GetNextState(originalCellState, numberOfLiveNeighbours);
             
             //assert
             Assert.Equal(expectedCellState, updatedCellState);

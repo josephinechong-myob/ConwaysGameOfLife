@@ -1,7 +1,7 @@
 using System;
 using System.IO;
+using ConwaysGameOfLife.Console;
 using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.View;
 using Xunit;
 
 namespace ConwaysGameOfLifeTest

@@ -1,44 +1,44 @@
 using System;
 
-namespace ConwaysGameOfLife.View
+namespace ConwaysGameOfLife.Console
 {
     public class GameConsole : IGameConsole
     {
         public void Clear()
         {
-            Console.Clear();
+            System.Console.Clear();
         }
         
         public void ForegroundColor(ConsoleColor consoleColor)
         {
-            Console.ForegroundColor = consoleColor;
+            System.Console.ForegroundColor = consoleColor;
         }
         
         public bool KeyAvailable()
         {
-            return Console.KeyAvailable;
+            return System.Console.KeyAvailable;
         }
         
         public ConsoleKey ReadKey()
         {
-            return Console.ReadKey().Key;
+            return System.Console.ReadKey().Key;
         }
         
         public string ReadLine()
         {
-            return Console.ReadLine();
+            return System.Console.ReadLine();
         }
 
         public void WriteLine(ConsoleColor colour, string writeLine)
         {
-            Console.ForegroundColor = colour;
-            Console.WriteLine(writeLine);
+            System.Console.ForegroundColor = colour;
+            System.Console.WriteLine(writeLine);
         }
         
         public void Write(ConsoleColor colour, string write)
         {
-            Console.ForegroundColor = colour;
-            Console.Write(write);
+            System.Console.ForegroundColor = colour;
+            System.Console.Write(write);
         }
     }
 }

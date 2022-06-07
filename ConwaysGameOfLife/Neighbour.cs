@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using ConwaysGameOfLife.Controller.Orientations;
 using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.Orientations;
 
-namespace ConwaysGameOfLife.Controller
+namespace ConwaysGameOfLife
 {
     public class Neighbour
     {

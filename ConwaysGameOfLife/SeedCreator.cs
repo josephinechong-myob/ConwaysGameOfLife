@@ -1,8 +1,8 @@
 using System;
+using ConwaysGameOfLife.Console;
 using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.View;
 
-namespace ConwaysGameOfLife.Controller
+namespace ConwaysGameOfLife
 {
     public class SeedCreator
     {

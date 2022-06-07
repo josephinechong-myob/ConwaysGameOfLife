@@ -1,4 +1,5 @@
 using System;
+using ConwaysGameOfLife.Orientations;
 
 namespace ConwaysGameOfLife.Model
 {

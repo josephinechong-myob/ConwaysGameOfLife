@@ -1,10 +1,10 @@
 using ConwaysGameOfLife.Model;
 
-namespace ConwaysGameOfLife.Controller
+namespace ConwaysGameOfLife
 {
     public static class StateLaws
     {
-        public static State UpdateState(State state, int liveNeighbours)
+        public static State GetNextState(State state, int liveNeighbours)
         {
             if (IsAlive(state, liveNeighbours))
             {
@@ -16,7 +16,7 @@ namespace ConwaysGameOfLife.Controller
             }
             return state;
         }
-
+        
         private static bool IsDeadByUnderpopulation(State state, int liveNeighbours)
         {
             return state == State.Alive && liveNeighbours < Constants.LiveNeighbourLimitForDeathByUnderpopulationLaw;

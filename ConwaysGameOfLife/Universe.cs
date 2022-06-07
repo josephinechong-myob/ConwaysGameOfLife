@@ -1,7 +1,7 @@
+using ConwaysGameOfLife.Console;
 using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.View;
 
-namespace ConwaysGameOfLife.Controller
+namespace ConwaysGameOfLife
 {
     public class Universe
     {
@@ -27,7 +27,7 @@ namespace ConwaysGameOfLife.Controller
                 var neighbour = new Neighbour(cell, universe.UniverseDimensions);
                 neighbour.SetOrientation(cell);
                 var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
-                cell.State = StateLaws.UpdateState(cell.State, actualNumberOfLiveNeighbours);
+                cell.State = StateLaws.GetNextState(cell.State, actualNumberOfLiveNeighbours);
             }
             
             CheckIfAllCellsAreDead(universe.UniverseGrid);

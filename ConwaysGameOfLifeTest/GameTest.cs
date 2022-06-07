@@ -1,7 +1,7 @@
 using System;
-using ConwaysGameOfLife.Controller;
+using ConwaysGameOfLife;
+using ConwaysGameOfLife.Console;
 using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.View;
 using Moq;
 using Xunit;
 
@@ -118,7 +118,26 @@ namespace ConwaysGameOfLifeTest
             game.Options();
             
             //assert
-            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, "Running demo"), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo1), Times.Exactly(1));
+        }
+        
+        [Fact]
+        public void User_Should_Be_Able_To_Run_Demo_Option2()
+        {
+            //arrange
+            var mockConsole = new Mock<IGameConsole>();
+            mockConsole.SetupSequence(c => c.ReadLine())
+                .Returns("2")
+                .Returns("2");
+            mockConsole.SetupSequence(c => c.KeyAvailable())
+                .Returns(true);
+            var game = new Game(mockConsole.Object);
+
+            //act
+            game.Options();
+            
+            //assert
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo2), Times.Exactly(1));
         }
         
         [Fact]
@@ -139,7 +158,7 @@ namespace ConwaysGameOfLifeTest
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal,Constants.InvalidEntry), Times.Once);
-            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo2), Times.Exactly(1));
         }
         [Fact]
         public void User_Should_Be_Prompted_Three_Times_To_Enter_Valid_Option_If_Invalid_Value_Entered_Three_Times()
