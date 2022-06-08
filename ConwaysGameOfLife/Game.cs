@@ -13,7 +13,7 @@ namespace ConwaysGameOfLife
             _gameConsole = gameConsole;
         }
         
-        public void PlayOptions()
+        public void Play()
         {
             var input = " ";
             var count = 0;
@@ -24,7 +24,7 @@ namespace ConwaysGameOfLife
                 
                 if (input == Constants.Option1)
                 {
-                    Play();
+                    PlayUsingManuallySetSeed();
                 }
                 else if (input == Constants.Option2)
                 {
@@ -71,7 +71,7 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void Play()                                                          
+        private void PlayUsingManuallySetSeed()                                                          
         {                                                                          
             SeedCreator seedCreator = new SeedCreator(_gameConsole);               
             seedCreator.MakeSeed();                                                

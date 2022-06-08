@@ -9,7 +9,7 @@ namespace ConwaysGameOfLife
             var console = new GameConsole();
             var game = new Game(console);
             
-            game.PlayOptions();
+            game.Play();
         }
     }
 }
