@@ -42,7 +42,7 @@ namespace ConwaysGameOfLife
             {
                 for (int column = 0; column < height; column++)
                 {
-                    _gameConsole.Write(universe[row, column].Colour, universe[row, column].Symbol);
+                    _gameConsole.Write(universe[row, column].GetColour(), universe[row, column].GetSymbol());
                 }
                 _gameConsole.Write(Constants.Terminal, Constants.NewLine);
             }
