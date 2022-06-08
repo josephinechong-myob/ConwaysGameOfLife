@@ -1,4 +1,4 @@
-namespace ConwaysGameOfLife.Model
+namespace ConwaysGameOfLife.Seed
 {
     public class Seed
     {

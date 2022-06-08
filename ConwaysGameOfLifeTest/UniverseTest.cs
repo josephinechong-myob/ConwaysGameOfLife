@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using ConwaysGameOfLife;
 using ConwaysGameOfLife.Console;
-using ConwaysGameOfLife.Model;
 using ConwaysGameOfLife.Orientations;
+using ConwaysGameOfLife.Seed;
+using ConwaysGameOfLife.States;
 using Moq;
 using Xunit;
 

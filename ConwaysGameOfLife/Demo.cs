@@ -1,4 +1,4 @@
-using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.States;
 
 namespace ConwaysGameOfLife
 {

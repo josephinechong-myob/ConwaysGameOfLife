@@ -1,5 +1,5 @@
 using ConwaysGameOfLife.Console;
-using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.States;
 
 namespace ConwaysGameOfLife
 {
@@ -11,7 +11,7 @@ namespace ConwaysGameOfLife
         private readonly IGameConsole _gameConsole;
         private int Generation { get; set; }
 
-        public Universe(IGameConsole gameConsole, Seed seed)
+        public Universe(IGameConsole gameConsole, Seed.Seed seed)
         {
             _gameConsole = gameConsole;
             UniverseGrid = seed.SeedGrid;

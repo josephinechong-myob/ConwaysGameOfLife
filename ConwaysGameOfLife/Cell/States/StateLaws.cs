@@ -1,6 +1,4 @@
-using ConwaysGameOfLife.Model;
-
-namespace ConwaysGameOfLife
+namespace ConwaysGameOfLife.States
 {
     public static class StateLaws
     {

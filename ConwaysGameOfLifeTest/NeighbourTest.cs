@@ -1,6 +1,8 @@
 using System;
 using ConwaysGameOfLife;
 using ConwaysGameOfLife.Console;
+using ConwaysGameOfLife.Seed;
+using ConwaysGameOfLife.States;
 using Moq;
 using Xunit;
 

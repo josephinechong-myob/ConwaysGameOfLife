@@ -1,6 +1,6 @@
 using System.Threading;
 using ConwaysGameOfLife.Console;
-using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.Seed;
 
 namespace ConwaysGameOfLife
 {
@@ -81,7 +81,7 @@ namespace ConwaysGameOfLife
         
         private void RunDemo(int seedDimensions, Cell[,] seedGrid, string demo)                                                  
         {
-            var seed = new Seed(seedDimensions, seedGrid);                     
+            var seed = new Seed.Seed(seedDimensions, seedGrid);                     
             var universe = new Universe(_gameConsole, seed);
             _gameConsole.WriteLine(Constants.Terminal, demo);
             Run(universe);

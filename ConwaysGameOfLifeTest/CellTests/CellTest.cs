@@ -1,9 +1,9 @@
 using System;
 using ConwaysGameOfLife;
-using ConwaysGameOfLife.Model;
+using ConwaysGameOfLife.States;
 using Xunit;
 
-namespace ConwaysGameOfLifeTest
+namespace ConwaysGameOfLifeTest.CellTests
 {
     public class CellTest
     {

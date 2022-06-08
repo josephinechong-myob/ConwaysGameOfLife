@@ -1,7 +1,8 @@
 using System;
 using ConwaysGameOfLife.Orientations;
+using ConwaysGameOfLife.States;
 
-namespace ConwaysGameOfLife.Model
+namespace ConwaysGameOfLife
 {
     public class Cell
     {

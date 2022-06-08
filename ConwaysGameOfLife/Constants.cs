@@ -1,6 +1,6 @@
 using System;
 
-namespace ConwaysGameOfLife.Model
+namespace ConwaysGameOfLife
 {
     public static class Constants
     {

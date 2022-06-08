@@ -1,4 +1,4 @@
-namespace ConwaysGameOfLife
+namespace ConwaysGameOfLife.States
 {
     public enum State
     {

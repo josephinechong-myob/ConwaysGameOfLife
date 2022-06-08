@@ -1,10 +1,10 @@
 using System;
 using System.IO;
+using ConwaysGameOfLife;
 using ConwaysGameOfLife.Console;
-using ConwaysGameOfLife.Model;
 using Xunit;
 
-namespace ConwaysGameOfLifeTest
+namespace ConwaysGameOfLifeTest.ConsoleTests
 {
     public class GameConsoleTest
     {

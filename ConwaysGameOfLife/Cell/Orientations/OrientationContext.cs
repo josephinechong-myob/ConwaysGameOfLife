@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.Orientations.Strategies;
+using ConwaysGameOfLife.States;
+using ConwaysGameOfLife.Strategies;
 
 namespace ConwaysGameOfLife.Orientations
 {

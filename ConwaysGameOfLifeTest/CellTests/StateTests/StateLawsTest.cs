@@ -1,7 +1,7 @@
-using ConwaysGameOfLife;
+using ConwaysGameOfLife.States;
 using Xunit;
 
-namespace ConwaysGameOfLifeTest
+namespace ConwaysGameOfLifeTest.CellTests.StateTests
 {
     public class StateLawsTest
     {

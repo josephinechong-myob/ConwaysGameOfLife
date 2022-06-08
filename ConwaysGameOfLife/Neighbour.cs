@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using ConwaysGameOfLife.Model;
 using ConwaysGameOfLife.Orientations;
+using ConwaysGameOfLife.States;
 
 namespace ConwaysGameOfLife
 {

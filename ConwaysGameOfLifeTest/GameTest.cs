@@ -1,7 +1,6 @@
 using System;
 using ConwaysGameOfLife;
 using ConwaysGameOfLife.Console;
-using ConwaysGameOfLife.Model;
 using Moq;
 using Xunit;
 
