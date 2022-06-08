@@ -3,44 +3,44 @@ using System.Collections.Generic;
 using ConwaysGameOfLife.States;
 using ConwaysGameOfLife.Strategies;
 
-namespace ConwaysGameOfLife.Orientations
+namespace ConwaysGameOfLife.PositionType
 {
-    public class OrientationContext
+    public class PositionTypeContext
     {
-        private readonly Orientation _orientation;
-        public OrientationContext(Orientation orientation)
+        private readonly PositionType _positionType;
+        public PositionTypeContext(PositionType positionType)
         {
-            _orientation = orientation;
+            _positionType = positionType;
         }
         public List<State> GetNeighbourCellsState(Cell cell, Cell[,] universeGrid, int universeDimensions)
         {
-            switch (_orientation)
+            switch (_positionType)
             {
-                case Orientation.TopLeftCorner:
+                case PositionType.TopLeftCorner:
                     return TopLeftCornerStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.TopRightCorner:
+                case PositionType.TopRightCorner:
                     return TopRightCornerStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.BottomLeftCorner:
+                case PositionType.BottomLeftCorner:
                     return BottomLeftCornerStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.BottomRightCorner:
+                case PositionType.BottomRightCorner:
                     return BottomRightCornerStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.TopSide:
+                case PositionType.TopSide:
                     return TopSideStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.BottomSide:
+                case PositionType.BottomSide:
                     return BottomSideStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.LeftSide:
+                case PositionType.LeftSide:
                     return LeftSideStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.RightSide:
+                case PositionType.RightSide:
                     return RightSideStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
-                case Orientation.Middle:
+                case PositionType.Middle:
                     return MiddleStrategy.GetNeighbourCellsState(cell, universeGrid, universeDimensions);
                 
                 default: throw new ArgumentException(Constants.InvalidOrientation);

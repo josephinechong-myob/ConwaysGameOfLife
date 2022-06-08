@@ -24,7 +24,7 @@ namespace ConwaysGameOfLife
 
             foreach (var cell in universe.UniverseGrid)
             {
-                var neighbour = new Neighbour(cell, universe.UniverseDimensions);
+                var neighbour = new NeighbourLocator(cell, universe.UniverseDimensions);
                 neighbour.SetOrientation(cell);
                 var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
                 cell.State = StateLaws.GetNextState(cell.State, actualNumberOfLiveNeighbours);

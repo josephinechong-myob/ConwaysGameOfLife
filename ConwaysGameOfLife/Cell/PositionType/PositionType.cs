@@ -1,6 +1,6 @@
-namespace ConwaysGameOfLife.Orientations
+namespace ConwaysGameOfLife.PositionType
 {
-    public enum Orientation
+    public enum PositionType
     {
         TopLeftCorner,
         TopRightCorner,

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using ConwaysGameOfLife.Orientations;
+using ConwaysGameOfLife.PositionType;
 using ConwaysGameOfLife.States;
 
 namespace ConwaysGameOfLife
 {
-    public class Neighbour
+    public class NeighbourLocator
     {
         public readonly int NextRow;
         public readonly int NextColumn;
@@ -21,7 +21,7 @@ namespace ConwaysGameOfLife
         private readonly Coordinate _bottomLeftCorner;
         private readonly Coordinate _bottomRightCorner;
         
-        public Neighbour(Cell cell, int universeDimensions)
+        public NeighbourLocator(Cell cell, int universeDimensions)
         {
             NextRow = cell.Coordinate.Row + Constants.NeighbourPositionAdjustmentValue;
             NextColumn = cell.Coordinate.Column + Constants.NeighbourPositionAdjustmentValue;
@@ -38,7 +38,7 @@ namespace ConwaysGameOfLife
         
         public int GetLiveNeighbours(Cell cell, Cell[,] universeGrid, int universeDimensions)
         {
-            var neighbourCellsState = new OrientationContext(cell.Orientation).GetNeighbourCellsState(cell, universeGrid, universeDimensions);
+            var neighbourCellsState = new PositionTypeContext(cell.PositionType).GetNeighbourCellsState(cell, universeGrid, universeDimensions);
             _liveNeighbours = neighbourCellsState.Count(n => n == State.Alive);
             return _liveNeighbours;
         }
@@ -67,39 +67,39 @@ namespace ConwaysGameOfLife
         {
             if (SameCoordinates(_topLeftCorner, cell.Coordinate))
             {
-                cell.Orientation = Orientation.TopLeftCorner;
+                cell.PositionType = PositionType.PositionType.TopLeftCorner;
             }
             else if (SameCoordinates(_topRightCorner, cell.Coordinate))
             {
-                cell.Orientation = Orientation.TopRightCorner;
+                cell.PositionType = PositionType.PositionType.TopRightCorner;
             }
             else if (SameCoordinates(_bottomLeftCorner, cell.Coordinate))
             {
-                cell.Orientation = Orientation.BottomLeftCorner;
+                cell.PositionType = PositionType.PositionType.BottomLeftCorner;
             }
             else if (SameCoordinates(_bottomRightCorner, cell.Coordinate))
             {
-                cell.Orientation = Orientation.BottomRightCorner;
+                cell.PositionType = PositionType.PositionType.BottomRightCorner;
             }
             else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Row))
             {
-                cell.Orientation = Orientation.TopSide;
+                cell.PositionType = PositionType.PositionType.TopSide;
             }
             else if (SameSide(LastRowOrColumn, cell.Coordinate.Row))
             {
-                cell.Orientation = Orientation.BottomSide;
+                cell.PositionType = PositionType.PositionType.BottomSide;
             }
             else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Column))
             {
-                cell.Orientation = Orientation.LeftSide;
+                cell.PositionType = PositionType.PositionType.LeftSide;
             }
             else if (SameSide(LastRowOrColumn, cell.Coordinate.Column))
             {
-                cell.Orientation = Orientation.RightSide;
+                cell.PositionType = PositionType.PositionType.RightSide;
             }
             else
             {
-                cell.Orientation = Orientation.Middle;
+                cell.PositionType = PositionType.PositionType.Middle;
             }
         }
         

@@ -1,5 +1,4 @@
 using System;
-using ConwaysGameOfLife.Orientations;
 using ConwaysGameOfLife.States;
 
 namespace ConwaysGameOfLife
@@ -7,7 +6,7 @@ namespace ConwaysGameOfLife
     public class Cell
     {
         public Coordinate Coordinate { get; }
-        public Orientation Orientation;
+        public PositionType.PositionType PositionType;
         public string Symbol { get; }
         public ConsoleColor Colour => State == State.Alive ? Constants.Alive : Constants.Dead;
         public State State;
