@@ -1,5 +1,4 @@
-﻿using ConwaysGameOfLife.Controller;
-using ConwaysGameOfLife.View;
+﻿using ConwaysGameOfLife.Console;
 
 namespace ConwaysGameOfLife
 {

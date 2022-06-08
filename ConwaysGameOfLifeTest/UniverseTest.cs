@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
-using ConwaysGameOfLife.Controller;
-using ConwaysGameOfLife.Model;
-using ConwaysGameOfLife.View;
+using ConwaysGameOfLife;
+using ConwaysGameOfLife.Console;
+using ConwaysGameOfLife.PositionType;
+using ConwaysGameOfLife.Seed;
+using ConwaysGameOfLife.States;
 using Moq;
 using Xunit;
 
@@ -58,11 +60,11 @@ namespace ConwaysGameOfLifeTest
         }
         
         [Theory]
-        [InlineData(0, 0, Orientation.TopLeftCorner)]
-        [InlineData(2, 2, Orientation.BottomRightCorner)]
-        [InlineData(0, 2, Orientation.TopRightCorner)]
-        [InlineData(2, 0, Orientation.BottomLeftCorner)]
-        public void Corner_Cell_Should_Return_Orientation_Of_Corner(int row, int column, Orientation expectedPosition)
+        [InlineData(0, 0, PositionType.TopLeftCorner)]
+        [InlineData(2, 2, PositionType.BottomRightCorner)]
+        [InlineData(0, 2, PositionType.TopRightCorner)]
+        [InlineData(2, 0, PositionType.BottomLeftCorner)]
+        public void Corner_Cell_Should_Return_Orientation_Of_Corner(int row, int column, PositionType expectedPosition)
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -76,11 +78,11 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[row, column];
-            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
+            var neighbour = new NeighbourLocator(cell, universe.UniverseDimensions);
 
             //act
             neighbour.SetOrientation(cell);
-            var actualPosition = cell.Orientation;
+            var actualPosition = cell.PositionType;
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
@@ -105,22 +107,22 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[row, column];
-            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
+            var neighbour = new NeighbourLocator(cell, universe.UniverseDimensions);
 
             //act
             neighbour.SetOrientation(cell);
-            var actualPosition = cell.Orientation;
+            var actualPosition = cell.PositionType;
 
             //assert
-            Assert.Equal(Orientation.Middle, actualPosition);
+            Assert.Equal(PositionType.Middle, actualPosition);
         }
 
         [Theory]
-        [InlineData(0, 1, Orientation.TopSide)]
-        [InlineData(2, 1, Orientation.BottomSide)]
-        [InlineData(1, 0, Orientation.LeftSide)]
-        [InlineData(1, 2, Orientation.RightSide)]
-        public void Side_Cell_Should_Return_Orientation_Of_Side(int row, int column, Orientation expectedPosition)
+        [InlineData(0, 1, PositionType.TopSide)]
+        [InlineData(2, 1, PositionType.BottomSide)]
+        [InlineData(1, 0, PositionType.LeftSide)]
+        [InlineData(1, 2, PositionType.RightSide)]
+        public void Side_Cell_Should_Return_Orientation_Of_Side(int row, int column, PositionType expectedPosition)
         {
             //arrange
             var mockConsole = new Mock<IGameConsole>();
@@ -134,11 +136,11 @@ namespace ConwaysGameOfLifeTest
             var seed = seedCreator.GetSeed();
             var universe = new Universe(mockConsole.Object, seed);
             var cell = universe.UniverseGrid[row, column];
-            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
+            var neighbour = new NeighbourLocator(cell, universe.UniverseDimensions);
 
             //act
             neighbour.SetOrientation(cell);
-            var actualPosition = cell.Orientation;
+            var actualPosition = cell.PositionType;
 
             //assert
             Assert.Equal(expectedPosition, actualPosition);
@@ -164,7 +166,7 @@ namespace ConwaysGameOfLifeTest
             var expectedCellSeedState = State.Alive;
             var expectedNumberOfLiveNeighbours = 0;
             var expectedCellState = State.Dead;
-            var neighbour = new Neighbour(cell, universe.UniverseDimensions);
+            var neighbour = new NeighbourLocator(cell, universe.UniverseDimensions);
 
             //act
             universe.UpdateUniverse(universe);
