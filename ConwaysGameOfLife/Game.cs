@@ -13,7 +13,7 @@ namespace ConwaysGameOfLife
             _gameConsole = gameConsole;
         }
         
-        public void Run()
+        public void PlayOptions()
         {
             var input = " ";
             var count = 0;
