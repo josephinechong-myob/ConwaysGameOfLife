@@ -10,6 +10,14 @@ namespace ConwaysGameOfLifeTest.CellTests
 {
     public class NeighbourLocatorTest
     {
+        private void Act(NeighbourLocator neighbour, Cell cell, Universe universe)
+        {
+            neighbour.SetOrientation(cell);
+            var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
+            cell.State = StateLaws.GetNextState(cell.State, actualNumberOfLiveNeighbours);
+            var actualCellState = cell.State;
+        }
+        
         [Fact]
         public void Live_Top_Left_Corner_Cell_Which_Has_More_Than_Three_Live_Neighbours_Should_Die()
         {
@@ -37,6 +45,7 @@ namespace ConwaysGameOfLifeTest.CellTests
             var expectedCellState = State.Dead;
             
             //act
+            Act(neighbour, cell, universe);
             neighbour.SetOrientation(cell);
             var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
             cell.State = StateLaws.GetNextState(cell.State, actualNumberOfLiveNeighbours);
