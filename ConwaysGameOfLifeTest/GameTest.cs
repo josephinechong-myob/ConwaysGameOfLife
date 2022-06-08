@@ -32,7 +32,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal, "All cells are dead"), Times.Once);
@@ -63,7 +63,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal,Constants.InvalidEntry), Times.Once);
@@ -95,7 +95,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.InvalidEntry), Times.Exactly(2));
@@ -114,7 +114,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo1), Times.Exactly(1));
@@ -133,7 +133,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.Demo2), Times.Exactly(1));
@@ -153,7 +153,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal,Constants.InvalidEntry), Times.Once);
@@ -175,7 +175,7 @@ namespace ConwaysGameOfLifeTest
             var game = new Game(mockConsole.Object);
 
             //act
-            game.Options();
+            game.Play();
             
             //assert
             mockConsole.Verify(c => c.WriteLine(Constants.Terminal, Constants.InvalidEntry), Times.Exactly(3));
