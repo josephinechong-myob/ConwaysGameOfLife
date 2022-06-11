@@ -2,7 +2,7 @@ using System;
 
 namespace ConwaysGameOfLife
 {
-    public class Coordinate //possible not to have a coordinate class 
+    public class Coordinate //future refactoring - possible not to have a coordinate class 
     {
         public readonly int Row;
         public readonly int Column;
