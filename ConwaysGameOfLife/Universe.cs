@@ -5,7 +5,7 @@ namespace ConwaysGameOfLife
 {
     public class Universe
     {
-        public Cell[,] UniverseGrid { get; } //nested loop you can calculate the coordinate of the cell
+        public Cell[,] UniverseGrid { get; } //future refactoring - nested loop you can calculate the coordinate of the cell
         public readonly int UniverseDimensions;
         public bool AllCellsAreDead;
         private readonly IGameConsole _gameConsole;
