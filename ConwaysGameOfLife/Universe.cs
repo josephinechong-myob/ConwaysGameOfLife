@@ -5,7 +5,7 @@ namespace ConwaysGameOfLife
 {
     public class Universe
     {
-        public Cell[,] UniverseGrid { get; }
+        public Cell[,] UniverseGrid { get; } //nested loop you can calculate the coordinate of the cell
         public readonly int UniverseDimensions;
         public bool AllCellsAreDead;
         private readonly IGameConsole _gameConsole;
@@ -25,7 +25,7 @@ namespace ConwaysGameOfLife
             foreach (var cell in universe.UniverseGrid)
             {
                 var neighbour = new NeighbourLocator(cell, universe.UniverseDimensions);
-                neighbour.SetOrientation(cell);
+                neighbour.SetOrientation(cell); //might not need to set orientation if we have interger 
                 var actualNumberOfLiveNeighbours = neighbour.GetLiveNeighbours(cell, universe.UniverseGrid, universe.UniverseDimensions);
                 cell.State = StateLaws.GetNextState(cell.State, actualNumberOfLiveNeighbours);
             }
@@ -42,7 +42,7 @@ namespace ConwaysGameOfLife
             {
                 for (int column = 0; column < height; column++)
                 {
-                    _gameConsole.Write(universe[row, column].GetColour(), universe[row, column].GetSymbol());
+                    _gameConsole.Write(universe[row, column].Colour, universe[row, column].Symbol);
                 }
                 _gameConsole.Write(Constants.Terminal, Constants.NewLine);
             }

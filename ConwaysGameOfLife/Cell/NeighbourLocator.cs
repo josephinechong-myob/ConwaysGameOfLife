@@ -23,13 +23,13 @@ namespace ConwaysGameOfLife
         
         public NeighbourLocator(Cell cell, int universeDimensions)
         {
-            NextRow = cell.GetCoordinate().Row + Constants.NeighbourPositionAdjustmentValue;
-            NextColumn = cell.GetCoordinate().Column + Constants.NeighbourPositionAdjustmentValue;
-            PreviousRow = cell.GetCoordinate().Row - Constants.NeighbourPositionAdjustmentValue;
-            PreviousColumn = cell.GetCoordinate().Column - Constants.NeighbourPositionAdjustmentValue;
+            NextRow = cell.Coordinate.Row + Constants.NeighbourPositionAdjustmentValue;
+            NextColumn = cell.Coordinate.Column + Constants.NeighbourPositionAdjustmentValue;
+            PreviousRow = cell.Coordinate.Row - Constants.NeighbourPositionAdjustmentValue;
+            PreviousColumn = cell.Coordinate.Column - Constants.NeighbourPositionAdjustmentValue;
             LastRowOrColumn = universeDimensions - Constants.ZeroIndexAdjustmentValue;LastRowOrColumn = universeDimensions - Constants.ZeroIndexAdjustmentValue;
-            _sameRow = cell.GetCoordinate().Row;
-            _sameColumn = cell.GetCoordinate().Column;
+            _sameRow = cell.Coordinate.Row;
+            _sameColumn = cell.Coordinate.Column;
             _topLeftCorner = new Coordinate (Constants.FirstRowOrColumn, Constants.FirstRowOrColumn);
             _topRightCorner = new Coordinate(Constants.FirstRowOrColumn, universeDimensions - Constants.ZeroIndexAdjustmentValue);
             _bottomLeftCorner = new Coordinate(universeDimensions - Constants.ZeroIndexAdjustmentValue, Constants.FirstRowOrColumn);
@@ -65,35 +65,35 @@ namespace ConwaysGameOfLife
         
         public void SetOrientation(Cell cell)
         {
-            if (SameCoordinates(_topLeftCorner, cell.GetCoordinate()))
+            if (SameCoordinates(_topLeftCorner, cell.Coordinate))
             {
                 cell.PositionType = PositionType.PositionType.TopLeftCorner;
             }
-            else if (SameCoordinates(_topRightCorner, cell.GetCoordinate()))
+            else if (SameCoordinates(_topRightCorner, cell.Coordinate))
             {
                 cell.PositionType = PositionType.PositionType.TopRightCorner;
             }
-            else if (SameCoordinates(_bottomLeftCorner, cell.GetCoordinate()))
+            else if (SameCoordinates(_bottomLeftCorner, cell.Coordinate))
             {
                 cell.PositionType = PositionType.PositionType.BottomLeftCorner;
             }
-            else if (SameCoordinates(_bottomRightCorner, cell.GetCoordinate()))
+            else if (SameCoordinates(_bottomRightCorner, cell.Coordinate))
             {
                 cell.PositionType = PositionType.PositionType.BottomRightCorner;
             }
-            else if (SameSide(Constants.FirstRowOrColumn, cell.GetCoordinate().Row))
+            else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Row))
             {
                 cell.PositionType = PositionType.PositionType.TopSide;
             }
-            else if (SameSide(LastRowOrColumn, cell.GetCoordinate().Row))
+            else if (SameSide(LastRowOrColumn, cell.Coordinate.Row))
             {
                 cell.PositionType = PositionType.PositionType.BottomSide;
             }
-            else if (SameSide(Constants.FirstRowOrColumn, cell.GetCoordinate().Column))
+            else if (SameSide(Constants.FirstRowOrColumn, cell.Coordinate.Column))
             {
                 cell.PositionType = PositionType.PositionType.LeftSide;
             }
-            else if (SameSide(LastRowOrColumn, cell.GetCoordinate().Column))
+            else if (SameSide(LastRowOrColumn, cell.Coordinate.Column))
             {
                 cell.PositionType = PositionType.PositionType.RightSide;
             }
