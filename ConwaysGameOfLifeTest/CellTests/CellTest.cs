@@ -17,7 +17,7 @@ namespace ConwaysGameOfLifeTest.CellTests
             var cell = new Cell(coordinate, cellState);
 
             //act
-            var actualColour = cell.GetColour();
+            var actualColour = cell.Colour;
 
             //assert
             Assert.Equal(expectedColour, actualColour);

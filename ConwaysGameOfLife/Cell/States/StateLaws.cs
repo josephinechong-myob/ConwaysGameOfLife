@@ -1,6 +1,6 @@
 namespace ConwaysGameOfLife.States
 {
-    public static class StateLaws
+    public static class StateLaws //use the state of the cells some how
     {
         public static State GetNextState(State state, int liveNeighbours)
         {

@@ -5,10 +5,10 @@ namespace ConwaysGameOfLife
 {
     public class Cell
     {
-        private Coordinate Coordinate { get; }
+        public readonly Coordinate Coordinate;
         internal PositionType.PositionType PositionType;
-        private string Symbol { get; }
-        private ConsoleColor Colour => State == State.Alive ? Constants.Alive : Constants.Dead;
+        public readonly string Symbol;
+        public ConsoleColor Colour => State == State.Alive ? Constants.Alive : Constants.Dead;
         public State State;
 
         public Cell(Coordinate coordinate, State state)
@@ -18,24 +18,9 @@ namespace ConwaysGameOfLife
             Symbol = Constants.SquareCell;
         }
 
-        public Coordinate GetCoordinate()
-        {
-            return Coordinate;
-        }
-
         public PositionType.PositionType GetPositionType()
         {
             return PositionType;
-        }
-
-        public string GetSymbol()
-        {
-            return Symbol;
-        }
-
-        public ConsoleColor GetColour()
-        {
-            return Colour;
         }
     }
 }
